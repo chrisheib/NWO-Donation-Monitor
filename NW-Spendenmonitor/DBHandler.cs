@@ -10,13 +10,21 @@ namespace NW_Spendenmonitor
 
         public static SQLiteConnection OpenSQLConnection()
         {
+            var newDB = false;
             if (!File.Exists("nwmonitor.sqlite"))
             {
                 SQLiteConnection.CreateFile("nwmonitor.sqlite");
+                newDB = true;
             }
 
             var m_dbConnection = new SQLiteConnection("Data Source=nwmonitor.sqlite;Version=3;");
             m_dbConnection.Open();
+
+            if (newDB)
+            {
+                DBScheme.InitScheme(m_dbConnection);
+            }
+
             return m_dbConnection;
         }
 

@@ -20,16 +20,15 @@ namespace NW_Spendenmonitor
             FillPrevious();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Button1_Click(object sender, EventArgs e)
         {
             DB.Execute(dbConnection, textBox1.Text);
             FillPrevious();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void Button2_Click(object sender, EventArgs e)
         {
-            SQLiteDataReader query;
-            if (DB.Select(dbConnection, textBox1.Text, out query))
+            if (DB.Select(dbConnection, textBox1.Text, out SQLiteDataReader query))
             {
                 //dataGridView1.DataSource = dt;
                 dt = new DataTable();
@@ -41,8 +40,7 @@ namespace NW_Spendenmonitor
 
         private void FillPrevious()
         {
-            SQLiteDataReader query;
-            if (DB.Select(dbConnection, "select distinct command from commands order by id desc limit 15", out query, false))
+            if (DB.Select(dbConnection, "select distinct command from commands order by id desc limit 15", out SQLiteDataReader query, false))
             {
                 listBox1.Items.Clear();
                 while (query.Read())
@@ -53,9 +51,39 @@ namespace NW_Spendenmonitor
             
         }
 
-        private void listBox1_MouseDoubleClick(object sender, MouseEventArgs e)
+        private void ListBox1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             textBox1.Text = listBox1.SelectedItem.ToString();
+        }
+
+        private void Button3_Click(object sender, EventArgs e)
+        {
+            if (textBox2.Text == "")
+            {
+
+                OpenFileDialog openFileDialog1 = new OpenFileDialog()
+                {
+                    InitialDirectory = "E:\\Neverwinterlogs",
+                    RestoreDirectory = true,
+                    Multiselect = false
+                };
+
+                if (openFileDialog1.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        textBox2.Text = openFileDialog1.FileName;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error: Could not read file from disk. Original error: " + ex.Message);
+                    }
+                }
+            }
+            else
+            {
+                DonationImporter.ImportCSVToInput(dbConnection,textBox2.Text);
+            }
         }
     }
 }

@@ -32,6 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="LINQtoCSV">
+      <HintPath>.\LINQtoCSV.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.SQLite">
@@ -48,6 +51,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DonationImporter.cs" />
+    <Compile Include="CSVReader.cs" />
+    <Compile Include="DBScheme.cs" />
     <Compile Include="DBHandler.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
