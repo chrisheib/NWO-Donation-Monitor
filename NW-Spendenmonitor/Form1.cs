@@ -34,6 +34,7 @@ namespace NW_Spendenmonitor
                 dt = new DataTable();
                 dataGridView1.DataSource = dt;
                 dt.Load(query);
+                dataGridView1.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells); 
             }
             FillPrevious();
         }

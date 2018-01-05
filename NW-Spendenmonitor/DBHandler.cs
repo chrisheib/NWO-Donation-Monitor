@@ -51,7 +51,7 @@ namespace NW_Spendenmonitor
             }
             catch
             {
-                query = new SQLiteCommand("select 'hi'", connect).ExecuteReader();
+                query = null;
             }
 
             return result;
