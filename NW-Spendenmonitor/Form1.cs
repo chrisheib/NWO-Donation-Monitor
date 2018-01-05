@@ -85,5 +85,6 @@ namespace NW_Spendenmonitor
                 DonationImporter.ImportCSVToInput(dbConnection,textBox2.Text);
             }
         }
+        
     }
 }
