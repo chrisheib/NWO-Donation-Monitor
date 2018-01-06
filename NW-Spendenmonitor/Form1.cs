@@ -50,31 +50,25 @@ namespace NW_Spendenmonitor
 
         private void Button3_Click(object sender, EventArgs e)
         {
-            if (textBox2.Text == "")
+            OpenFileDialog openFileDialog1 = new OpenFileDialog()
             {
+                InitialDirectory = "E:\\Neverwinterlogs",
+                RestoreDirectory = true,
+                Multiselect = false
+            };
 
-                OpenFileDialog openFileDialog1 = new OpenFileDialog()
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                try
                 {
-                    InitialDirectory = "E:\\Neverwinterlogs",
-                    RestoreDirectory = true,
-                    Multiselect = false
-                };
-
-                if (openFileDialog1.ShowDialog() == DialogResult.OK)
-                {
-                    try
-                    {
-                        textBox2.Text = openFileDialog1.FileName;
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Error: Could not read file from disk. Original error: " + ex.Message);
-                    }
+                    textBox2.Text = "Importiere " + openFileDialog1.FileName + ", bitte warten!";
+                    DonationImporter.ImportCSVToInput(dbConnection, openFileDialog1.FileName);
+                    textBox2.Text = "Import von " + openFileDialog1.FileName + " abgeschlossen!";
                 }
-            }
-            else
-            {
-                DonationImporter.ImportCSVToInput(dbConnection,textBox2.Text);
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: Could not read file from disk. Original error: " + ex.Message);
+                }
             }
         }
 
