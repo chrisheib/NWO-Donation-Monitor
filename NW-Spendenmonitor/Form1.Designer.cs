@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
             this.dTPBis = new System.Windows.Forms.DateTimePicker();
             this.dTPVon = new System.Windows.Forms.DateTimePicker();
@@ -40,8 +42,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.label2 = new System.Windows.Forms.Label();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -60,6 +61,7 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.comboBox1);
             this.splitContainer1.Panel1.Controls.Add(this.checkBox1);
             this.splitContainer1.Panel1.Controls.Add(this.label2);
             this.splitContainer1.Panel1.Controls.Add(this.button4);
@@ -81,13 +83,32 @@
             this.splitContainer1.SplitterDistance = 220;
             this.splitContainer1.TabIndex = 8;
             // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(501, 15);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(116, 17);
+            this.checkBox1.TabIndex = 19;
+            this.checkBox1.Text = "Datei umbenennen";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(9, 16);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(40, 13);
+            this.label2.TabIndex = 18;
+            this.label2.Text = "Status:";
+            // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(453, 63);
+            this.button4.Location = new System.Drawing.Point(642, 63);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(161, 23);
+            this.button4.Size = new System.Drawing.Size(69, 23);
             this.button4.TabIndex = 17;
-            this.button4.Text = "Gutscheine p. Account von bis";
+            this.button4.Text = "Auswerten!";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.Button4_Click);
             // 
@@ -113,7 +134,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(618, 11);
+            this.button3.Location = new System.Drawing.Point(619, 11);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(92, 23);
             this.button3.TabIndex = 14;
@@ -125,7 +146,7 @@
             // 
             this.textBox2.Location = new System.Drawing.Point(55, 13);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(439, 20);
+            this.textBox2.Size = new System.Drawing.Size(440, 20);
             this.textBox2.TabIndex = 13;
             // 
             // button2
@@ -191,24 +212,18 @@
             this.dataGridView1.Size = new System.Drawing.Size(723, 537);
             this.dataGridView1.TabIndex = 6;
             // 
-            // label2
+            // comboBox1
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(9, 16);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(40, 13);
-            this.label2.TabIndex = 18;
-            this.label2.Text = "Status:";
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(500, 15);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(116, 17);
-            this.checkBox1.TabIndex = 19;
-            this.checkBox1.Text = "Datei umbenennen";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Gutscheine pro Account von ... bis",
+            "Einfluss pro Account von ... bis",
+            "Juwelen pro Account von ... bis"});
+            this.comboBox1.Location = new System.Drawing.Point(452, 64);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(184, 21);
+            this.comboBox1.TabIndex = 20;
             // 
             // Form1
             // 
@@ -244,6 +259,7 @@
         private System.Windows.Forms.DateTimePicker dTPVon;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }
 
