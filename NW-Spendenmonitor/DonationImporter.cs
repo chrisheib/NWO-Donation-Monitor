@@ -6,9 +6,8 @@ namespace NW_Spendenmonitor
     
     static class DonationImporter
     {
-        public static bool ImportCSVToInput(SQLiteConnection dbConnect, string path)
+        public static int ImportCSVToInput(SQLiteConnection dbConnect, string path, bool rename)
         {
-            bool result = false;
 
             List<DonationDataLine> donationList = CSVReader.ReadCSV(path);
             donationList.Reverse();
@@ -24,17 +23,42 @@ namespace NW_Spendenmonitor
                 maxDate = "";
             }
 
+            string maxDateInFile = "";
+            int changedLines = 0;
+
             foreach (var donationLine in donationList)
             {
                 if (string.Compare(donationLine.Time, maxDate) > 0)
                 {
                     string donationInputStatement = DonationLineToStatement(donationLine);
                     DB.Execute(dbConnect, donationInputStatement);
+                    changedLines++;
+                }
+
+                // find last date
+                if (string.Compare(donationLine.Time, maxDateInFile) > 0)
+                {
+                    maxDateInFile = donationLine.Time;
                 }
 
             }
 
-            return result;
+            if (rename)
+            {
+                RenameFile(path, maxDateInFile);
+            }
+
+            return changedLines;
+        }
+
+        private static void RenameFile(string path, string maxDate)
+        {
+            string filename = System.IO.Path.GetFileNameWithoutExtension(path);
+            string fileextension = System.IO.Path.GetExtension(path);
+
+            filename = (filename + " " + maxDate + fileextension).Replace(":","-");
+            string newPath = System.IO.Path.GetDirectoryName(path) + "\\" + filename;
+            System.IO.File.Move(path, newPath);
         }
 
         private static string DonationLineToStatement(DonationDataLine dataLine)

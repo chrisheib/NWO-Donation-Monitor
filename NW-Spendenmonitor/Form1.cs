@@ -63,8 +63,8 @@ namespace NW_Spendenmonitor
                 try
                 {
                     SetStatus("Importiere " + openFileDialog1.FileName + ", bitte warten!");
-                    DonationImporter.ImportCSVToInput(dbConnection, openFileDialog1.FileName);
-                    SetStatus("Import von " + openFileDialog1.FileName + " abgeschlossen!");
+                    string changedLines = Convert.ToString(DonationImporter.ImportCSVToInput(dbConnection, openFileDialog1.FileName, checkBox1.Checked));
+                    SetStatus("Import von " + openFileDialog1.FileName + " abgeschlossen, " + changedLines + " Einträge hinzugefügt!");
                 }
                 catch (Exception ex)
                 {
