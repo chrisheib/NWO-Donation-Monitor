@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.button4 = new System.Windows.Forms.Button();
+            this.dTPBis = new System.Windows.Forms.DateTimePicker();
+            this.dTPVon = new System.Windows.Forms.DateTimePicker();
             this.button3 = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
@@ -55,6 +58,9 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.button4);
+            this.splitContainer1.Panel1.Controls.Add(this.dTPBis);
+            this.splitContainer1.Panel1.Controls.Add(this.dTPVon);
             this.splitContainer1.Panel1.Controls.Add(this.button3);
             this.splitContainer1.Panel1.Controls.Add(this.textBox2);
             this.splitContainer1.Panel1.Controls.Add(this.button2);
@@ -70,6 +76,36 @@
             this.splitContainer1.Size = new System.Drawing.Size(723, 398);
             this.splitContainer1.SplitterDistance = 200;
             this.splitContainer1.TabIndex = 8;
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(453, 39);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(175, 23);
+            this.button4.TabIndex = 17;
+            this.button4.Text = "Gutscheine pro Account von bis";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.Button4_Click);
+            // 
+            // dTPBis
+            // 
+            this.dTPBis.CustomFormat = "dd.MM.yyyy HH:mm:ss";
+            this.dTPBis.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dTPBis.Location = new System.Drawing.Point(311, 41);
+            this.dTPBis.Name = "dTPBis";
+            this.dTPBis.Size = new System.Drawing.Size(136, 20);
+            this.dTPBis.TabIndex = 16;
+            this.dTPBis.Value = new System.DateTime(2018, 1, 6, 23, 59, 59, 0);
+            // 
+            // dTPVon
+            // 
+            this.dTPVon.CustomFormat = "dd.MM.yyyy HH:mm:ss";
+            this.dTPVon.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dTPVon.Location = new System.Drawing.Point(169, 41);
+            this.dTPVon.Name = "dTPVon";
+            this.dTPVon.Size = new System.Drawing.Size(136, 20);
+            this.dTPVon.TabIndex = 15;
+            this.dTPVon.Value = new System.DateTime(2018, 1, 6, 0, 0, 0, 0);
             // 
             // button3
             // 
@@ -90,21 +126,21 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(142, 39);
+            this.button2.Location = new System.Drawing.Point(89, 39);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(130, 23);
+            this.button2.Size = new System.Drawing.Size(74, 23);
             this.button2.TabIndex = 12;
-            this.button2.Text = "Query";
+            this.button2.Text = "Abfrage";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.Button2_Click);
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(15, 39);
+            this.button1.Location = new System.Drawing.Point(11, 39);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(121, 23);
+            this.button1.Size = new System.Drawing.Size(72, 23);
             this.button1.TabIndex = 11;
-            this.button1.Text = "Feuer";
+            this.button1.Text = "Befehl";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.Button1_Click);
             // 
@@ -180,6 +216,9 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.DateTimePicker dTPBis;
+        private System.Windows.Forms.DateTimePicker dTPVon;
     }
 }
 

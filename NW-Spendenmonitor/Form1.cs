@@ -28,15 +28,7 @@ namespace NW_Spendenmonitor
 
         private void Button2_Click(object sender, EventArgs e)
         {
-            if (DB.Select(dbConnection, textBox1.Text, out SQLiteDataReader query))
-            {
-                //dataGridView1.DataSource = dt;
-                dt = new DataTable();
-                dataGridView1.DataSource = dt;
-                dt.Load(query);
-                dataGridView1.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells); 
-            }
-            FillPrevious();
+            StatementToGrid(textBox1.Text);
         }
 
         private void FillPrevious()
@@ -49,7 +41,6 @@ namespace NW_Spendenmonitor
                     listBox1.Items.Add(query.GetString(0));
                 }
             }
-            
         }
 
         private void ListBox1_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -86,6 +77,36 @@ namespace NW_Spendenmonitor
                 DonationImporter.ImportCSVToInput(dbConnection,textBox2.Text);
             }
         }
-        
+
+        private void Button4_Click(object sender, EventArgs e)
+        {
+            dTPVon.CustomFormat = "yyyy-MM-dd HH:mm:ss";
+            dTPBis.CustomFormat = "yyyy-MM-dd HH:mm:ss";
+            string dateFrom = dTPVon.Text;
+            string dateTo = dTPBis.Text;
+            dTPVon.CustomFormat = "dd.MM.yyyy HH:mm:ss";
+            dTPBis.CustomFormat = "dd.MM.yyyy HH:mm:ss";
+            
+            string statement = "select charname, account, sum(itemcount) Gutscheinanzahl from input where item like '%voucher%'"+
+                " and time >= '" + dateFrom + "' and time <= '" + dateTo + "' group by account order by Gutscheinanzahl desc";
+            StatementToGrid(statement, false);
+        }
+
+        private void StatementToGrid(string statement)
+        {
+            StatementToGrid(statement, true);
+        }
+
+        private void StatementToGrid(string statement, bool logging)
+        {
+            if (DB.Select(dbConnection, statement, out SQLiteDataReader query, logging))
+            {
+                dt = new DataTable();
+                dataGridView1.DataSource = dt;
+                dt.Load(query);
+                dataGridView1.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+            }
+            FillPrevious();
+        }
     }
 }

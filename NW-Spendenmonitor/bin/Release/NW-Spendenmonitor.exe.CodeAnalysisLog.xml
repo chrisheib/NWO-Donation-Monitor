@@ -12,14 +12,14 @@
          <Members>
           <Member Name="#Execute(System.Data.SQLite.SQLiteConnection,System.String,System.Boolean)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="False">
            <Messages>
-            <Message TypeName="SQL-Abfragen auf Sicherheitsrisiken überprüfen" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2018-01-06 14:08:22Z" FixCategory="DependsOnFix">
+            <Message TypeName="SQL-Abfragen auf Sicherheitsrisiken überprüfen" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2018-01-06 15:13:21Z" FixCategory="DependsOnFix">
              <Issue Name="WithNonLiterals" Certainty="75" Level="Warning">Die in 'DB.Execute(SQLiteConnection, string, bool)' an 'SQLiteCommand.SQLiteCommand(string, SQLiteConnection)' übergebene Abfragezeichenfolge könnte die folgenden 'sql'-Variablen enthalten. Wenn eine dieser Variablen aus Benutzereingaben stammt, sollten Sie eine gespeicherte Prozedur oder eine parametrisierte SQL-Abfrage verwenden, anstatt die Abfrage mit Zeichenfolgenverkettungen zu erstellen.</Issue>
             </Message>
            </Messages>
           </Member>
           <Member Name="#Select(System.Data.SQLite.SQLiteConnection,System.String,System.Data.SQLite.SQLiteDataReader&amp;,System.Boolean)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="False">
            <Messages>
-            <Message TypeName="SQL-Abfragen auf Sicherheitsrisiken überprüfen" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2018-01-06 14:08:22Z" FixCategory="DependsOnFix">
+            <Message TypeName="SQL-Abfragen auf Sicherheitsrisiken überprüfen" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2018-01-06 15:13:21Z" FixCategory="DependsOnFix">
              <Issue Name="WithNonLiterals" Certainty="75" Level="Warning">Die in 'DB.Select(SQLiteConnection, string, out SQLiteDataReader, bool)' an 'SQLiteCommand.SQLiteCommand(string, SQLiteConnection)' übergebene Abfragezeichenfolge könnte die folgenden 'sql'-Variablen enthalten. Wenn eine dieser Variablen aus Benutzereingaben stammt, sollten Sie eine gespeicherte Prozedur oder eine parametrisierte SQL-Abfrage verwenden, anstatt die Abfrage mit Zeichenfolgenverkettungen zu erstellen.</Issue>
             </Message>
            </Messages>
