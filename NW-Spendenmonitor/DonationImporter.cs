@@ -10,7 +10,7 @@ namespace NW_Spendenmonitor
         {
             bool result = false;
 
-            List<DonationDataLine> donationList = (List<DonationDataLine>) CSVReader.ReadCSV(path);
+            List<DonationDataLine> donationList = CSVReader.ReadCSV(path);
             donationList.Reverse();
 
             string maxDate;

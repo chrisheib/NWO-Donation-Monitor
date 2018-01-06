@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System;
+using System.Linq;
 using LINQtoCSV; //http://www.aspnetperformance.com/post/LINQ-to-CSV-library.aspx
 
 namespace NW_Spendenmonitor
@@ -123,7 +124,7 @@ namespace NW_Spendenmonitor
 
     static class CSVReader
     {
-        public static IEnumerable<DonationDataLine> ReadCSV(string path){
+        public static List<DonationDataLine> ReadCSV(string path){
             CsvFileDescription inputFileDescription = new CsvFileDescription
             {
                 SeparatorChar = ',',
@@ -132,7 +133,7 @@ namespace NW_Spendenmonitor
 
             CsvContext cc = new CsvContext();
 
-            IEnumerable<DonationDataLine> dataLines = cc.Read<DonationDataLine>(path, inputFileDescription);
+            List<DonationDataLine> dataLines = cc.Read<DonationDataLine>(path, inputFileDescription).ToList();
             return dataLines;
         }
     }
