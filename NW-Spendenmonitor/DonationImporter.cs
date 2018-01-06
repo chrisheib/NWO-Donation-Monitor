@@ -10,11 +10,33 @@ namespace NW_Spendenmonitor
             bool result = false;
 
             IEnumerable<DonationDataLine> donationList = CSVReader.ReadCSV(path);
+
+            string maxDate;
+
+            if (DB.Select(dbConnect, "select ifnull(max(time),'0000-00-00 00:00:00') maxtime from input", out SQLiteDataReader query) && query.Read())
+            {
+                maxDate = (string) query["maxtime"];
+            }
+            else
+            {
+                maxDate = "";
+            }
             
+            //select max(time) from input
+
+
             foreach (var donationLine in donationList)
             {
-                string donationInputStatement = DonationLineToStatement(donationLine);
-                DB.Execute(dbConnect, donationInputStatement);
+                if (string.Compare(donationLine.Time, maxDate) > 0)
+                {
+                    string donationInputStatement = DonationLineToStatement(donationLine);
+                    DB.Execute(dbConnect, donationInputStatement);
+                }
+                else
+                {
+                    break;
+                }
+
             }
 
             return result;
@@ -26,15 +48,15 @@ namespace NW_Spendenmonitor
 
             result = "INSERT INTO input " +
                 "(charname, account, time, item, itemcount, resource, resourcequantity, donorsguild, targetguild) VALUES (" +
-                "'" + dataLine.charname + "'" + "," +
-                "'" + dataLine.account + "'" + "," +
-                "'" + dataLine.time + "'" + "," +
-                "'" + dataLine.item + "'" + "," +
-                "'" + dataLine.itemcount + "'" + "," +
-                "'" + dataLine.resource + "'" + "," +
-                "'" + dataLine.resourcequantity + "'" + "," +
-                "'" + dataLine.donorsguild + "'" + "," +
-                "'" + dataLine.targetguild + "'" + ")";
+                "'" + dataLine.Charname + "'" + "," +
+                "'" + dataLine.Account + "'" + "," +
+                "'" + dataLine.Time + "'" + "," +
+                "'" + dataLine.Item + "'" + "," +
+                "'" + dataLine.Itemcount + "'" + "," +
+                "'" + dataLine.Resource + "'" + "," +
+                "'" + dataLine.Resourcequantity + "'" + "," +
+                "'" + dataLine.Donorsguild + "'" + "," +
+                "'" + dataLine.Targetguild + "'" + ")";
 
             return result;
         }

@@ -1,45 +1,123 @@
 ﻿using System.Collections.Generic;
+using System;
 using LINQtoCSV; //http://www.aspnetperformance.com/post/LINQ-to-CSV-library.aspx
 
 namespace NW_Spendenmonitor
 {
     class DonationDataLine
     {
-        [CsvColumn(Name ="Character Name")]
-        public string charname;
+        string charname;
+        [CsvColumn(Name = "Character Name")]
+        public string Charname
+        {
+            get { return charname; }
+            set { charname = ClearApostrophes(value); }
+        }
+
+        string account;
         [CsvColumn(Name = "Account Handle")]
-        public string account;
+        public string Account
+        {
+            get { return account; }
+            set { account = ClearApostrophes(value); }
+        }
+
+        private string time;
         [CsvColumn(Name = "Time")]
-        public string time;
+        public string Time
+        {
+            get { return time; }
+            set { time = FormatTime(value); }
+        }
+
+        string item;
         [CsvColumn(Name = "Item")]
-        public string item;
+        public string Item
+        {
+            get { return item; }
+            set { item = ClearApostrophes(value); }
+        }
+
+        string itemcount;
         [CsvColumn(Name = "Item Count")]
-        public string itemcount;
+        public string Itemcount
+        {
+            get { return itemcount; }
+            set { itemcount = ClearApostrophes(value); }
+        }
+
+        string resource;
         [CsvColumn(Name = "Resource")]
-        public string resource;
+        public string Resource
+        {
+            get { return resource; }
+            set { resource = ClearApostrophes(value); }
+        }
+
+        string resourcequantity;
         [CsvColumn(Name = "Resource Quantity")]
-        public string resourcequantity;
+        public string Resourcequantity
+        {
+            get { return resourcequantity; }
+            set { resourcequantity = ClearApostrophes(value); }
+        }
+
+        string donorsguild;
         [CsvColumn(Name = "Donor's Guild")]
-        public string donorsguild;
+        public string Donorsguild
+        {
+            get { return donorsguild; }
+            set { donorsguild = ClearApostrophes(value); }
+        }
+
+        string targetguild;
         [CsvColumn(Name = "Recipient Guild")]
-        public string targetguild;
+        public string Targetguild
+        {
+            get { return targetguild; }
+            set { targetguild = ClearApostrophes(value); }
+        }
 
         public DonationDataLine(string charname, string account, string time, string item, string itemcount, string resource, string resourcequantity, string donorsguild, string targetguild)
         {
-            this.charname = charname;
-            this.account = account;
-            this.time = time;
-            this.item = item;
-            this.itemcount = itemcount;
-            this.resource = resource;
-            this.resourcequantity = resourcequantity;
-            this.donorsguild = donorsguild;
-            this.targetguild = targetguild;
+            Charname = charname;
+            Account = account;
+            Time = time;
+            Item = item;
+            Itemcount = itemcount;
+            Resource = resource;
+            Resourcequantity = resourcequantity;
+            Donorsguild = donorsguild;
+            Targetguild = targetguild;
         }
 
         public DonationDataLine()
         {
 
+        }
+
+        private string ClearApostrophes(string input)
+        {
+            return input.Replace("'", "");
+        }
+
+        private string FormatTime(string csvTime)
+        {
+            string[] fullDateTime = csvTime.Split(' ');
+            string[] fullDate = fullDateTime[0].Split('/');
+            string fullTime = fullDateTime[1] + ' ' + fullDateTime[2];
+
+            string day = fullDate[1].PadLeft(2,'0');
+            string month = fullDate[0].PadLeft(2, '0');
+            string year = fullDate[2];
+
+
+            string formattedTime = DateTime.Parse(fullTime).ToLongTimeString(); //.ToShortTimeString();
+            //   Yllithian,,8 / 26 / 2017 1:23:00 AM,"Phandar Dining Table",1,"Phandar Dining Table",1,Die Hüter des Lichts, Die Hüter des Lichts
+
+            string formattedDateTime = year + '-' + month + '-' + day + ' ' + formattedTime;
+
+            return formattedDateTime;
         }
     }
 
