@@ -3,13 +3,15 @@ using System.Data.SQLite;
 
 namespace NW_Spendenmonitor
 {
+    
     static class DonationImporter
     {
         public static bool ImportCSVToInput(SQLiteConnection dbConnect, string path)
         {
             bool result = false;
 
-            IEnumerable<DonationDataLine> donationList = CSVReader.ReadCSV(path);
+            List<DonationDataLine> donationList = (List<DonationDataLine>) CSVReader.ReadCSV(path);
+            donationList.Reverse();
 
             string maxDate;
 
@@ -21,9 +23,6 @@ namespace NW_Spendenmonitor
             {
                 maxDate = "";
             }
-            
-            //select max(time) from input
-
 
             foreach (var donationLine in donationList)
             {
@@ -31,10 +30,6 @@ namespace NW_Spendenmonitor
                 {
                     string donationInputStatement = DonationLineToStatement(donationLine);
                     DB.Execute(dbConnect, donationInputStatement);
-                }
-                else
-                {
-                    break;
                 }
 
             }
