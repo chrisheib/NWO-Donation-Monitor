@@ -8,7 +8,7 @@ namespace NW_Spendenmonitor
     class DB
     {
 
-        public static SQLiteConnection OpenSQLConnection()
+        public static SQLiteConnection OpenSQLConnection(out string result)
         {
             var newDB = false;
             if (!File.Exists("nwmonitor.sqlite"))
@@ -23,6 +23,11 @@ namespace NW_Spendenmonitor
             if (newDB)
             {
                 DBScheme.InitScheme(m_dbConnection);
+                result = "Neue Datenbank erfolgreich angelegt!";
+            }
+            else
+            {
+                result = "Erfolgreich zu bestehender Datenbank verbunden!";
             }
 
             return m_dbConnection;

@@ -14,7 +14,8 @@ namespace NW_Spendenmonitor
         public Form1()
         {
             InitializeComponent();
-            dbConnection = DB.OpenSQLConnection();
+            dbConnection = DB.OpenSQLConnection(out string status);
+            SetStatus(status);
             dt = new DataTable();
             dataGridView1.DataSource = dt;
             FillPrevious();
@@ -61,9 +62,9 @@ namespace NW_Spendenmonitor
             {
                 try
                 {
-                    textBox2.Text = "Importiere " + openFileDialog1.FileName + ", bitte warten!";
+                    SetStatus("Importiere " + openFileDialog1.FileName + ", bitte warten!");
                     DonationImporter.ImportCSVToInput(dbConnection, openFileDialog1.FileName);
-                    textBox2.Text = "Import von " + openFileDialog1.FileName + " abgeschlossen!";
+                    SetStatus("Import von " + openFileDialog1.FileName + " abgeschlossen!");
                 }
                 catch (Exception ex)
                 {
@@ -101,6 +102,11 @@ namespace NW_Spendenmonitor
                 dataGridView1.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
             }
             FillPrevious();
+        }
+
+        private void SetStatus(string status)
+        {
+            textBox2.Text = status;
         }
     }
 }
