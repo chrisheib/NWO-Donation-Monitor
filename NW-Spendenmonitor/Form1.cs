@@ -82,7 +82,6 @@ namespace NW_Spendenmonitor
                 default:
                     break;
             }
-
         }
     }
 }

@@ -111,10 +111,9 @@ namespace NW_Spendenmonitor
             string day = fullDate[1].PadLeft(2,'0');
             string month = fullDate[0].PadLeft(2, '0');
             string year = fullDate[2];
-
-
-            string formattedTime = DateTime.Parse(fullTime).ToLongTimeString(); //.ToShortTimeString();
-            //   Yllithian,,8 / 26 / 2017 1:23:00 AM,"Phandar Dining Table",1,"Phandar Dining Table",1,Die Hüter des Lichts, Die Hüter des Lichts
+            
+            string formattedTime = DateTime.Parse(fullTime).ToLongTimeString();
+            //8/26/2017 1:23:00 AM
 
             string formattedDateTime = year + '-' + month + '-' + day + ' ' + formattedTime;
 
