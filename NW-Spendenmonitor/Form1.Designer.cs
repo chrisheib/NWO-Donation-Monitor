@@ -101,6 +101,8 @@
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
+            this.checkBox1.Checked = true;
+            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBox1.Location = new System.Drawing.Point(501, 15);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(116, 17);
@@ -127,22 +129,22 @@
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.Button4_Click);
             // 
-            // dTPBis
+            // dTPTo
             // 
             this.dTPTo.CustomFormat = "dd.MM.yyyy HH:mm:ss";
             this.dTPTo.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dTPTo.Location = new System.Drawing.Point(311, 65);
-            this.dTPTo.Name = "dTPBis";
+            this.dTPTo.Name = "dTPTo";
             this.dTPTo.Size = new System.Drawing.Size(136, 20);
             this.dTPTo.TabIndex = 16;
             this.dTPTo.Value = new System.DateTime(2018, 1, 6, 23, 59, 59, 0);
             // 
-            // dTPVon
+            // dTPFrom
             // 
             this.dTPFrom.CustomFormat = "dd.MM.yyyy HH:mm:ss";
             this.dTPFrom.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dTPFrom.Location = new System.Drawing.Point(169, 65);
-            this.dTPFrom.Name = "dTPVon";
+            this.dTPFrom.Name = "dTPFrom";
             this.dTPFrom.Size = new System.Drawing.Size(136, 20);
             this.dTPFrom.TabIndex = 15;
             this.dTPFrom.Value = new System.DateTime(2018, 1, 6, 0, 0, 0, 0);

@@ -73,9 +73,7 @@
     <Compile Include="Form1_Utils.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1_Statements.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Statement.cs" />
     <Compile Include="DonationImporter.cs" />
     <Compile Include="CSVReader.cs" />
     <Compile Include="DBScheme.cs" />
