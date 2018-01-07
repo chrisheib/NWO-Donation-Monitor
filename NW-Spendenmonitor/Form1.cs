@@ -21,6 +21,9 @@ namespace NW_Spendenmonitor
             FillPrevious();
 
             comboBox1.SelectedIndex = 0;
+
+            dTPFrom.Text = "01.01.2018 00:00:00";
+            dTPTo.Text = DateTime.Now.ToString("dd.MM.yyyy") + " 23:59:59";
         }
 
         private void Button1_Click(object sender, EventArgs e)
@@ -71,13 +74,19 @@ namespace NW_Spendenmonitor
             switch (action)
             {
                 case 0:
-                    Statement_CountVouchers();
+                    Statement.CountVouchersPerAccount(this);
                     break;
                 case 1:
-                    Statement_CountInfluence();
+                    Statement.CountInfluencePerAccount(this);
                     break;
                 case 2:
-                    Statement_CountGems();
+                    Statement.CountGemsPerAccount(this);
+                    break;
+                case 3:
+                    Statement.CountInfluencePerDay(this);
+                    break;
+                case 4:
+                    Statement.CountGemsPerDay(this);
                     break;
                 default:
                     break;

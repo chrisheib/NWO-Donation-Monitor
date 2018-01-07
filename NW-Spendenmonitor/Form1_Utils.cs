@@ -8,12 +8,12 @@ namespace NW_Spendenmonitor
     partial class Form1
     {
 
-        private void StatementToGrid(string statement)
+        public void StatementToGrid(string statement)
         {
             StatementToGrid(statement, true);
         }
 
-        private void StatementToGrid(string statement, bool logging)
+        public void StatementToGrid(string statement, bool logging)
         {
             if (DB.Select(dbConnection, statement, out SQLiteDataReader query, logging))
             {
@@ -25,14 +25,10 @@ namespace NW_Spendenmonitor
             FillPrevious();
         }
 
-        private void GetFromToDates(out string dateFrom, out string dateTo)
+        public void GetFromToDates(out string dateFrom, out string dateTo)
         {
-            dTPVon.CustomFormat = "yyyy-MM-dd HH:mm:ss";
-            dTPBis.CustomFormat = "yyyy-MM-dd HH:mm:ss";
-            dateFrom = dTPVon.Text;
-            dateTo = dTPBis.Text;
-            dTPVon.CustomFormat = "dd.MM.yyyy HH:mm:ss";
-            dTPBis.CustomFormat = "dd.MM.yyyy HH:mm:ss";
+            dateFrom = dTPFrom.Value.ToString("yyyy-MM-dd HH:mm:ss");
+            dateTo = dTPTo.Value.ToString("yyyy-MM-dd HH:mm:ss");
         }
 
         private void SetStatus(string status)

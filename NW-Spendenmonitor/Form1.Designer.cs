@@ -29,11 +29,12 @@
         private void InitializeComponent()
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.label2 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
-            this.dTPBis = new System.Windows.Forms.DateTimePicker();
-            this.dTPVon = new System.Windows.Forms.DateTimePicker();
+            this.dTPTo = new System.Windows.Forms.DateTimePicker();
+            this.dTPFrom = new System.Windows.Forms.DateTimePicker();
             this.button3 = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
@@ -42,7 +43,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -65,8 +65,8 @@
             this.splitContainer1.Panel1.Controls.Add(this.checkBox1);
             this.splitContainer1.Panel1.Controls.Add(this.label2);
             this.splitContainer1.Panel1.Controls.Add(this.button4);
-            this.splitContainer1.Panel1.Controls.Add(this.dTPBis);
-            this.splitContainer1.Panel1.Controls.Add(this.dTPVon);
+            this.splitContainer1.Panel1.Controls.Add(this.dTPTo);
+            this.splitContainer1.Panel1.Controls.Add(this.dTPFrom);
             this.splitContainer1.Panel1.Controls.Add(this.button3);
             this.splitContainer1.Panel1.Controls.Add(this.textBox2);
             this.splitContainer1.Panel1.Controls.Add(this.button2);
@@ -82,6 +82,21 @@
             this.splitContainer1.Size = new System.Drawing.Size(723, 761);
             this.splitContainer1.SplitterDistance = 220;
             this.splitContainer1.TabIndex = 8;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Gutscheine pro Account von ... bis",
+            "Einfluss pro Account von ... bis",
+            "Juwelen pro Account von ... bis",
+            "Einfluss pro Tag von ... bis",
+            "Juwelen pro Tag von ... bis"});
+            this.comboBox1.Location = new System.Drawing.Point(452, 64);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(184, 21);
+            this.comboBox1.TabIndex = 20;
             // 
             // checkBox1
             // 
@@ -114,23 +129,23 @@
             // 
             // dTPBis
             // 
-            this.dTPBis.CustomFormat = "dd.MM.yyyy HH:mm:ss";
-            this.dTPBis.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dTPBis.Location = new System.Drawing.Point(311, 65);
-            this.dTPBis.Name = "dTPBis";
-            this.dTPBis.Size = new System.Drawing.Size(136, 20);
-            this.dTPBis.TabIndex = 16;
-            this.dTPBis.Value = new System.DateTime(2018, 1, 6, 23, 59, 59, 0);
+            this.dTPTo.CustomFormat = "dd.MM.yyyy HH:mm:ss";
+            this.dTPTo.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dTPTo.Location = new System.Drawing.Point(311, 65);
+            this.dTPTo.Name = "dTPBis";
+            this.dTPTo.Size = new System.Drawing.Size(136, 20);
+            this.dTPTo.TabIndex = 16;
+            this.dTPTo.Value = new System.DateTime(2018, 1, 6, 23, 59, 59, 0);
             // 
             // dTPVon
             // 
-            this.dTPVon.CustomFormat = "dd.MM.yyyy HH:mm:ss";
-            this.dTPVon.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dTPVon.Location = new System.Drawing.Point(169, 65);
-            this.dTPVon.Name = "dTPVon";
-            this.dTPVon.Size = new System.Drawing.Size(136, 20);
-            this.dTPVon.TabIndex = 15;
-            this.dTPVon.Value = new System.DateTime(2018, 1, 6, 0, 0, 0, 0);
+            this.dTPFrom.CustomFormat = "dd.MM.yyyy HH:mm:ss";
+            this.dTPFrom.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dTPFrom.Location = new System.Drawing.Point(169, 65);
+            this.dTPFrom.Name = "dTPVon";
+            this.dTPFrom.Size = new System.Drawing.Size(136, 20);
+            this.dTPFrom.TabIndex = 15;
+            this.dTPFrom.Value = new System.DateTime(2018, 1, 6, 0, 0, 0, 0);
             // 
             // button3
             // 
@@ -212,19 +227,6 @@
             this.dataGridView1.Size = new System.Drawing.Size(723, 537);
             this.dataGridView1.TabIndex = 6;
             // 
-            // comboBox1
-            // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "Gutscheine pro Account von ... bis",
-            "Einfluss pro Account von ... bis",
-            "Juwelen pro Account von ... bis"});
-            this.comboBox1.Location = new System.Drawing.Point(452, 64);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(184, 21);
-            this.comboBox1.TabIndex = 20;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -255,8 +257,8 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.DateTimePicker dTPBis;
-        private System.Windows.Forms.DateTimePicker dTPVon;
+        private System.Windows.Forms.DateTimePicker dTPTo;
+        private System.Windows.Forms.DateTimePicker dTPFrom;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.ComboBox comboBox1;
