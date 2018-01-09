@@ -22,6 +22,9 @@
                 case 4:
                     CountGemsPerDay(form);
                     break;
+                case 5:
+                    CountAllResourceTypes(form);
+                    break;
                 default:
                     break;
             }
@@ -69,6 +72,15 @@
             form.GetFromToDates(out string dateFrom, out string dateTo);
             string statement = "select date(time) Tag, sum(resourcequantity) Juwelen from input where resource like 'gems'" +
                 " and time >= '" + dateFrom + "' and time <= '" + dateTo + "' group by date(time) order by Tag desc";
+            form.StatementToGrid(statement, false);
+        }
+
+        //5
+        public static void CountAllResourceTypes(Form1 form)
+        {
+            form.GetFromToDates(out string dateFrom, out string dateTo);
+            string statement = "select resource, sum(resourcequantity) Ressourcenanzahl from input where " +
+                "time >= '" + dateFrom + "' and time <= '" + dateTo + "' group by resource order by Ressourcenanzahl desc";
             form.StatementToGrid(statement, false);
         }
     }

@@ -92,7 +92,8 @@
             "Einfluss pro Account von ... bis",
             "Juwelen pro Account von ... bis",
             "Einfluss pro Tag von ... bis",
-            "Juwelen pro Tag von ... bis"});
+            "Juwelen pro Tag von ... bis",
+            "Alle Ressourcen von ... bis"});
             this.comboBox1.Location = new System.Drawing.Point(452, 64);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(184, 21);
