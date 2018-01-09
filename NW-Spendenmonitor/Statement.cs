@@ -2,6 +2,31 @@
 {
     public class Statement
     {
+
+        public static void RunStatement(Form1 form, int selection)
+        {
+            switch (selection)
+            {
+                case 0:
+                    CountVouchersPerAccount(form);
+                    break;
+                case 1:
+                    CountInfluencePerAccount(form);
+                    break;
+                case 2:
+                    CountGemsPerAccount(form);
+                    break;
+                case 3:
+                    CountInfluencePerDay(form);
+                    break;
+                case 4:
+                    CountGemsPerDay(form);
+                    break;
+                default:
+                    break;
+            }
+        }
+
         //0
         public static void CountVouchersPerAccount(Form1 form)
         {

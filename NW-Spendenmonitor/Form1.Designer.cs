@@ -127,7 +127,7 @@
             this.button4.TabIndex = 17;
             this.button4.Text = "Auswerten!";
             this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.Button4_Click);
+            this.button4.Click += new System.EventHandler(this.EventRunStatement);
             // 
             // dTPTo
             // 

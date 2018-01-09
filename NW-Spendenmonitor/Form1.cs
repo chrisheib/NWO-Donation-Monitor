@@ -24,6 +24,12 @@ namespace NW_Spendenmonitor
 
             dTPFrom.Text = "01.01.2018 00:00:00";
             dTPTo.Text = DateTime.Now.ToString("dd.MM.yyyy") + " 23:59:59";
+
+            comboBox1.SelectedIndexChanged += new EventHandler(EventRunStatement);
+            dTPTo.ValueChanged += new EventHandler(EventRunStatement);
+            dTPTo.ValueChanged += new EventHandler(EventRunStatement);
+
+            Statement.RunStatement(this, 0);
         }
 
         private void Button1_Click(object sender, EventArgs e)
@@ -67,30 +73,9 @@ namespace NW_Spendenmonitor
             }
         }
 
-        private void Button4_Click(object sender, EventArgs e)
+        private void EventRunStatement(object sender, EventArgs e)
         {
-            int action = comboBox1.SelectedIndex;
-
-            switch (action)
-            {
-                case 0:
-                    Statement.CountVouchersPerAccount(this);
-                    break;
-                case 1:
-                    Statement.CountInfluencePerAccount(this);
-                    break;
-                case 2:
-                    Statement.CountGemsPerAccount(this);
-                    break;
-                case 3:
-                    Statement.CountInfluencePerDay(this);
-                    break;
-                case 4:
-                    Statement.CountGemsPerDay(this);
-                    break;
-                default:
-                    break;
-            }
+            Statement.RunStatement(this, comboBox1.SelectedIndex);
         }
     }
 }

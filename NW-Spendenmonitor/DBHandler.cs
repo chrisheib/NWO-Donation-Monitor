@@ -7,7 +7,6 @@ namespace NW_Spendenmonitor
 
     class DB
     {
-
         public static SQLiteConnection OpenSQLConnection(out string result)
         {
             var newDB = false;
