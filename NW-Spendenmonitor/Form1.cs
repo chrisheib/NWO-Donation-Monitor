@@ -26,7 +26,7 @@ namespace NW_Spendenmonitor
             dTPTo.Text = DateTime.Now.ToString("dd.MM.yyyy") + " 23:59:59";
 
             comboBox1.SelectedIndexChanged += new EventHandler(EventRunStatement);
-            dTPTo.ValueChanged += new EventHandler(EventRunStatement);
+            dTPFrom.ValueChanged += new EventHandler(EventRunStatement);
             dTPTo.ValueChanged += new EventHandler(EventRunStatement);
 
             Statement.RunStatement(this, 0);
