@@ -20,6 +20,8 @@ namespace NW_Spendenmonitor
             dataGridView1.DataSource = dt;
             FillPrevious();
 
+            Statement.SetStatementCollection(comboBox1);
+
             comboBox1.SelectedIndex = 0;
 
             dTPFrom.Text = "01.01.2018 00:00:00";
