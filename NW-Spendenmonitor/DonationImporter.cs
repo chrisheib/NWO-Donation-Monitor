@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Data.SQLite;
+using System.Windows.Forms;
+using System;
 
 namespace NW_Spendenmonitor
 {
@@ -25,11 +27,33 @@ namespace NW_Spendenmonitor
 
             string maxDateInFile = "";
             int changedLines = 0;
+            bool importEmptyItems = false;
 
             foreach (var donationLine in donationList)
             {
+            
                 if (string.Compare(donationLine.Time, maxDate) > 0)
                 {
+                    if (donationLine.Item == "" && !importEmptyItems)
+                    {
+                        string dialogText = 
+                            "Es wurde ein Gegenstand gefunden, der scheinbar nicht richtig exportiert wurde." + Environment.NewLine +
+                            Environment.NewLine +
+                            donationLine.Charname + donationLine.Account + ", " + donationLine.Time + ", " + donationLine.Resource  + Environment.NewLine +
+                            Environment.NewLine +
+                            "Versuche, den Export im Spiel erneut zu starten, damit müssten die Lücken geschlossen werden." + Environment.NewLine +
+                            "Soll der Import fortgesetzt werden?";
+                        DialogResult dialogResult = MessageBox.Show(dialogText, "Spendenmonitor", MessageBoxButtons.OKCancel);
+                        if (dialogResult == DialogResult.OK)
+                        {
+                            importEmptyItems = true;
+                        }
+                        else if (dialogResult == DialogResult.Cancel)
+                        {
+                            break;
+                        }
+                    }
+
                     string donationInputStatement = DonationLineToStatement(donationLine);
                     DB.Execute(dbConnect, donationInputStatement);
                     changedLines++;
@@ -55,10 +79,37 @@ namespace NW_Spendenmonitor
         {
             string filename = System.IO.Path.GetFileNameWithoutExtension(path);
             string fileextension = System.IO.Path.GetExtension(path);
+            bool ok = true;
+            try {
+                filename = (filename + " " + maxDate + fileextension).Replace(":", "-");
+                string newPath = System.IO.Path.GetDirectoryName(path) + "\\" + filename;
+                if (System.IO.File.Exists(newPath))
+                {
+                    string dialogText =
+                        "Es exisitiert bereits eine Datei, die die selben Datensätze beinhaltet. " + Environment.NewLine +
+                        "Soll diese ALTE Datei umbenannt werden?" + Environment.NewLine +
+                        "Bei \"Nein\" wird die aktuelle Datei nicht umbenannt!";
+                    DialogResult dialogResult = MessageBox.Show(dialogText, "Spendenmonitor", MessageBoxButtons.YesNo);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        System.IO.File.Move(newPath, newPath.Replace(System.IO.Path.GetExtension(newPath), " old" + System.IO.Path.GetExtension(newPath)));
+                    }
+                    else if (dialogResult == DialogResult.No)
+                    {
+                        ok = false;
+                    }
+                }
 
-            filename = (filename + " " + maxDate + fileextension).Replace(":","-");
-            string newPath = System.IO.Path.GetDirectoryName(path) + "\\" + filename;
-            System.IO.File.Move(path, newPath);
+                if (ok)
+                {
+                    System.IO.File.Move(path, newPath);
+                }
+            }
+            catch
+            {
+                string dialogText = "Es ist ein Fehler aufgetreten, die Datei wurde nicht umbenannt.";
+                DialogResult dialogResult = MessageBox.Show(dialogText, "Spendenmonitor", MessageBoxButtons.OK);
+            }
         }
 
         private static string DonationLineToStatement(DonationDataLine dataLine)
