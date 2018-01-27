@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.button4 = new System.Windows.Forms.Button();
             this.dTPTo = new System.Windows.Forms.DateTimePicker();
             this.dTPFrom = new System.Windows.Forms.DateTimePicker();
             this.button3 = new System.Windows.Forms.Button();
@@ -61,10 +61,10 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.checkBox2);
             this.splitContainer1.Panel1.Controls.Add(this.comboBox1);
             this.splitContainer1.Panel1.Controls.Add(this.checkBox1);
             this.splitContainer1.Panel1.Controls.Add(this.label2);
-            this.splitContainer1.Panel1.Controls.Add(this.button4);
             this.splitContainer1.Panel1.Controls.Add(this.dTPTo);
             this.splitContainer1.Panel1.Controls.Add(this.dTPFrom);
             this.splitContainer1.Panel1.Controls.Add(this.button3);
@@ -83,11 +83,23 @@
             this.splitContainer1.SplitterDistance = 220;
             this.splitContainer1.TabIndex = 8;
             // 
+            // checkBox2
+            // 
+            this.checkBox2.Appearance = System.Windows.Forms.Appearance.Button;
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Location = new System.Drawing.Point(160, 63);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(76, 23);
+            this.checkBox2.TabIndex = 21;
+            this.checkBox2.Text = "SQL-Historie";
+            this.checkBox2.UseVisualStyleBackColor = true;
+            this.checkBox2.CheckedChanged += new System.EventHandler(this.CheckBox2_CheckedChanged);
+            // 
             // comboBox1
             // 
             this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(452, 64);
+            this.comboBox1.Location = new System.Drawing.Point(526, 64);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(184, 21);
             this.comboBox1.TabIndex = 20;
@@ -113,21 +125,11 @@
             this.label2.TabIndex = 18;
             this.label2.Text = "Status:";
             // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(642, 63);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(69, 23);
-            this.button4.TabIndex = 17;
-            this.button4.Text = "Auswerten!";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.EventRunStatement);
-            // 
             // dTPTo
             // 
             this.dTPTo.CustomFormat = "dd.MM.yyyy HH:mm:ss";
             this.dTPTo.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dTPTo.Location = new System.Drawing.Point(311, 65);
+            this.dTPTo.Location = new System.Drawing.Point(385, 65);
             this.dTPTo.Name = "dTPTo";
             this.dTPTo.Size = new System.Drawing.Size(136, 20);
             this.dTPTo.TabIndex = 16;
@@ -137,7 +139,7 @@
             // 
             this.dTPFrom.CustomFormat = "dd.MM.yyyy HH:mm:ss";
             this.dTPFrom.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dTPFrom.Location = new System.Drawing.Point(169, 65);
+            this.dTPFrom.Location = new System.Drawing.Point(243, 65);
             this.dTPFrom.Name = "dTPFrom";
             this.dTPFrom.Size = new System.Drawing.Size(136, 20);
             this.dTPFrom.TabIndex = 15;
@@ -162,9 +164,9 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(89, 63);
+            this.button2.Location = new System.Drawing.Point(90, 63);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(74, 23);
+            this.button2.Size = new System.Drawing.Size(65, 23);
             this.button2.TabIndex = 12;
             this.button2.Text = "Abfrage";
             this.button2.UseVisualStyleBackColor = true;
@@ -252,12 +254,12 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Button button4;
         private System.Windows.Forms.DateTimePicker dTPTo;
         private System.Windows.Forms.DateTimePicker dTPFrom;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.CheckBox checkBox2;
     }
 }
 

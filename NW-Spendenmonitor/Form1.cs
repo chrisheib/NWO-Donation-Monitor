@@ -10,10 +10,14 @@ namespace NW_Spendenmonitor
 
         SQLiteConnection dbConnection;
         DataTable dt;
+        bool showSQLHistory = true;
 
         public Form1()
         {
             InitializeComponent();
+
+            ChangeHistoryCollapsed(this, null);
+
             dbConnection = DB.OpenSQLConnection(out string status);
             SetStatus(status);
             dt = new DataTable();
@@ -78,6 +82,38 @@ namespace NW_Spendenmonitor
         private void EventRunStatement(object sender, EventArgs e)
         {
             Statement.RunStatement(this, comboBox1.SelectedIndex);
+        }
+
+        private void ChangeHistoryCollapsed(object sender, EventArgs e)
+        {
+            if (showSQLHistory)
+            {
+                int collapsedSize = 90;
+
+                listBox1.Visible = false;
+                splitContainer1.Panel1MinSize = collapsedSize;
+                splitContainer1.SplitterDistance = collapsedSize;
+
+                showSQLHistory = !showSQLHistory;
+            }
+            else
+            {
+                int expandedSize = 220;
+
+                splitContainer1.Panel1MinSize = expandedSize;
+                splitContainer1.SplitterDistance = expandedSize;
+                listBox1.Visible = true;
+
+                showSQLHistory = !showSQLHistory;
+            }
+        }
+
+        private void CheckBox2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox2.Checked != showSQLHistory)
+            {
+                ChangeHistoryCollapsed(sender, e);
+            }
         }
     }
 }
