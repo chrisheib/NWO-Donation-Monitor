@@ -39,7 +39,7 @@ namespace NW_Spendenmonitor
                         string dialogText = 
                             "Es wurde ein Gegenstand gefunden, der scheinbar nicht richtig exportiert wurde." + Environment.NewLine +
                             Environment.NewLine +
-                            donationLine.Charname + donationLine.Account + ", " + donationLine.Time + ", " + donationLine.Resource  + Environment.NewLine +
+                            donationLine.Charname + "@" + donationLine.Account + ", " + donationLine.Time + ", " + donationLine.Resource  + Environment.NewLine +
                             Environment.NewLine +
                             "Versuche, den Export im Spiel erneut zu starten, damit müssten die Lücken geschlossen werden." + Environment.NewLine +
                             "Soll der Import fortgesetzt werden?";
