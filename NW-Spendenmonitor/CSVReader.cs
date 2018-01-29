@@ -104,19 +104,43 @@ namespace NW_Spendenmonitor
 
         private string FormatTime(string csvTime)
         {
-            string[] fullDateTime = csvTime.Split(' ');
-            string[] fullDate = fullDateTime[0].Split('/');
-            string fullTime = fullDateTime[1] + ' ' + fullDateTime[2];
+            string formattedDateTime = "";
+            string year = "";
+            string month = "";
+            string day = "";
+            string formattedTime = "";
+            switch (ConfigClass.ImportLanguage)
+            {
+                case 0:
+                    //8/26/2017 1:23:00 AM
+                    string[] fullDateTime = csvTime.Split(' ');
+                    string[] fullDate = fullDateTime[0].Split('/');
+                    string fullTime = fullDateTime[1] + ' ' + fullDateTime[2];
 
-            string day = fullDate[1].PadLeft(2,'0');
-            string month = fullDate[0].PadLeft(2, '0');
-            string year = fullDate[2];
-            
-            string formattedTime = DateTime.Parse(fullTime).ToLongTimeString();
-            //8/26/2017 1:23:00 AM
+                    day = fullDate[1].PadLeft(2, '0');
+                    month = fullDate[0].PadLeft(2, '0');
+                    year = fullDate[2];
 
-            string formattedDateTime = year + '-' + month + '-' + day + ' ' + formattedTime;
+                    formattedTime = DateTime.Parse(fullTime).ToLongTimeString();
+                    break;
 
+                case 1:
+                    //28.1.2018, 22:13:30
+                    fullDateTime = csvTime.Split(',');
+                    fullDate = fullDateTime[0].Split('.');
+                    fullTime = fullDateTime[1];
+
+                    day = fullDate[0].PadLeft(2, '0');
+                    month = fullDate[1].PadLeft(2, '0');
+                    year = fullDate[2];
+
+                    formattedTime = DateTime.Parse(fullTime).ToLongTimeString();
+                    break;
+
+                default:
+                    break;
+            }
+            formattedDateTime = year + '-' + month + '-' + day + ' ' + formattedTime;
             return formattedDateTime;
         }
     }
@@ -132,7 +156,9 @@ namespace NW_Spendenmonitor
 
             CsvContext cc = new CsvContext();
 
-            List<DonationDataLine> dataLines = cc.Read<DonationDataLine>(path, inputFileDescription).ToList();
+            List<DonationDataLine> dataLines = new List<DonationDataLine>();
+            dataLines = cc.Read<DonationDataLine>(path, inputFileDescription).ToList();
+
             return dataLines;
         }
     }

@@ -27,6 +27,7 @@ namespace NW_Spendenmonitor
             Statement.SetStatementCollection(comboBox1);
 
             comboBox1.SelectedIndex = 0;
+            cbLanguage.SelectedIndex = 0;
 
             dTPFrom.Text = "01.01.2018 00:00:00";
             dTPTo.Text = DateTime.Now.ToString("dd.MM.yyyy") + " 23:59:59";
@@ -68,7 +69,24 @@ namespace NW_Spendenmonitor
                 try
                 {
                     SetStatus("Importiere " + openFileDialog1.FileName + ", bitte warten!");
-                    string changedLines = Convert.ToString(DonationImporter.ImportCSVToInput(dbConnection, openFileDialog1.FileName, checkBox1.Checked));
+
+                    string path = openFileDialog1.FileName;
+
+                    ConfigClass.ImportLanguage = cbLanguage.SelectedIndex;
+
+                    //prepare for language
+                    switch (ConfigClass.ImportLanguage)
+                    {
+                        case 0:
+                            break;
+                        case 1:
+                            ImportLanguageManager.PrepareFileGerman(ref path);
+                            break;
+                        default:
+                            break;
+                    }
+                    
+                    string changedLines = Convert.ToString(DonationImporter.ImportCSVToInput(dbConnection, path, checkBox1.Checked, cbLanguage.SelectedIndex));
                     SetStatus("Import von " + openFileDialog1.FileName + " abgeschlossen, " + changedLines + " Einträge hinzugefügt!");
                     StatementToGrid("select * from input order by time desc limit " + changedLines, true);
                 }
@@ -98,7 +116,7 @@ namespace NW_Spendenmonitor
             }
             else
             {
-                int expandedSize = 220;
+                int expandedSize = 250;
 
                 splitContainer1.Panel1MinSize = expandedSize;
                 splitContainer1.SplitterDistance = expandedSize;

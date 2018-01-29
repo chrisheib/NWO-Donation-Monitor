@@ -43,6 +43,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.cbLanguage = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -61,6 +63,8 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.label3);
+            this.splitContainer1.Panel1.Controls.Add(this.cbLanguage);
             this.splitContainer1.Panel1.Controls.Add(this.checkBox2);
             this.splitContainer1.Panel1.Controls.Add(this.comboBox1);
             this.splitContainer1.Panel1.Controls.Add(this.checkBox1);
@@ -74,20 +78,20 @@
             this.splitContainer1.Panel1.Controls.Add(this.listBox1);
             this.splitContainer1.Panel1.Controls.Add(this.label1);
             this.splitContainer1.Panel1.Controls.Add(this.textBox1);
-            this.splitContainer1.Panel1MinSize = 220;
+            this.splitContainer1.Panel1MinSize = 250;
             // 
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.dataGridView1);
             this.splitContainer1.Size = new System.Drawing.Size(723, 761);
-            this.splitContainer1.SplitterDistance = 220;
+            this.splitContainer1.SplitterDistance = 250;
             this.splitContainer1.TabIndex = 8;
             // 
             // checkBox2
             // 
             this.checkBox2.Appearance = System.Windows.Forms.Appearance.Button;
             this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(160, 63);
+            this.checkBox2.Location = new System.Drawing.Point(12, 62);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(76, 23);
             this.checkBox2.TabIndex = 21;
@@ -99,7 +103,7 @@
             // 
             this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(526, 64);
+            this.comboBox1.Location = new System.Drawing.Point(378, 63);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(184, 21);
             this.comboBox1.TabIndex = 20;
@@ -109,7 +113,7 @@
             this.checkBox1.AutoSize = true;
             this.checkBox1.Checked = true;
             this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox1.Location = new System.Drawing.Point(501, 15);
+            this.checkBox1.Location = new System.Drawing.Point(485, 39);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(116, 17);
             this.checkBox1.TabIndex = 19;
@@ -129,7 +133,7 @@
             // 
             this.dTPTo.CustomFormat = "dd.MM.yyyy HH:mm:ss";
             this.dTPTo.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dTPTo.Location = new System.Drawing.Point(385, 65);
+            this.dTPTo.Location = new System.Drawing.Point(236, 63);
             this.dTPTo.Name = "dTPTo";
             this.dTPTo.Size = new System.Drawing.Size(136, 20);
             this.dTPTo.TabIndex = 16;
@@ -139,7 +143,7 @@
             // 
             this.dTPFrom.CustomFormat = "dd.MM.yyyy HH:mm:ss";
             this.dTPFrom.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dTPFrom.Location = new System.Drawing.Point(243, 65);
+            this.dTPFrom.Location = new System.Drawing.Point(94, 63);
             this.dTPFrom.Name = "dTPFrom";
             this.dTPFrom.Size = new System.Drawing.Size(136, 20);
             this.dTPFrom.TabIndex = 15;
@@ -147,7 +151,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(619, 11);
+            this.button3.Location = new System.Drawing.Point(618, 35);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(92, 23);
             this.button3.TabIndex = 14;
@@ -159,12 +163,12 @@
             // 
             this.textBox2.Location = new System.Drawing.Point(55, 13);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(440, 20);
+            this.textBox2.Size = new System.Drawing.Size(655, 20);
             this.textBox2.TabIndex = 13;
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(90, 63);
+            this.button2.Location = new System.Drawing.Point(91, 116);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(65, 23);
             this.button2.TabIndex = 12;
@@ -174,7 +178,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(11, 63);
+            this.button1.Location = new System.Drawing.Point(12, 116);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(73, 23);
             this.button1.TabIndex = 11;
@@ -185,16 +189,16 @@
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(12, 92);
+            this.listBox1.Location = new System.Drawing.Point(12, 145);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(698, 121);
+            this.listBox1.Size = new System.Drawing.Size(698, 95);
             this.listBox1.TabIndex = 10;
             this.listBox1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.ListBox1_MouseDoubleClick);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 41);
+            this.label1.Location = new System.Drawing.Point(12, 93);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(31, 13);
             this.label1.TabIndex = 9;
@@ -202,7 +206,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(55, 38);
+            this.textBox1.Location = new System.Drawing.Point(56, 90);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(655, 20);
             this.textBox1.TabIndex = 8;
@@ -222,8 +226,29 @@
             this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToDisplayedHeaders;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.ShowEditingIcon = false;
-            this.dataGridView1.Size = new System.Drawing.Size(723, 537);
+            this.dataGridView1.Size = new System.Drawing.Size(723, 507);
             this.dataGridView1.TabIndex = 6;
+            // 
+            // cbLanguage
+            // 
+            this.cbLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbLanguage.FormattingEnabled = true;
+            this.cbLanguage.Items.AddRange(new object[] {
+            "Englisch",
+            "Deutsch"});
+            this.cbLanguage.Location = new System.Drawing.Point(345, 36);
+            this.cbLanguage.Name = "cbLanguage";
+            this.cbLanguage.Size = new System.Drawing.Size(121, 21);
+            this.cbLanguage.TabIndex = 22;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(263, 40);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(71, 13);
+            this.label3.TabIndex = 23;
+            this.label3.Text = "Spielsprache:";
             // 
             // Form1
             // 
@@ -260,6 +285,8 @@
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox cbLanguage;
     }
 }
 

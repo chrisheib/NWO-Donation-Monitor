@@ -64,7 +64,7 @@ namespace NW_Spendenmonitor
         {
             form.GetFromToDates(out string dateFrom, out string dateTo);
             string statement = "select charname, account, sum(resourcequantity) Einfluss from input where resource like 'influence'" +
-                " and time >= '" + dateFrom + "' and time <= '" + dateTo + "' group by account order by Einfluss desc";
+                " or resource like 'Einfluss' and time >= '" + dateFrom + "' and time <= '" + dateTo + "' group by account order by Einfluss desc";
             form.StatementToGrid(statement, false);
         }
 
@@ -73,7 +73,7 @@ namespace NW_Spendenmonitor
         {
             form.GetFromToDates(out string dateFrom, out string dateTo);
             string statement = "select charname, account, sum(resourcequantity) Juwelen from input where resource like 'gems'" +
-                " and time >= '" + dateFrom + "' and time <= '" + dateTo + "' group by account order by Juwelen desc";
+                " or resource like 'Juwelen' and time >= '" + dateFrom + "' and time <= '" + dateTo + "' group by account order by Juwelen desc";
             form.StatementToGrid(statement, false);
         }
 
@@ -82,7 +82,7 @@ namespace NW_Spendenmonitor
         {
             form.GetFromToDates(out string dateFrom, out string dateTo);
             string statement = "select charname, account, sum(resourcequantity) 'Überschüssige Ausrüstung' from input where resource like 'Surplus Equipment'" +
-                " and time >= '" + dateFrom + "' and time <= '" + dateTo + "' group by account order by sum(resourcequantity) desc";
+                " or resource like 'Überschüssige Ausrüstung' and time >= '" + dateFrom + "' and time <= '" + dateTo + "' group by account order by sum(resourcequantity) desc";
             form.StatementToGrid(statement, false);
         }
 
@@ -91,7 +91,7 @@ namespace NW_Spendenmonitor
         {
             form.GetFromToDates(out string dateFrom, out string dateTo);
             string statement = "select date(time) Tag, sum(resourcequantity) Einfluss from input where resource like 'influence'" +
-                " and time >= '" + dateFrom + "' and time <= '" + dateTo + "' group by date(time) order by Tag desc";
+                " or resource like 'Einfluss' and time >= '" + dateFrom + "' and time <= '" + dateTo + "' group by date(time) order by Tag desc";
             form.StatementToGrid(statement, false);
         }
 
@@ -100,7 +100,7 @@ namespace NW_Spendenmonitor
         {
             form.GetFromToDates(out string dateFrom, out string dateTo);
             string statement = "select date(time) Tag, sum(resourcequantity) Juwelen from input where resource like 'gems'" +
-                " and time >= '" + dateFrom + "' and time <= '" + dateTo + "' group by date(time) order by Tag desc";
+                " or resource like 'Juwelen' and time >= '" + dateFrom + "' and time <= '" + dateTo + "' group by date(time) order by Tag desc";
             form.StatementToGrid(statement, false);
         }
 
@@ -109,7 +109,7 @@ namespace NW_Spendenmonitor
         {
             form.GetFromToDates(out string dateFrom, out string dateTo);
             string statement = "select date(time) Tag, sum(resourcequantity) 'Überschüssige Ausrüstung' from input where resource like 'Surplus Equipment'" +
-                " and time >= '" + dateFrom + "' and time <= '" + dateTo + "' group by date(time) order by Tag desc";
+                " or resource like 'Überschüssige Ausrüstung' and time >= '" + dateFrom + "' and time <= '" + dateTo + "' group by date(time) order by Tag desc";
             form.StatementToGrid(statement, false);
         }
 

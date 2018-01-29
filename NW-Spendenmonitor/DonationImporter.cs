@@ -8,7 +8,7 @@ namespace NW_Spendenmonitor
     
     static class DonationImporter
     {
-        public static int ImportCSVToInput(SQLiteConnection dbConnect, string path, bool rename)
+        public static int ImportCSVToInput(SQLiteConnection dbConnect, string path, bool rename, int language)
         {
 
             List<DonationDataLine> donationList = CSVReader.ReadCSV(path);
@@ -54,7 +54,7 @@ namespace NW_Spendenmonitor
                         }
                     }
 
-                    string donationInputStatement = DonationLineToStatement(donationLine);
+                    string donationInputStatement = DonationLineToStatement(donationLine, language);
                     DB.Execute(dbConnect, donationInputStatement);
                     changedLines++;
                 }
@@ -112,7 +112,7 @@ namespace NW_Spendenmonitor
             }
         }
 
-        private static string DonationLineToStatement(DonationDataLine dataLine)
+        private static string DonationLineToStatement(DonationDataLine dataLine, int language)
         {
             string result;
 

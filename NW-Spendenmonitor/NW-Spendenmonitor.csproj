@@ -70,6 +70,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConfigClass.cs" />
+    <Compile Include="ImportLanguageManager.cs" />
     <Compile Include="Form1_Utils.cs">
       <SubType>Form</SubType>
     </Compile>
