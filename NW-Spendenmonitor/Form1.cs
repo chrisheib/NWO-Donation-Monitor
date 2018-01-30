@@ -71,6 +71,7 @@ namespace NW_Spendenmonitor
                     SetStatus("Importiere " + openFileDialog1.FileName + ", bitte warten!");
 
                     string path = openFileDialog1.FileName;
+                    string oldpath = "";
 
                     ConfigClass.ImportLanguage = cbLanguage.SelectedIndex;
 
@@ -80,13 +81,14 @@ namespace NW_Spendenmonitor
                         case 0:
                             break;
                         case 1:
+                            oldpath = path;
                             ImportLanguageManager.PrepareFileGerman(ref path);
                             break;
                         default:
                             break;
                     }
                     
-                    string changedLines = Convert.ToString(DonationImporter.ImportCSVToInput(dbConnection, path, checkBox1.Checked, cbLanguage.SelectedIndex));
+                    string changedLines = Convert.ToString(DonationImporter.ImportCSVToInput(dbConnection, path, checkBox1.Checked, cbLanguage.SelectedIndex, oldpath));
                     SetStatus("Import von " + openFileDialog1.FileName + " abgeschlossen, " + changedLines + " Einträge hinzugefügt!");
                     StatementToGrid("select * from input order by time desc limit " + changedLines, true);
                 }

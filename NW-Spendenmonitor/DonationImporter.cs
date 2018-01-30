@@ -8,7 +8,7 @@ namespace NW_Spendenmonitor
     
     static class DonationImporter
     {
-        public static int ImportCSVToInput(SQLiteConnection dbConnect, string path, bool rename, int language)
+        public static int ImportCSVToInput(SQLiteConnection dbConnect, string path, bool rename, int language, string oldpath)
         {
 
             List<DonationDataLine> donationList = CSVReader.ReadCSV(path);
@@ -59,12 +59,19 @@ namespace NW_Spendenmonitor
                     changedLines++;
                 }
 
+
                 // find last date
                 if (string.Compare(donationLine.Time, maxDateInFile) > 0)
                 {
                     maxDateInFile = donationLine.Time;
                 }
+            }
 
+            
+            if (oldpath != "")
+            {
+                System.IO.File.Delete(path);
+                path = oldpath;
             }
 
             if (rename)
