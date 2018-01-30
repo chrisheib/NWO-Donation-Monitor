@@ -58,15 +58,13 @@ namespace NW_Spendenmonitor
                     DB.Execute(dbConnect, donationInputStatement);
                     changedLines++;
                 }
-
-
+                
                 // find last date
                 if (string.Compare(donationLine.Time, maxDateInFile) > 0)
                 {
                     maxDateInFile = donationLine.Time;
                 }
             }
-
             
             if (oldpath != "")
             {
