@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using System.Data.SQLite;
 using System.Data;
+using System.Collections.Generic;
 
 namespace NW_Spendenmonitor
 {
@@ -45,6 +46,27 @@ namespace NW_Spendenmonitor
                 {
                     listBox1.Items.Add(query.GetString(0));
                 }
+            }
+        }
+
+        private void SetComponentLanguage(Languages.Language language)
+        {
+            Text = Languages.form_caption;
+            lbl_status.Text = Languages.form_status;
+            lbl_importlanguage.Text = Languages.form_importlanguage;
+            chk_rename.Text = Languages.form_renamefile;
+            btn_import.Text = Languages.form_import;
+            btn_sqlhistory.Text = Languages.form_sqlhistory;
+            FillComboboxFromList(cb_importlanguage, Languages.form_importlanguages);
+            FillComboboxFromList(cb_statistic, Languages.form_commands);
+        }
+
+        private void FillComboboxFromList(ComboBox cb, List<string> list)
+        {
+            cb.Items.Clear();
+            foreach (var s in list)
+            {
+                cb.Items.Add(s);
             }
         }
     }

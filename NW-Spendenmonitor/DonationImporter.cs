@@ -90,10 +90,7 @@ namespace NW_Spendenmonitor
                 string newPath = System.IO.Path.GetDirectoryName(path) + "\\" + filename;
                 if (System.IO.File.Exists(newPath))
                 {
-                    string dialogText =
-                        "Es exisitiert bereits eine Datei, die die selben Datensätze beinhaltet. " + Environment.NewLine +
-                        "Soll diese ALTE Datei umbenannt werden?" + Environment.NewLine +
-                        "Bei \"Nein\" wird die aktuelle Datei nicht umbenannt!";
+                    string dialogText = Languages.message_renamefailed;
                     DialogResult dialogResult = MessageBox.Show(dialogText, "Spendenmonitor", MessageBoxButtons.YesNo);
                     if (dialogResult == DialogResult.Yes)
                     {

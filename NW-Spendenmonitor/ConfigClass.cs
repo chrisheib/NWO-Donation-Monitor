@@ -9,5 +9,6 @@ namespace NW_Spendenmonitor
     public static class ConfigClass
     {
         public static int ImportLanguage { get; set; }
+        public static Languages.Language UILanguage;
     }
 }

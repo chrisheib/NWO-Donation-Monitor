@@ -70,6 +70,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Languages.cs" />
     <Compile Include="ConfigClass.cs" />
     <Compile Include="ImportLanguageManager.cs" />
     <Compile Include="Form1_Utils.cs">

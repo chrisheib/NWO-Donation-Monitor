@@ -24,15 +24,18 @@ namespace NW_Spendenmonitor
             dataGridView1.DataSource = dt;
             FillPrevious();
 
-            Statement.SetStatementCollection(comboBox1);
-
-            comboBox1.SelectedIndex = 0;
-            cbLanguage.SelectedIndex = 0;
+            //TODO: combobox with languageselect
+            //TODO: save and read selected language from config table
+            Languages.SetLanguage(Languages.Language.German);
+            SetComponentLanguage(ConfigClass.UILanguage);
+            
+            cb_statistic.SelectedIndex = 0;
+            cb_importlanguage.SelectedIndex = 0;
 
             dTPFrom.Text = "01.01.2018 00:00:00";
             dTPTo.Text = DateTime.Now.ToString("dd.MM.yyyy") + " 23:59:59";
 
-            comboBox1.SelectedIndexChanged += new EventHandler(EventRunStatement);
+            cb_statistic.SelectedIndexChanged += new EventHandler(EventRunStatement);
             dTPFrom.ValueChanged += new EventHandler(EventRunStatement);
             dTPTo.ValueChanged += new EventHandler(EventRunStatement);
 
@@ -68,12 +71,12 @@ namespace NW_Spendenmonitor
             {
                 try
                 {
-                    SetStatus("Importiere " + openFileDialog1.FileName + ", bitte warten!");
+                    SetStatus(openFileDialog1.FileName + Languages.status_beingimported);
 
                     string path = openFileDialog1.FileName;
                     string oldpath = "";
 
-                    ConfigClass.ImportLanguage = cbLanguage.SelectedIndex;
+                    ConfigClass.ImportLanguage = cb_importlanguage.SelectedIndex;
 
                     //prepare for language
                     switch (ConfigClass.ImportLanguage)
@@ -88,8 +91,8 @@ namespace NW_Spendenmonitor
                             break;
                     }
                     
-                    string changedLines = Convert.ToString(DonationImporter.ImportCSVToInput(dbConnection, path, checkBox1.Checked, cbLanguage.SelectedIndex, oldpath));
-                    SetStatus("Import von " + openFileDialog1.FileName + " abgeschlossen, " + changedLines + " Einträge hinzugefügt!");
+                    string changedLines = Convert.ToString(DonationImporter.ImportCSVToInput(dbConnection, path, chk_rename.Checked, cb_importlanguage.SelectedIndex, oldpath));
+                    SetStatus(Languages.status_importof + openFileDialog1.FileName + Languages.status_importfinished + changedLines + Languages.status_importentries);
                     StatementToGrid("select * from input order by time desc limit " + changedLines, true);
                 }
                 catch (Exception ex)
@@ -101,7 +104,7 @@ namespace NW_Spendenmonitor
 
         private void EventRunStatement(object sender, EventArgs e)
         {
-            Statement.RunStatement(this, comboBox1.SelectedIndex);
+            Statement.RunStatement(this, cb_statistic.SelectedIndex);
         }
 
         private void ChangeHistoryCollapsed(object sender, EventArgs e)
@@ -130,7 +133,7 @@ namespace NW_Spendenmonitor
 
         private void CheckBox2_CheckedChanged(object sender, EventArgs e)
         {
-            if (checkBox2.Checked != showSQLHistory)
+            if (btn_sqlhistory.Checked != showSQLHistory)
             {
                 ChangeHistoryCollapsed(sender, e);
             }

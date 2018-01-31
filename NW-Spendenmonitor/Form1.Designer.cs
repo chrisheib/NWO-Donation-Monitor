@@ -29,13 +29,15 @@
         private void InitializeComponent()
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lbl_importlanguage = new System.Windows.Forms.Label();
+            this.cb_importlanguage = new System.Windows.Forms.ComboBox();
+            this.btn_sqlhistory = new System.Windows.Forms.CheckBox();
+            this.cb_statistic = new System.Windows.Forms.ComboBox();
+            this.chk_rename = new System.Windows.Forms.CheckBox();
+            this.lbl_status = new System.Windows.Forms.Label();
             this.dTPTo = new System.Windows.Forms.DateTimePicker();
             this.dTPFrom = new System.Windows.Forms.DateTimePicker();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btn_import = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
@@ -43,8 +45,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.cbLanguage = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -63,15 +63,15 @@
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.label3);
-            this.splitContainer1.Panel1.Controls.Add(this.cbLanguage);
-            this.splitContainer1.Panel1.Controls.Add(this.checkBox2);
-            this.splitContainer1.Panel1.Controls.Add(this.comboBox1);
-            this.splitContainer1.Panel1.Controls.Add(this.checkBox1);
-            this.splitContainer1.Panel1.Controls.Add(this.label2);
+            this.splitContainer1.Panel1.Controls.Add(this.lbl_importlanguage);
+            this.splitContainer1.Panel1.Controls.Add(this.cb_importlanguage);
+            this.splitContainer1.Panel1.Controls.Add(this.btn_sqlhistory);
+            this.splitContainer1.Panel1.Controls.Add(this.cb_statistic);
+            this.splitContainer1.Panel1.Controls.Add(this.chk_rename);
+            this.splitContainer1.Panel1.Controls.Add(this.lbl_status);
             this.splitContainer1.Panel1.Controls.Add(this.dTPTo);
             this.splitContainer1.Panel1.Controls.Add(this.dTPFrom);
-            this.splitContainer1.Panel1.Controls.Add(this.button3);
+            this.splitContainer1.Panel1.Controls.Add(this.btn_import);
             this.splitContainer1.Panel1.Controls.Add(this.textBox2);
             this.splitContainer1.Panel1.Controls.Add(this.button2);
             this.splitContainer1.Panel1.Controls.Add(this.button1);
@@ -87,47 +87,68 @@
             this.splitContainer1.SplitterDistance = 250;
             this.splitContainer1.TabIndex = 8;
             // 
-            // checkBox2
+            // lbl_importlanguage
             // 
-            this.checkBox2.Appearance = System.Windows.Forms.Appearance.Button;
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(12, 62);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(76, 23);
-            this.checkBox2.TabIndex = 21;
-            this.checkBox2.Text = "SQL-Historie";
-            this.checkBox2.UseVisualStyleBackColor = true;
-            this.checkBox2.CheckedChanged += new System.EventHandler(this.CheckBox2_CheckedChanged);
+            this.lbl_importlanguage.AutoSize = true;
+            this.lbl_importlanguage.Location = new System.Drawing.Point(263, 40);
+            this.lbl_importlanguage.Name = "lbl_importlanguage";
+            this.lbl_importlanguage.Size = new System.Drawing.Size(71, 13);
+            this.lbl_importlanguage.TabIndex = 23;
+            this.lbl_importlanguage.Text = "Spielsprache:";
             // 
-            // comboBox1
+            // cb_importlanguage
             // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(378, 63);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(184, 21);
-            this.comboBox1.TabIndex = 20;
+            this.cb_importlanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cb_importlanguage.FormattingEnabled = true;
+            this.cb_importlanguage.Items.AddRange(new object[] {
+            "Englisch",
+            "Deutsch"});
+            this.cb_importlanguage.Location = new System.Drawing.Point(345, 36);
+            this.cb_importlanguage.Name = "cb_importlanguage";
+            this.cb_importlanguage.Size = new System.Drawing.Size(121, 21);
+            this.cb_importlanguage.TabIndex = 22;
             // 
-            // checkBox1
+            // btn_sqlhistory
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Checked = true;
-            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox1.Location = new System.Drawing.Point(485, 39);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(116, 17);
-            this.checkBox1.TabIndex = 19;
-            this.checkBox1.Text = "Datei umbenennen";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.btn_sqlhistory.Appearance = System.Windows.Forms.Appearance.Button;
+            this.btn_sqlhistory.AutoSize = true;
+            this.btn_sqlhistory.Location = new System.Drawing.Point(12, 62);
+            this.btn_sqlhistory.Name = "btn_sqlhistory";
+            this.btn_sqlhistory.Size = new System.Drawing.Size(76, 23);
+            this.btn_sqlhistory.TabIndex = 21;
+            this.btn_sqlhistory.Text = "SQL-Historie";
+            this.btn_sqlhistory.UseVisualStyleBackColor = true;
+            this.btn_sqlhistory.CheckedChanged += new System.EventHandler(this.CheckBox2_CheckedChanged);
             // 
-            // label2
+            // cb_statistic
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(9, 16);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(40, 13);
-            this.label2.TabIndex = 18;
-            this.label2.Text = "Status:";
+            this.cb_statistic.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cb_statistic.FormattingEnabled = true;
+            this.cb_statistic.Location = new System.Drawing.Point(378, 63);
+            this.cb_statistic.Name = "cb_statistic";
+            this.cb_statistic.Size = new System.Drawing.Size(184, 21);
+            this.cb_statistic.TabIndex = 20;
+            // 
+            // chk_rename
+            // 
+            this.chk_rename.AutoSize = true;
+            this.chk_rename.Checked = true;
+            this.chk_rename.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chk_rename.Location = new System.Drawing.Point(485, 39);
+            this.chk_rename.Name = "chk_rename";
+            this.chk_rename.Size = new System.Drawing.Size(116, 17);
+            this.chk_rename.TabIndex = 19;
+            this.chk_rename.Text = "Datei umbenennen";
+            this.chk_rename.UseVisualStyleBackColor = true;
+            // 
+            // lbl_status
+            // 
+            this.lbl_status.AutoSize = true;
+            this.lbl_status.Location = new System.Drawing.Point(9, 16);
+            this.lbl_status.Name = "lbl_status";
+            this.lbl_status.Size = new System.Drawing.Size(40, 13);
+            this.lbl_status.TabIndex = 18;
+            this.lbl_status.Text = "Status:";
             // 
             // dTPTo
             // 
@@ -149,15 +170,15 @@
             this.dTPFrom.TabIndex = 15;
             this.dTPFrom.Value = new System.DateTime(2018, 1, 6, 0, 0, 0, 0);
             // 
-            // button3
+            // btn_import
             // 
-            this.button3.Location = new System.Drawing.Point(618, 35);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(92, 23);
-            this.button3.TabIndex = 14;
-            this.button3.Text = "Import";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.Button3_Click);
+            this.btn_import.Location = new System.Drawing.Point(618, 35);
+            this.btn_import.Name = "btn_import";
+            this.btn_import.Size = new System.Drawing.Size(92, 23);
+            this.btn_import.TabIndex = 14;
+            this.btn_import.Text = "Import";
+            this.btn_import.UseVisualStyleBackColor = true;
+            this.btn_import.Click += new System.EventHandler(this.Button3_Click);
             // 
             // textBox2
             // 
@@ -229,27 +250,6 @@
             this.dataGridView1.Size = new System.Drawing.Size(723, 507);
             this.dataGridView1.TabIndex = 6;
             // 
-            // cbLanguage
-            // 
-            this.cbLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbLanguage.FormattingEnabled = true;
-            this.cbLanguage.Items.AddRange(new object[] {
-            "Englisch",
-            "Deutsch"});
-            this.cbLanguage.Location = new System.Drawing.Point(345, 36);
-            this.cbLanguage.Name = "cbLanguage";
-            this.cbLanguage.Size = new System.Drawing.Size(121, 21);
-            this.cbLanguage.TabIndex = 22;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(263, 40);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(71, 13);
-            this.label3.TabIndex = 23;
-            this.label3.Text = "Spielsprache:";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -271,7 +271,7 @@
         #endregion
 
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btn_import;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
@@ -281,12 +281,12 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DateTimePicker dTPTo;
         private System.Windows.Forms.DateTimePicker dTPFrom;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox cbLanguage;
+        private System.Windows.Forms.Label lbl_status;
+        private System.Windows.Forms.CheckBox chk_rename;
+        private System.Windows.Forms.ComboBox cb_statistic;
+        private System.Windows.Forms.CheckBox btn_sqlhistory;
+        private System.Windows.Forms.Label lbl_importlanguage;
+        private System.Windows.Forms.ComboBox cb_importlanguage;
     }
 }
 
