@@ -22,11 +22,11 @@ namespace NW_Spendenmonitor
             if (newDB)
             {
                 DBScheme.InitScheme(m_dbConnection);
-                result = "Neue Datenbank erfolgreich angelegt!";
+                result = Languages.db_newdbcreated;
             }
             else
             {
-                result = "Erfolgreich zu bestehender Datenbank verbunden!";
+                result = Languages.db_connectionsuccess;
             }
 
             return m_dbConnection;
