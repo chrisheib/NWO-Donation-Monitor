@@ -39,6 +39,8 @@ namespace NW_Spendenmonitor
             dTPFrom.ValueChanged += new EventHandler(EventRunStatement);
             dTPTo.ValueChanged += new EventHandler(EventRunStatement);
 
+            CheckForNewVersion();
+
             Statement.RunStatement(this, 0);
         }
 

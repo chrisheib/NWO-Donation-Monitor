@@ -8,7 +8,8 @@ namespace NW_Spendenmonitor
 {
     public static class ConfigClass
     {
-        public static int ImportLanguage { get; set; }
+        public static string VERSION = "v0.43";
+        public static int ImportLanguage;
         public static Languages.Language UILanguage;
     }
 }

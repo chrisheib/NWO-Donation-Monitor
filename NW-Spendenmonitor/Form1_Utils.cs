@@ -3,6 +3,8 @@ using System.Windows.Forms;
 using System.Data.SQLite;
 using System.Data;
 using System.Collections.Generic;
+using System.Net;
+using System.IO;
 
 namespace NW_Spendenmonitor
 {
@@ -67,6 +69,34 @@ namespace NW_Spendenmonitor
             foreach (var s in list)
             {
                 cb.Items.Add(s);
+            }
+        }
+
+        private void CheckForNewVersion()
+        {
+            string url = "https://api.github.com/repos/chrisheib/NWO-Donation-Monitor/releases";
+            string response = Get(url);
+            string searchString = "NWO-Donation-Monitor/releases/tag/";
+            int a = response.IndexOf(searchString);
+            string versionRaw = response.Substring(a + searchString.Length, a + searchString.Length + 10);
+            string version = versionRaw.Split('\"')[0];
+            if (string.Compare(version, ConfigClass.VERSION) > 0)
+            {
+                MessageBox.Show("Neue Version: " + version + Environment.NewLine + "Aktuelle Version: " + ConfigClass.VERSION + Environment.NewLine + "Updaten?");
+            }
+        }
+
+        public string Get(string uri)
+        {
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(uri);
+            request.UserAgent = "NWO-Donationmonitor";
+            request.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
+
+            using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+            using (Stream stream = response.GetResponseStream())
+            using (StreamReader reader = new StreamReader(stream))
+            {
+                return reader.ReadToEnd();
             }
         }
     }
