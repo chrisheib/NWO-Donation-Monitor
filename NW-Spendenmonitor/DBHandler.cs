@@ -67,8 +67,15 @@ namespace NW_Spendenmonitor
         {
             if (Select(connect, sql, out SQLiteDataReader reader))
             {
-                reader.Read();
-                return reader.GetString(0);
+                try
+                {
+                    //reader.Read();
+                    return reader.GetString(0);
+                }
+                catch (Exception)
+                {
+                    return "";
+                }
             }
             else
             {

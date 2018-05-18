@@ -32,7 +32,7 @@ namespace NW_Spendenmonitor
             cb_statistic.SelectedIndex = 0;
             cb_importlanguage.SelectedIndex = 0;
 
-            dTPFrom.Text = "01.01.2018 00:00:00";
+            dTPFrom.Text = "17.05.2018 18:00:00";
             dTPTo.Text = DateTime.Now.ToString("dd.MM.yyyy") + " 23:59:59";
 
             cb_statistic.SelectedIndexChanged += new EventHandler(EventRunStatement);

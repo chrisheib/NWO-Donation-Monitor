@@ -30,7 +30,7 @@ namespace NW_Spendenmonitor
             }
             else
             {
-                DB.Execute(dbConnection, statement, false);
+                DB.Execute(dbConnection, createString, false);
             }
         }
     }

@@ -88,16 +88,27 @@ namespace NW_Spendenmonitor
 
         public string Get(string uri)
         {
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3;
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(uri);
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls
+                | SecurityProtocolType.Tls11
+                | SecurityProtocolType.Tls12
+                | SecurityProtocolType.Ssl3;
+            ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
+
+            request.Method = "GET";
+            request.AllowAutoRedirect = true;
+            request.ProtocolVersion = HttpVersion.Version10;
             request.UserAgent = "NWO-Donationmonitor";
             request.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
 
-            using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
-            using (Stream stream = response.GetResponseStream())
-            using (StreamReader reader = new StreamReader(stream))
-            {
-                return reader.ReadToEnd();
-            }
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            Stream stream = response.GetResponseStream();
+            StreamReader reader = new StreamReader(stream);
+            return reader.ReadToEnd();
+
         }
+        
     }
+
 }
