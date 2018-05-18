@@ -45,6 +45,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.lbl_uilanguage = new System.Windows.Forms.Label();
+            this.cb_uilanguage = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -63,6 +65,8 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.cb_uilanguage);
+            this.splitContainer1.Panel1.Controls.Add(this.lbl_uilanguage);
             this.splitContainer1.Panel1.Controls.Add(this.lbl_importlanguage);
             this.splitContainer1.Panel1.Controls.Add(this.cb_importlanguage);
             this.splitContainer1.Panel1.Controls.Add(this.btn_sqlhistory);
@@ -250,6 +254,28 @@
             this.dataGridView1.Size = new System.Drawing.Size(723, 507);
             this.dataGridView1.TabIndex = 6;
             // 
+            // lbl_uilanguage
+            // 
+            this.lbl_uilanguage.AutoSize = true;
+            this.lbl_uilanguage.Location = new System.Drawing.Point(9, 41);
+            this.lbl_uilanguage.Name = "lbl_uilanguage";
+            this.lbl_uilanguage.Size = new System.Drawing.Size(72, 13);
+            this.lbl_uilanguage.TabIndex = 24;
+            this.lbl_uilanguage.Text = "UI Language:";
+            // 
+            // cb_uilanguage
+            // 
+            this.cb_uilanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cb_uilanguage.FormattingEnabled = true;
+            this.cb_uilanguage.Items.AddRange(new object[] {
+            "Englisch",
+            "Deutsch"});
+            this.cb_uilanguage.Location = new System.Drawing.Point(94, 36);
+            this.cb_uilanguage.Name = "cb_uilanguage";
+            this.cb_uilanguage.Size = new System.Drawing.Size(121, 21);
+            this.cb_uilanguage.TabIndex = 25;
+            this.cb_uilanguage.SelectedIndexChanged += new System.EventHandler(this.Cb_uilanguage_SelectedIndexChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -287,6 +313,8 @@
         private System.Windows.Forms.CheckBox btn_sqlhistory;
         private System.Windows.Forms.Label lbl_importlanguage;
         private System.Windows.Forms.ComboBox cb_importlanguage;
+        private System.Windows.Forms.ComboBox cb_uilanguage;
+        private System.Windows.Forms.Label lbl_uilanguage;
     }
 }
 

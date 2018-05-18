@@ -23,10 +23,19 @@ namespace NW_Spendenmonitor
             dt = new DataTable();
             dataGridView1.DataSource = dt;
             FillPrevious();
+            
+            Languages.form_uilanguages = new System.Collections.Generic.List<string>
+            {
+                "Deutsch",
+                "English"
+            };
+
+            //TODO: save and read selected language from config table
+            //Config_Save("ui_language", (string)(int)ConfigClass.UILanguage);
+            //Languages.Language a = (Languages.Language)cb_uilanguage.SelectedIndex;
 
             //TODO: combobox with languageselect
-            //TODO: save and read selected language from config table
-            Languages.SetLanguage(Languages.Language.German);
+            Languages.SetLanguage(Languages.Language.German, true);
             SetComponentLanguage(ConfigClass.UILanguage);
             
             cb_statistic.SelectedIndex = 0;
@@ -139,6 +148,11 @@ namespace NW_Spendenmonitor
             {
                 ChangeHistoryCollapsed(sender, e);
             }
+        }
+
+        private void Cb_uilanguage_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Languages.SetLanguage(cb_uilanguage.SelectedIndex)
         }
     }
 }

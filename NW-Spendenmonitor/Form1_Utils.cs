@@ -61,6 +61,7 @@ namespace NW_Spendenmonitor
             btn_sqlhistory.Text = Languages.form_sqlhistory;
             FillComboboxFromList(cb_importlanguage, Languages.form_importlanguages);
             FillComboboxFromList(cb_statistic, Languages.form_commands);
+            FillComboboxFromList(cb_uilanguage, Languages.form_uilanguages);
         }
 
         private void FillComboboxFromList(ComboBox cb, List<string> list)
