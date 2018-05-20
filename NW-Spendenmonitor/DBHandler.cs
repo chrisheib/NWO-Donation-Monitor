@@ -65,11 +65,12 @@ namespace NW_Spendenmonitor
 
         public static string ReadValue(SQLiteConnection connect, string sql)
         {
-            if (Select(connect, sql, out SQLiteDataReader reader))
+            if (Select(connect, sql, out SQLiteDataReader reader, false))
             {
                 try
                 {
                     //reader.Read();
+                    reader.Read();
                     return reader.GetString(0);
                 }
                 catch (Exception)

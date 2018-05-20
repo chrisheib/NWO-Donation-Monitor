@@ -51,7 +51,7 @@ namespace NW_Spendenmonitor
             }
         }
 
-        private void SetComponentLanguage(Languages.Language language)
+        private void SetComponentLanguage()
         {
             Text = Languages.form_caption;
             lbl_status.Text = Languages.form_status;
@@ -62,10 +62,18 @@ namespace NW_Spendenmonitor
             FillComboboxFromList(cb_importlanguage, Languages.form_importlanguages);
             FillComboboxFromList(cb_statistic, Languages.form_commands);
             FillComboboxFromList(cb_uilanguage, Languages.form_uilanguages);
+
+            cb_statistic.SelectedIndex = 0;
+
+
+            //TODO: Read selected importlanguage from config table
+            cb_importlanguage.SelectedIndex = 0;
+            cb_uilanguage.SelectedIndex = (int)ConfigClass.UILanguage;
         }
 
         private void FillComboboxFromList(ComboBox cb, List<string> list)
         {
+            int rememberIndex = cb.SelectedIndex;
             cb.Items.Clear();
             foreach (var s in list)
             {

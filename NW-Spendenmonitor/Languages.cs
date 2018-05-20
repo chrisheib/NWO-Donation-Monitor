@@ -23,14 +23,14 @@ namespace NW_Spendenmonitor
         public static string db_connectionsuccess = "Erfolgreich zu bestehender Datenbank verbunden!";
 
 
-        public enum Language { German, English};
+        public enum UILanguage { German, English};
 
-        public static void SetLanguage(Language language)
+        public static void SetLanguage(UILanguage language)
         {
             SetLanguage(language, false);
         }
 
-        public static void SetLanguage(Language language, bool init)
+        public static void SetLanguage(UILanguage language, bool init)
         {
             if ((language != ConfigClass.UILanguage) || init)
             {
@@ -41,7 +41,7 @@ namespace NW_Spendenmonitor
                 switch (language)
                 {
                     //German
-                    case Language.German:
+                    case UILanguage.German:
                         form_caption = "Neverwinter Spendenmonitor";
                         form_status = "Status:";
                         form_importlanguage = "Spielsprache:";
@@ -79,7 +79,7 @@ namespace NW_Spendenmonitor
                             "Bei \"Nein\" wird die aktuelle Datei nicht umbenannt!";
                         break;
 
-                    case Language.English:
+                    case UILanguage.English:
                         form_caption = "Neverwinter Donationmonitor";
                         form_status = "Status:";
                         form_importlanguage = "Game language:";

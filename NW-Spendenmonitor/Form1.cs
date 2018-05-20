@@ -35,22 +35,25 @@ namespace NW_Spendenmonitor
             //Languages.Language a = (Languages.Language)cb_uilanguage.SelectedIndex;
 
             //TODO: combobox with languageselect
-            Languages.SetLanguage(Languages.Language.German, true);
-            SetComponentLanguage(ConfigClass.UILanguage);
-            
-            cb_statistic.SelectedIndex = 0;
-            cb_importlanguage.SelectedIndex = 0;
+            Languages.SetLanguage(Languages.UILanguage.English, true);
+            SetComponentLanguage();
+
+            cb_uilanguage.SelectedIndex = (int)ConfigClass.UILanguage;
 
             dTPFrom.Text = "17.05.2018 18:00:00";
             dTPTo.Text = DateTime.Now.ToString("dd.MM.yyyy") + " 23:59:59";
-
+            
+            cb_uilanguage.SelectionChangeCommitted += new EventHandler(Cb_uilanguage_SelectedIndexChanged);
             cb_statistic.SelectedIndexChanged += new EventHandler(EventRunStatement);
+            cb_importlanguage.SelectionChangeCommitted += new EventHandler(Cb_importlanguage_SelectedIndexChanged);
             dTPFrom.ValueChanged += new EventHandler(EventRunStatement);
             dTPTo.ValueChanged += new EventHandler(EventRunStatement);
 
             CheckForNewVersion();
 
             Statement.RunStatement(this, 0);
+
+            //ConfigClass.TestConfig(dbConnection);
         }
 
         private void Button1_Click(object sender, EventArgs e)
@@ -152,7 +155,13 @@ namespace NW_Spendenmonitor
 
         private void Cb_uilanguage_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // Languages.SetLanguage(cb_uilanguage.SelectedIndex)
+            Languages.SetLanguage((Languages.UILanguage)cb_uilanguage.SelectedIndex);
+            SetComponentLanguage();
+        }
+
+        private void Cb_importlanguage_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //TODO: Save value to config
         }
     }
 }

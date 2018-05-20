@@ -1,6 +1,4 @@
-﻿using System.Windows.Forms;
-
-namespace NW_Spendenmonitor
+﻿namespace NW_Spendenmonitor
 {
     public class Statement
     {
