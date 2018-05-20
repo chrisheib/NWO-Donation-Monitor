@@ -1,6 +1,4 @@
-﻿using System.Windows.Forms;
-
-namespace NW_Spendenmonitor
+﻿namespace NW_Spendenmonitor
 {
     public class Statement
     {
@@ -36,18 +34,8 @@ namespace NW_Spendenmonitor
                 default:
                     break;
             }
-        }
 
-        public static void SetStatementCollection(ComboBox cb)
-        {
-            cb.Items.Add("Alle Ressourcen von ... bis");
-            cb.Items.Add("Einfluss pro Account von...bis");
-            cb.Items.Add("Juwelen pro Account von ... bis");
-            cb.Items.Add("Überfl. Ausr. pro Account von ... bis");
-            cb.Items.Add("Einfluss pro Tag von...bis");
-            cb.Items.Add("Juwelen pro Tag von ... bis");
-            cb.Items.Add("Überfl. Ausr. pro Tag von ... bis");
-            cb.Items.Add("Gutscheine pro Account von ... bis");
+            form.SetConfig("LastStatistic", selection.ToString());
         }
 
         //0

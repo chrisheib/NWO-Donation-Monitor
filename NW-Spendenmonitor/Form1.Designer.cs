@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.cb_uilanguage = new System.Windows.Forms.ComboBox();
+            this.lbl_uilanguage = new System.Windows.Forms.Label();
             this.lbl_importlanguage = new System.Windows.Forms.Label();
             this.cb_importlanguage = new System.Windows.Forms.ComboBox();
             this.btn_sqlhistory = new System.Windows.Forms.CheckBox();
@@ -63,6 +65,8 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.cb_uilanguage);
+            this.splitContainer1.Panel1.Controls.Add(this.lbl_uilanguage);
             this.splitContainer1.Panel1.Controls.Add(this.lbl_importlanguage);
             this.splitContainer1.Panel1.Controls.Add(this.cb_importlanguage);
             this.splitContainer1.Panel1.Controls.Add(this.btn_sqlhistory);
@@ -87,10 +91,31 @@
             this.splitContainer1.SplitterDistance = 250;
             this.splitContainer1.TabIndex = 8;
             // 
+            // cb_uilanguage
+            // 
+            this.cb_uilanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cb_uilanguage.FormattingEnabled = true;
+            this.cb_uilanguage.Items.AddRange(new object[] {
+            "Englisch",
+            "Deutsch"});
+            this.cb_uilanguage.Location = new System.Drawing.Point(94, 36);
+            this.cb_uilanguage.Name = "cb_uilanguage";
+            this.cb_uilanguage.Size = new System.Drawing.Size(121, 21);
+            this.cb_uilanguage.TabIndex = 25;
+            // 
+            // lbl_uilanguage
+            // 
+            this.lbl_uilanguage.AutoSize = true;
+            this.lbl_uilanguage.Location = new System.Drawing.Point(9, 41);
+            this.lbl_uilanguage.Name = "lbl_uilanguage";
+            this.lbl_uilanguage.Size = new System.Drawing.Size(72, 13);
+            this.lbl_uilanguage.TabIndex = 24;
+            this.lbl_uilanguage.Text = "UI Language:";
+            // 
             // lbl_importlanguage
             // 
             this.lbl_importlanguage.AutoSize = true;
-            this.lbl_importlanguage.Location = new System.Drawing.Point(263, 40);
+            this.lbl_importlanguage.Location = new System.Drawing.Point(255, 40);
             this.lbl_importlanguage.Name = "lbl_importlanguage";
             this.lbl_importlanguage.Size = new System.Drawing.Size(71, 13);
             this.lbl_importlanguage.TabIndex = 23;
@@ -287,6 +312,8 @@
         private System.Windows.Forms.CheckBox btn_sqlhistory;
         private System.Windows.Forms.Label lbl_importlanguage;
         private System.Windows.Forms.ComboBox cb_importlanguage;
+        private System.Windows.Forms.ComboBox cb_uilanguage;
+        private System.Windows.Forms.Label lbl_uilanguage;
     }
 }
 

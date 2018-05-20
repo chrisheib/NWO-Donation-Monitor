@@ -51,7 +51,7 @@ namespace NW_Spendenmonitor
             }
         }
 
-        private void SetComponentLanguage(Languages.Language language)
+        private void SetComponentLanguage()
         {
             Text = Languages.form_caption;
             lbl_status.Text = Languages.form_status;
@@ -61,10 +61,16 @@ namespace NW_Spendenmonitor
             btn_sqlhistory.Text = Languages.form_sqlhistory;
             FillComboboxFromList(cb_importlanguage, Languages.form_importlanguages);
             FillComboboxFromList(cb_statistic, Languages.form_commands);
+            FillComboboxFromList(cb_uilanguage, Languages.form_uilanguages);
+
+            cb_statistic.SelectedIndex = Int32.Parse(GetConfig("LastStatistic", "0"));
+            cb_importlanguage.SelectedIndex = Int32.Parse(GetConfig("ImportLanguage","0"));
+            cb_uilanguage.SelectedIndex = (int)ConfigClass.UILanguage;
         }
 
         private void FillComboboxFromList(ComboBox cb, List<string> list)
         {
+            int rememberIndex = cb.SelectedIndex;
             cb.Items.Clear();
             foreach (var s in list)
             {
@@ -88,16 +94,41 @@ namespace NW_Spendenmonitor
 
         public string Get(string uri)
         {
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3;
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(uri);
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls
+                | SecurityProtocolType.Tls11
+                | SecurityProtocolType.Tls12
+                | SecurityProtocolType.Ssl3;
+            ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
+
+            request.Method = "GET";
+            request.AllowAutoRedirect = true;
+            request.ProtocolVersion = HttpVersion.Version10;
             request.UserAgent = "NWO-Donationmonitor";
             request.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
 
-            using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
-            using (Stream stream = response.GetResponseStream())
-            using (StreamReader reader = new StreamReader(stream))
-            {
-                return reader.ReadToEnd();
-            }
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            Stream stream = response.GetResponseStream();
+            StreamReader reader = new StreamReader(stream);
+            return reader.ReadToEnd();
+
         }
+
+        public void SetConfig(string key, string value)
+        {
+            ConfigClass.SetConfig(dbConnection, key, value);
+        }
+
+        public string GetConfig(string key)
+        {
+            return ConfigClass.GetConfig(dbConnection, key);
+        }
+        public string GetConfig(string key, string defaultValue)
+        {
+            return ConfigClass.GetConfig(dbConnection, key, defaultValue);
+        }
+        
     }
+
 }

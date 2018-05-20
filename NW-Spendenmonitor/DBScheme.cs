@@ -10,12 +10,28 @@ namespace NW_Spendenmonitor
             string statement;
 
             statement = "CREATE TABLE commands (id INTEGER PRIMARY KEY AUTOINCREMENT, command TEXT, date DATETIME)";
-            DB.Execute(dbConnection, statement, false);
+            AddTable(dbConnection, "commands", statement);
 
             statement = "CREATE TABLE input ( `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, `charname` TEXT, `account` TEXT, `time` TEXT, `item` TEXT, `itemcount` TEXT, `resource` TEXT, `resourcequantity` TEXT, `donorsguild` TEXT, `targetguild` TEXT )";
-            DB.Execute(dbConnection, statement, false);
+            AddTable(dbConnection, "input", statement);
+
+            statement = "CREATE TABLE config ( `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, `key` TEXT NOT NULL UNIQUE, `value` TEXT)";
+            AddTable(dbConnection, "config", statement);
 
             return result;
         } 
+
+        static public void AddTable(SQLiteConnection dbConnection, string tablename, string createString)
+        {
+            string statement = "SELECT name FROM sqlite_master WHERE type = 'table' AND name = '" + tablename + "'";
+            if (DB.ReadValue(dbConnection, statement) == tablename) 
+            {
+                //TODO: Add table altering
+            }
+            else
+            {
+                DB.Execute(dbConnection, createString, false);
+            }
+        }
     }
 }

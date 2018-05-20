@@ -19,9 +19,10 @@ namespace NW_Spendenmonitor
             var m_dbConnection = new SQLiteConnection("Data Source=nwmonitor.sqlite;Version=3;");
             m_dbConnection.Open();
 
+            DBScheme.InitScheme(m_dbConnection);
+
             if (newDB)
             {
-                DBScheme.InitScheme(m_dbConnection);
                 result = Languages.db_newdbcreated;
             }
             else
@@ -60,6 +61,27 @@ namespace NW_Spendenmonitor
 
             return result;
 
+        }
+
+        public static string ReadValue(SQLiteConnection connect, string sql)
+        {
+            if (Select(connect, sql, out SQLiteDataReader reader, false))
+            {
+                try
+                {
+                    //reader.Read();
+                    reader.Read();
+                    return reader.GetString(0);
+                }
+                catch (Exception)
+                {
+                    return "";
+                }
+            }
+            else
+            {
+                return "";
+            }
         }
 
         public static bool Execute(SQLiteConnection connect, string sql)

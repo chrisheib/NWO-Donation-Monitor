@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using System.Data.SQLite;
 using System.Data;
+using System.IO;
 
 namespace NW_Spendenmonitor
 {
@@ -23,25 +24,33 @@ namespace NW_Spendenmonitor
             dt = new DataTable();
             dataGridView1.DataSource = dt;
             FillPrevious();
-
-            //TODO: combobox with languageselect
-            //TODO: save and read selected language from config table
-            Languages.SetLanguage(Languages.Language.German);
-            SetComponentLanguage(ConfigClass.UILanguage);
             
-            cb_statistic.SelectedIndex = 0;
-            cb_importlanguage.SelectedIndex = 0;
+            Languages.form_uilanguages = new System.Collections.Generic.List<string>
+            {
+                "Deutsch",
+                "English"
+            };
 
-            dTPFrom.Text = "01.01.2018 00:00:00";
+            Languages.SetLanguage(this, (Languages.UILanguage)Int32.Parse(GetConfig("UILanguage", "0")), true);
+            SetComponentLanguage();
+
+            cb_uilanguage.SelectedIndex = (int)ConfigClass.UILanguage;
+
+            dTPFrom.Text = "17.05.2018 18:00:00";
             dTPTo.Text = DateTime.Now.ToString("dd.MM.yyyy") + " 23:59:59";
-
+            
+            cb_uilanguage.SelectionChangeCommitted += new EventHandler(Cb_uilanguage_SelectedIndexChanged);
             cb_statistic.SelectedIndexChanged += new EventHandler(EventRunStatement);
+            cb_importlanguage.SelectionChangeCommitted += new EventHandler(Cb_importlanguage_SelectedIndexChanged);
             dTPFrom.ValueChanged += new EventHandler(EventRunStatement);
             dTPTo.ValueChanged += new EventHandler(EventRunStatement);
 
             CheckForNewVersion();
 
-            Statement.RunStatement(this, 0);
+            
+            Statement.RunStatement(this, Int32.Parse(GetConfig("LastStatistic", "0")));
+
+            //ConfigClass.TestConfig(dbConnection);
         }
 
         private void Button1_Click(object sender, EventArgs e)
@@ -64,7 +73,7 @@ namespace NW_Spendenmonitor
         {
             OpenFileDialog openFileDialog1 = new OpenFileDialog()
             {
-                InitialDirectory = "E:\\Neverwinterlogs",
+                InitialDirectory = GetConfig("ImportPath","C:\\"),
                 RestoreDirectory = true,
                 Multiselect = false
             };
@@ -75,7 +84,9 @@ namespace NW_Spendenmonitor
                 {
                     SetStatus(openFileDialog1.FileName + Languages.status_beingimported);
 
+                    
                     string path = openFileDialog1.FileName;
+                    SetConfig("ImportPath", Path.GetDirectoryName(path));
                     string oldpath = "";
 
                     ConfigClass.ImportLanguage = cb_importlanguage.SelectedIndex;
@@ -139,6 +150,17 @@ namespace NW_Spendenmonitor
             {
                 ChangeHistoryCollapsed(sender, e);
             }
+        }
+
+        private void Cb_uilanguage_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Languages.SetLanguage(this,(Languages.UILanguage)cb_uilanguage.SelectedIndex);
+            SetComponentLanguage();
+        }
+
+        private void Cb_importlanguage_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SetConfig("ImportLanguage", cb_importlanguage.SelectedIndex.ToString());
         }
     }
 }
