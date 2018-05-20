@@ -23,8 +23,11 @@ namespace NW_Spendenmonitor
 
         static public void AddTable(SQLiteConnection dbConnection, string tablename, string createString)
         {
-            string statement = "SELECT name FROM sqlite_master WHERE type = 'table' AND name = '" + tablename + "'";
-            if (DB.ReadValue(dbConnection, statement) == tablename) 
+            string statement = "SELECT name FROM sqlite_master WHERE type = 'table' AND name = $tablename";
+            SQLiteCommand command = new SQLiteCommand(statement);
+            command.Parameters.AddWithValue("$table", tablename);
+
+            if (DB.ReadValue(dbConnection, command) == tablename) 
             {
                 //TODO: Add table altering
             }

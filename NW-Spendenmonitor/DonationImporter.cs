@@ -53,9 +53,8 @@ namespace NW_Spendenmonitor
                             break;
                         }
                     }
-
-                    string donationInputStatement = DonationLineToStatement(donationLine, language);
-                    DB.Execute(dbConnect, donationInputStatement);
+                    
+                    DB.Execute(dbConnect, DonationLineToStatement(donationLine), false);
                     changedLines++;
                 }
                 
@@ -114,23 +113,32 @@ namespace NW_Spendenmonitor
             }
         }
 
-        private static string DonationLineToStatement(DonationDataLine dataLine, int language)
+        private static SQLiteCommand DonationLineToStatement(DonationDataLine dataLine)
         {
-            string result;
-
-            result = "INSERT INTO input " +
+            string sql = "INSERT INTO input " +
                 "(charname, account, time, item, itemcount, resource, resourcequantity, donorsguild, targetguild) VALUES (" +
-                "'" + dataLine.Charname + "'" + "," +
-                "'" + dataLine.Account + "'" + "," +
-                "'" + dataLine.Time + "'" + "," +
-                "'" + dataLine.Item + "'" + "," +
-                "'" + dataLine.Itemcount + "'" + "," +
-                "'" + dataLine.Resource + "'" + "," +
-                "'" + dataLine.Resourcequantity + "'" + "," +
-                "'" + dataLine.Donorsguild + "'" + "," +
-                "'" + dataLine.Targetguild + "'" + ")";
+                "$charname," +
+                "$account," +
+                "$time" +
+                "$item," +
+                "$itemcount," +
+                "$resource," +
+                "$resourcequantity," +
+                "$donorsguild," +
+                "$targetguild)";
 
-            return result;
+            SQLiteCommand command = new SQLiteCommand(sql);
+            command.Parameters.AddWithValue("$charname", dataLine.Charname);
+            command.Parameters.AddWithValue("$account", dataLine.Account);
+            command.Parameters.AddWithValue("$time", dataLine.Time);
+            command.Parameters.AddWithValue("$item", dataLine.Item);
+            command.Parameters.AddWithValue("$itemcount", dataLine.Itemcount);
+            command.Parameters.AddWithValue("$resource", dataLine.Resource);
+            command.Parameters.AddWithValue("$resourcequantity", dataLine.Resourcequantity);
+            command.Parameters.AddWithValue("$donorsguild", dataLine.Donorsguild);
+            command.Parameters.AddWithValue("$targetguild", dataLine.Targetguild);
+            
+            return command;
         }
     }
 

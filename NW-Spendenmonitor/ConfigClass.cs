@@ -15,8 +15,10 @@ namespace NW_Spendenmonitor
 
         public static string GetConfig(SQLiteConnection dbConnection, string field, string defaultValue)
         {
-            string sqlCommand = "SELECT value from config where key like '" + field + "'";
-            string result = DB.ReadValue(dbConnection, sqlCommand);
+            SQLiteCommand command = new SQLiteCommand("SELECT value from config where key like $field");
+            command.Parameters.AddWithValue("$field", field);
+
+            string result = DB.ReadValue(dbConnection, command);
             if (result == "")
             {
                 result = defaultValue;
@@ -26,8 +28,7 @@ namespace NW_Spendenmonitor
 
         public static void SetConfig(SQLiteConnection dbConnection, string field, string value)
         {
-            string sqlCommand = "INSERT OR REPLACE INTO config (key, value) values ($field, $value)";
-            SQLiteCommand command = new SQLiteCommand(sqlCommand);
+            SQLiteCommand command = new SQLiteCommand("INSERT OR REPLACE INTO config (key, value) values ($field, $value)");
             command.Parameters.AddWithValue("$field", field);
             command.Parameters.AddWithValue("$value", value);
 

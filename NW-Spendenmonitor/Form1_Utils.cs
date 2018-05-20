@@ -18,7 +18,11 @@ namespace NW_Spendenmonitor
 
         public void StatementToGrid(string statement, bool logging)
         {
-            if (DB.Select(dbConnection, statement, out SQLiteDataReader query, logging))
+            StatementToGrid(new SQLiteCommand(statement), logging);
+        }
+        public void StatementToGrid(SQLiteCommand command, bool logging)
+        {
+            if (DB.Select(dbConnection, command, out SQLiteDataReader query, logging))
             {
                 dt = new DataTable();
                 dataGridView1.DataSource = dt;

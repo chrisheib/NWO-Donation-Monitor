@@ -1,4 +1,6 @@
-﻿namespace NW_Spendenmonitor
+﻿using System.Data.SQLite;
+
+namespace NW_Spendenmonitor
 {
     public class Statement
     {
@@ -43,8 +45,13 @@
         {
             form.GetFromToDates(out string dateFrom, out string dateTo);
             string statement = "select resource, sum(resourcequantity) Ressourcenanzahl from input where " +
-                "time >= '" + dateFrom + "' and time <= '" + dateTo + "' group by resource order by Ressourcenanzahl desc";
-            form.StatementToGrid(statement, false);
+                "time >= $dateFrom and time <= $dateTo group by resource order by Ressourcenanzahl desc";
+
+            SQLiteCommand command = new SQLiteCommand(statement);
+            command.Parameters.AddWithValue("$dateFrom", dateFrom);
+            command.Parameters.AddWithValue("$dateTo", dateTo);
+
+            form.StatementToGrid(command, false);
         }
 
         //1
@@ -52,8 +59,13 @@
         {
             form.GetFromToDates(out string dateFrom, out string dateTo);
             string statement = "select charname, account, sum(resourcequantity) Einfluss from input where resource like 'influence'" +
-                " or resource like 'Einfluss' and time >= '" + dateFrom + "' and time <= '" + dateTo + "' group by account order by Einfluss desc";
-            form.StatementToGrid(statement, false);
+                " or resource like 'Einfluss' and time >= $dateFrom and time <= $dateTo group by account order by Einfluss desc";
+
+            SQLiteCommand command = new SQLiteCommand(statement);
+            command.Parameters.AddWithValue("$dateFrom", dateFrom);
+            command.Parameters.AddWithValue("$dateTo", dateTo);
+
+            form.StatementToGrid(command, false);
         }
 
         //2
@@ -61,8 +73,13 @@
         {
             form.GetFromToDates(out string dateFrom, out string dateTo);
             string statement = "select charname, account, sum(resourcequantity) Juwelen from input where resource like 'gems'" +
-                " or resource like 'Juwelen' and time >= '" + dateFrom + "' and time <= '" + dateTo + "' group by account order by Juwelen desc";
-            form.StatementToGrid(statement, false);
+                " or resource like 'Juwelen' and time >= $dateFrom and time <= $dateTo group by account order by Juwelen desc";
+
+            SQLiteCommand command = new SQLiteCommand(statement);
+            command.Parameters.AddWithValue("$dateFrom", dateFrom);
+            command.Parameters.AddWithValue("$dateTo", dateTo);
+
+            form.StatementToGrid(command, false);
         }
 
         //3
@@ -70,8 +87,13 @@
         {
             form.GetFromToDates(out string dateFrom, out string dateTo);
             string statement = "select charname, account, sum(resourcequantity) 'Überschüssige Ausrüstung' from input where resource like 'Surplus Equipment'" +
-                " or resource like 'Überschüssige Ausrüstung' and time >= '" + dateFrom + "' and time <= '" + dateTo + "' group by account order by sum(resourcequantity) desc";
-            form.StatementToGrid(statement, false);
+                " or resource like 'Überschüssige Ausrüstung' and time >= $dateFrom and time <= $dateTo group by account order by sum(resourcequantity) desc";
+
+            SQLiteCommand command = new SQLiteCommand(statement);
+            command.Parameters.AddWithValue("$dateFrom", dateFrom);
+            command.Parameters.AddWithValue("$dateTo", dateTo);
+
+            form.StatementToGrid(command, false);
         }
 
         //4
@@ -79,8 +101,13 @@
         {
             form.GetFromToDates(out string dateFrom, out string dateTo);
             string statement = "select date(time) Tag, sum(resourcequantity) Einfluss from input where resource like 'influence'" +
-                " or resource like 'Einfluss' and time >= '" + dateFrom + "' and time <= '" + dateTo + "' group by date(time) order by Tag desc";
-            form.StatementToGrid(statement, false);
+                " or resource like 'Einfluss' and time >= $dateFrom and time <= $dateTo group by date(time) order by Tag desc";
+
+            SQLiteCommand command = new SQLiteCommand(statement);
+            command.Parameters.AddWithValue("$dateFrom", dateFrom);
+            command.Parameters.AddWithValue("$dateTo", dateTo);
+
+            form.StatementToGrid(command, false);
         }
 
         //5
@@ -88,8 +115,13 @@
         {
             form.GetFromToDates(out string dateFrom, out string dateTo);
             string statement = "select date(time) Tag, sum(resourcequantity) Juwelen from input where resource like 'gems'" +
-                " or resource like 'Juwelen' and time >= '" + dateFrom + "' and time <= '" + dateTo + "' group by date(time) order by Tag desc";
-            form.StatementToGrid(statement, false);
+                " or resource like 'Juwelen' and time >= datetime($dateFrom) and time <= datetime($dateTo) group by date(time) order by Tag desc";
+
+            SQLiteCommand command = new SQLiteCommand(statement);
+            command.Parameters.AddWithValue("$dateFrom", dateFrom);
+            command.Parameters.AddWithValue("$dateTo", dateTo);
+
+            form.StatementToGrid(command, true);
         }
 
         //6
@@ -97,8 +129,13 @@
         {
             form.GetFromToDates(out string dateFrom, out string dateTo);
             string statement = "select date(time) Tag, sum(resourcequantity) 'Überschüssige Ausrüstung' from input where resource like 'Surplus Equipment'" +
-                " or resource like 'Überschüssige Ausrüstung' and time >= '" + dateFrom + "' and time <= '" + dateTo + "' group by date(time) order by Tag desc";
-            form.StatementToGrid(statement, false);
+                " or resource like 'Überschüssige Ausrüstung' and time >= $dateFrom and time <= $dateTo group by date(time) order by Tag desc";
+
+            SQLiteCommand command = new SQLiteCommand(statement);
+            command.Parameters.AddWithValue("$dateFrom", dateFrom);
+            command.Parameters.AddWithValue("$dateTo", dateTo);
+
+            form.StatementToGrid(command, false);
         }
 
         //7
@@ -106,8 +143,13 @@
         {
             form.GetFromToDates(out string dateFrom, out string dateTo);
             string statement = "select charname, account, sum(itemcount) Gutscheinanzahl from input where item like '%voucher%'" +
-                " and time >= '" + dateFrom + "' and time <= '" + dateTo + "' group by account order by Gutscheinanzahl desc";
-            form.StatementToGrid(statement, false);
+                " and time >= $dateFrom and time <= $dateTo group by account order by Gutscheinanzahl desc";
+
+            SQLiteCommand command = new SQLiteCommand(statement);
+            command.Parameters.AddWithValue("$dateFrom", dateFrom);
+            command.Parameters.AddWithValue("$dateTo", dateTo);
+
+            form.StatementToGrid(command, false);
         }
     }
 }
