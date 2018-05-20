@@ -26,8 +26,12 @@ namespace NW_Spendenmonitor
 
         public static void SetConfig(SQLiteConnection dbConnection, string field, string value)
         {
-            string sqlCommand = "INSERT OR REPLACE INTO config (key, value) values ('" + field + "', '" + value + "' )";
-            DB.Execute(dbConnection, sqlCommand, false);
+            string sqlCommand = "INSERT OR REPLACE INTO config (key, value) values ($field, $value)";
+            SQLiteCommand command = new SQLiteCommand(sqlCommand);
+            command.Parameters.AddWithValue("$field", field);
+            command.Parameters.AddWithValue("$value", value);
+
+            DB.Execute(dbConnection, command, false);
         }
 
         //public static void TestConfig(SQLiteConnection dbConnection)

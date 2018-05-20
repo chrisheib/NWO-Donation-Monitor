@@ -91,32 +91,49 @@ namespace NW_Spendenmonitor
 
         public static bool Execute(SQLiteConnection connect, string sql, bool logging)
         {
+            var command = new SQLiteCommand(sql, connect);
+            return Execute(connect, command, logging);
+        }
+
+        public static bool Execute(SQLiteConnection connect, SQLiteCommand command)
+        {
+            return Execute(connect, command, true);
+        }
+
+        public static bool Execute(SQLiteConnection connect, SQLiteCommand command, bool logging)
+        {
             if (logging)
             {
-                LogCommand(connect, sql);
+                LogCommand(connect, command.CommandText);
             }
 
-            bool result = false; 
-
-            var command = new SQLiteCommand(sql, connect);
+            bool result = false;
             try
             {
+                command.Connection = connect;
                 command.ExecuteNonQuery();
                 result = true;
             }
-            catch
+            catch 
             {
-                
+
             }
             return result;
+
         }
 
         public static void LogCommand(SQLiteConnection connect, string sql)
         {
             DateTime myDateTime = DateTime.Now;
             string sqlFormattedDate = myDateTime.ToString("yyyy-MM-dd HH:mm:ss.fff");
-            string sqlintern = "insert into commands (command, date) values ('" + sql + "', '" + sqlFormattedDate + "')";
-            Execute(connect, sqlintern, false);
+            //string sqlintern = "insert into commands (command, date) values ('" + sql + "', '" + sqlFormattedDate + "')";
+
+            string sqlintern = "insert into commands (command, date) values ($sql, $date)";
+            SQLiteCommand command = new SQLiteCommand(sqlintern);
+            command.Parameters.AddWithValue("$sql", sql);
+            command.Parameters.AddWithValue("$date", sqlFormattedDate);
+
+            Execute(connect, command, false);
         }
     }
 }
