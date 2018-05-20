@@ -115,7 +115,7 @@
             // lbl_importlanguage
             // 
             this.lbl_importlanguage.AutoSize = true;
-            this.lbl_importlanguage.Location = new System.Drawing.Point(263, 40);
+            this.lbl_importlanguage.Location = new System.Drawing.Point(255, 40);
             this.lbl_importlanguage.Name = "lbl_importlanguage";
             this.lbl_importlanguage.Size = new System.Drawing.Size(71, 13);
             this.lbl_importlanguage.TabIndex = 23;

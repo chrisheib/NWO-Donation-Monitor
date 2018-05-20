@@ -25,18 +25,19 @@ namespace NW_Spendenmonitor
 
         public enum UILanguage { German, English};
 
-        public static void SetLanguage(UILanguage language)
+        public static void SetLanguage(Form1 form, UILanguage language)
         {
-            SetLanguage(language, false);
+            SetLanguage(form, language, false);
         }
 
-        public static void SetLanguage(UILanguage language, bool init)
+        public static void SetLanguage(Form1 form, UILanguage language, bool init)
         {
             if ((language != ConfigClass.UILanguage) || init)
             {
 
                 ConfigClass.UILanguage = language;
-                //TODO: Upload language into config 
+                
+                form.SetConfig("UILanguage", ((int)language).ToString());    
 
                 switch (language)
                 {

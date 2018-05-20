@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using System.Data.SQLite;
 using System.Data;
+using System.IO;
 
 namespace NW_Spendenmonitor
 {
@@ -30,12 +31,7 @@ namespace NW_Spendenmonitor
                 "English"
             };
 
-            //TODO: save and read selected language from config table
-            //Config_Save("ui_language", (string)(int)ConfigClass.UILanguage);
-            //Languages.Language a = (Languages.Language)cb_uilanguage.SelectedIndex;
-
-            //TODO: combobox with languageselect
-            Languages.SetLanguage(Languages.UILanguage.English, true);
+            Languages.SetLanguage(this, (Languages.UILanguage)Int32.Parse(GetConfig("UILanguage", "0")), true);
             SetComponentLanguage();
 
             cb_uilanguage.SelectedIndex = (int)ConfigClass.UILanguage;
@@ -51,7 +47,8 @@ namespace NW_Spendenmonitor
 
             CheckForNewVersion();
 
-            Statement.RunStatement(this, 0);
+            
+            Statement.RunStatement(this, Int32.Parse(GetConfig("LastStatistic", "0")));
 
             //ConfigClass.TestConfig(dbConnection);
         }
@@ -76,7 +73,7 @@ namespace NW_Spendenmonitor
         {
             OpenFileDialog openFileDialog1 = new OpenFileDialog()
             {
-                InitialDirectory = "E:\\Neverwinterlogs",
+                InitialDirectory = GetConfig("ImportPath","C:\\"),
                 RestoreDirectory = true,
                 Multiselect = false
             };
@@ -87,7 +84,9 @@ namespace NW_Spendenmonitor
                 {
                     SetStatus(openFileDialog1.FileName + Languages.status_beingimported);
 
+                    
                     string path = openFileDialog1.FileName;
+                    SetConfig("ImportPath", Path.GetDirectoryName(path));
                     string oldpath = "";
 
                     ConfigClass.ImportLanguage = cb_importlanguage.SelectedIndex;
@@ -155,13 +154,13 @@ namespace NW_Spendenmonitor
 
         private void Cb_uilanguage_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Languages.SetLanguage((Languages.UILanguage)cb_uilanguage.SelectedIndex);
+            Languages.SetLanguage(this,(Languages.UILanguage)cb_uilanguage.SelectedIndex);
             SetComponentLanguage();
         }
 
         private void Cb_importlanguage_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //TODO: Save value to config
+            SetConfig("ImportLanguage", cb_importlanguage.SelectedIndex.ToString());
         }
     }
 }

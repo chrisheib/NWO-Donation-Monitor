@@ -63,11 +63,8 @@ namespace NW_Spendenmonitor
             FillComboboxFromList(cb_statistic, Languages.form_commands);
             FillComboboxFromList(cb_uilanguage, Languages.form_uilanguages);
 
-            cb_statistic.SelectedIndex = 0;
-
-
-            //TODO: Read selected importlanguage from config table
-            cb_importlanguage.SelectedIndex = 0;
+            cb_statistic.SelectedIndex = Int32.Parse(GetConfig("LastStatistic", "0"));
+            cb_importlanguage.SelectedIndex = Int32.Parse(GetConfig("ImportLanguage","0"));
             cb_uilanguage.SelectedIndex = (int)ConfigClass.UILanguage;
         }
 
@@ -116,6 +113,20 @@ namespace NW_Spendenmonitor
             StreamReader reader = new StreamReader(stream);
             return reader.ReadToEnd();
 
+        }
+
+        public void SetConfig(string key, string value)
+        {
+            ConfigClass.SetConfig(dbConnection, key, value);
+        }
+
+        public string GetConfig(string key)
+        {
+            return ConfigClass.GetConfig(dbConnection, key);
+        }
+        public string GetConfig(string key, string defaultValue)
+        {
+            return ConfigClass.GetConfig(dbConnection, key, defaultValue);
         }
         
     }

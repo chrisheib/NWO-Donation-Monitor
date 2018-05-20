@@ -34,6 +34,8 @@
                 default:
                     break;
             }
+
+            form.SetConfig("LastStatistic", selection.ToString());
         }
 
         //0
