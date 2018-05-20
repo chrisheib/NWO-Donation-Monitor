@@ -80,15 +80,22 @@ namespace NW_Spendenmonitor
 
         private void CheckForNewVersion()
         {
-            string url = "https://api.github.com/repos/chrisheib/NWO-Donation-Monitor/releases";
-            string response = Get(url);
-            string searchString = "NWO-Donation-Monitor/releases/tag/";
-            int a = response.IndexOf(searchString);
-            string versionRaw = response.Substring(a + searchString.Length, a + searchString.Length + 10);
-            string version = versionRaw.Split('\"')[0];
-            if (string.Compare(version, ConfigClass.VERSION) > 0)
+            try
             {
-                MessageBox.Show("Neue Version: " + version + Environment.NewLine + "Aktuelle Version: " + ConfigClass.VERSION + Environment.NewLine + "Updaten?");
+                string url = "https://api.github.com/repos/chrisheib/NWO-Donation-Monitor/releases";
+                string response = Get(url);
+                string searchString = "NWO-Donation-Monitor/releases/tag/";
+                int a = response.IndexOf(searchString);
+                string versionRaw = response.Substring(a + searchString.Length, a + searchString.Length + 10);
+                string version = versionRaw.Split('\"')[0];
+                if (string.Compare(version, ConfigClass.VERSION) > 0)
+                {
+                    MessageBox.Show("Neue Version: " + version + Environment.NewLine + "Aktuelle Version: " + ConfigClass.VERSION + Environment.NewLine + "Updaten?");
+                }
+            }
+            catch (Exception)
+            {
+                
             }
         }
 
