@@ -101,13 +101,11 @@ namespace NW_Spendenmonitor
 
         public string Get(string uri)
         {
-            ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3;
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(uri);
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls
                 | SecurityProtocolType.Tls11
                 | SecurityProtocolType.Tls12
                 | SecurityProtocolType.Ssl3;
-            ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
 
             request.Method = "GET";
             request.AllowAutoRedirect = true;
