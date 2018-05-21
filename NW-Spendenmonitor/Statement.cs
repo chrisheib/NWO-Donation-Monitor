@@ -45,7 +45,7 @@ namespace NW_Spendenmonitor
         {
             form.GetFromToDates(out string dateFrom, out string dateTo);
             string statement = "select resource, sum(resourcequantity) Ressourcenanzahl from input where " +
-                "time >= $dateFrom and time <= $dateTo group by resource order by Ressourcenanzahl desc";
+                "(time >= $dateFrom and time <= $dateTo) group by resource order by Ressourcenanzahl desc";
 
             SQLiteCommand command = new SQLiteCommand(statement);
             command.Parameters.AddWithValue("$dateFrom", dateFrom);
@@ -58,8 +58,8 @@ namespace NW_Spendenmonitor
         public static void CountInfluencePerAccount(Form1 form)
         {
             form.GetFromToDates(out string dateFrom, out string dateTo);
-            string statement = "select charname, account, sum(resourcequantity) Einfluss from input where resource like 'influence'" +
-                " or resource like 'Einfluss' and time >= $dateFrom and time <= $dateTo group by account order by Einfluss desc";
+            string statement = "select charname, account, sum(resourcequantity) Einfluss from input where (resource like 'influence'" +
+                " or resource like 'Einfluss') and (time >= $dateFrom and time <= $dateTo) group by account order by Einfluss desc";
 
             SQLiteCommand command = new SQLiteCommand(statement);
             command.Parameters.AddWithValue("$dateFrom", dateFrom);
@@ -72,8 +72,8 @@ namespace NW_Spendenmonitor
         public static void CountGemsPerAccount(Form1 form)
         {
             form.GetFromToDates(out string dateFrom, out string dateTo);
-            string statement = "select charname, account, sum(resourcequantity) Juwelen from input where resource like 'gems'" +
-                " or resource like 'Juwelen' and time >= $dateFrom and time <= $dateTo group by account order by Juwelen desc";
+            string statement = "select charname, account, sum(resourcequantity) Juwelen from input where (resource like 'gems'" +
+                " or resource like 'Juwelen') and (time >= $dateFrom and time <= $dateTo) group by account order by Juwelen desc";
 
             SQLiteCommand command = new SQLiteCommand(statement);
             command.Parameters.AddWithValue("$dateFrom", dateFrom);
@@ -86,8 +86,8 @@ namespace NW_Spendenmonitor
         public static void CountSurplusPerAccount(Form1 form)
         {
             form.GetFromToDates(out string dateFrom, out string dateTo);
-            string statement = "select charname, account, sum(resourcequantity) 'Überschüssige Ausrüstung' from input where resource like 'Surplus Equipment'" +
-                " or resource like 'Überschüssige Ausrüstung' and time >= $dateFrom and time <= $dateTo group by account order by sum(resourcequantity) desc";
+            string statement = "select charname, account, sum(resourcequantity) 'Überschüssige Ausrüstung' from input where (resource like 'Surplus Equipment'" +
+                " or resource like 'Überschüssige Ausrüstung') and (time >= $dateFrom and time <= $dateTo) group by account order by sum(resourcequantity) desc";
 
             SQLiteCommand command = new SQLiteCommand(statement);
             command.Parameters.AddWithValue("$dateFrom", dateFrom);
@@ -100,8 +100,8 @@ namespace NW_Spendenmonitor
         public static void CountInfluencePerDay(Form1 form)
         {
             form.GetFromToDates(out string dateFrom, out string dateTo);
-            string statement = "select date(time) Tag, sum(resourcequantity) Einfluss from input where resource like 'influence'" +
-                " or resource like 'Einfluss' and time >= $dateFrom and time <= $dateTo group by date(time) order by Tag desc";
+            string statement = "select date(time) Tag, sum(resourcequantity) Einfluss from input where (resource like 'influence'" +
+                " or resource like 'Einfluss') and (time >= $dateFrom and time <= $dateTo) group by date(time) order by Tag desc";
 
             SQLiteCommand command = new SQLiteCommand(statement);
             command.Parameters.AddWithValue("$dateFrom", dateFrom);
@@ -114,8 +114,8 @@ namespace NW_Spendenmonitor
         public static void CountGemsPerDay(Form1 form)
         {
             form.GetFromToDates(out string dateFrom, out string dateTo);
-            string statement = "select date(time) Tag, sum(resourcequantity) Juwelen from input where resource like 'gems'" +
-                " or resource like 'Juwelen' and time >= datetime($dateFrom) and time <= datetime($dateTo) group by date(time) order by Tag desc";
+            string statement = "select date(time) Tag, sum(resourcequantity) Juwelen from input where (resource like 'gems'" +
+                " or resource like 'Juwelen') and (time >= $dateFrom and time <= $dateTo) group by date(time) order by Tag desc";
 
             SQLiteCommand command = new SQLiteCommand(statement);
             command.Parameters.AddWithValue("$dateFrom", dateFrom);
@@ -128,8 +128,8 @@ namespace NW_Spendenmonitor
         public static void CountSurplusPerDay(Form1 form)
         {
             form.GetFromToDates(out string dateFrom, out string dateTo);
-            string statement = "select date(time) Tag, sum(resourcequantity) 'Überschüssige Ausrüstung' from input where resource like 'Surplus Equipment'" +
-                " or resource like 'Überschüssige Ausrüstung' and time >= $dateFrom and time <= $dateTo group by date(time) order by Tag desc";
+            string statement = "select date(time) Tag, sum(resourcequantity) 'Überschüssige Ausrüstung' from input where (resource like 'Surplus Equipment'" +
+                " or resource like 'Überschüssige Ausrüstung') and (time >= $dateFrom and time <= $dateTo) group by date(time) order by Tag desc";
 
             SQLiteCommand command = new SQLiteCommand(statement);
             command.Parameters.AddWithValue("$dateFrom", dateFrom);
@@ -142,8 +142,8 @@ namespace NW_Spendenmonitor
         public static void CountVouchersPerAccount(Form1 form)
         {
             form.GetFromToDates(out string dateFrom, out string dateTo);
-            string statement = "select charname, account, sum(itemcount) Gutscheinanzahl from input where item like '%voucher%'" +
-                " and time >= $dateFrom and time <= $dateTo group by account order by Gutscheinanzahl desc";
+            string statement = "select charname, account, sum(itemcount) Gutscheinanzahl from input where (item like '%voucher%')" +
+                " and (time >= $dateFrom and time <= $dateTo) group by account order by Gutscheinanzahl desc";
 
             SQLiteCommand command = new SQLiteCommand(statement);
             command.Parameters.AddWithValue("$dateFrom", dateFrom);

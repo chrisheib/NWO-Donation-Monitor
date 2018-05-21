@@ -43,7 +43,7 @@ namespace NW_Spendenmonitor
                 {
                     //German
                     case UILanguage.German:
-                        form_caption = "Neverwinter Spendenmonitor";
+                        form_caption = "Neverwinter Spendenmonitor " + ConfigClass.VERSION;
                         form_status = "Status:";
                         form_importlanguage = "Spielsprache:";
                         form_renamefile = "Datei umbenennen";
@@ -81,7 +81,7 @@ namespace NW_Spendenmonitor
                         break;
 
                     case UILanguage.English:
-                        form_caption = "Neverwinter Donationmonitor";
+                        form_caption = "Neverwinter Donationmonitor " + ConfigClass.VERSION;
                         form_status = "Status:";
                         form_importlanguage = "Game language:";
                         form_renamefile = "Rename file";

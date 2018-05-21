@@ -94,7 +94,13 @@ namespace NW_Spendenmonitor
                 string version = versionRaw.Split('\"')[0];
                 if (string.Compare(version, ConfigClass.VERSION) > 0)
                 {
-                    MessageBox.Show("Neue Version: " + version + Environment.NewLine + "Aktuelle Version: " + ConfigClass.VERSION + Environment.NewLine + "Updaten?");
+                    DialogResult dialogResult = MessageBox.Show("Neue Version: " + version + Environment.NewLine + 
+                        "Aktuelle Version: " + ConfigClass.VERSION + Environment.NewLine + 
+                        "Update herunterladen?", "Update verfügbar!", MessageBoxButtons.YesNo);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        System.Diagnostics.Process.Start("https://github.com/chrisheib/NWO-Donation-Monitor/releases");
+                    }
                 }
             }
             catch (Exception)
@@ -105,11 +111,12 @@ namespace NW_Spendenmonitor
 
         public string Get(string uri)
         {
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(uri);
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls
                 | SecurityProtocolType.Tls11
                 | SecurityProtocolType.Tls12
                 | SecurityProtocolType.Ssl3;
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(uri);
+            ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
 
             request.Method = "GET";
             request.AllowAutoRedirect = true;
