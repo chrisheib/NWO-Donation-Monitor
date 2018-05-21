@@ -18,6 +18,9 @@ namespace NW_Spendenmonitor
             statement = "CREATE TABLE config ( `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, `key` TEXT NOT NULL UNIQUE, `value` TEXT)";
             AddTable(dbConnection, "config", statement);
 
+            statement = "CREATE TABLE exceptions (id INTEGER PRIMARY KEY AUTOINCREMENT, exception TEXT, date DATETIME)";
+            AddTable(dbConnection, "exceptions", statement);
+
             return result;
         } 
 
@@ -25,9 +28,10 @@ namespace NW_Spendenmonitor
         {
             string statement = "SELECT name FROM sqlite_master WHERE type = 'table' AND name = $tablename";
             SQLiteCommand command = new SQLiteCommand(statement);
-            command.Parameters.AddWithValue("$table", tablename);
+            command.Parameters.AddWithValue("$tablename", tablename);
 
-            if (DB.ReadValue(dbConnection, command) == tablename) 
+            string table = DB.ReadValue(dbConnection, command);
+            if (table == tablename) 
             {
                 //TODO: Add table altering
             }

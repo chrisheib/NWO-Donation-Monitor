@@ -6,6 +6,8 @@ namespace NW_Spendenmonitor
 {
     class DB
     {
+        public static bool ExceptionError = false;
+
         public static SQLiteConnection OpenSQLConnection(out string result)
         {
             var newDB = false;
@@ -62,8 +64,9 @@ namespace NW_Spendenmonitor
                 query = command.ExecuteReader();
                 result = true;
             }
-            catch
+            catch (Exception e)
             {
+                LogException(connect, e);
                 query = null;
             }
 
@@ -85,8 +88,9 @@ namespace NW_Spendenmonitor
                     reader.Read();
                     return reader.GetString(0);
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
+                    LogException(connect, e);
                     return "";
                 }
             }
@@ -126,9 +130,9 @@ namespace NW_Spendenmonitor
                 command.ExecuteNonQuery();
                 result = true;
             }
-            catch 
+            catch (Exception e)
             {
-
+                LogException(connect, e);
             }
             return result;
 
@@ -151,6 +155,32 @@ namespace NW_Spendenmonitor
             command.Parameters.AddWithValue("$date", sqlFormattedDate);
 
             Execute(connect, command, false);
+        }
+
+        public static void LogException(SQLiteConnection connect, Exception exception)
+        {
+            if (!ExceptionError)
+            {
+
+                DateTime myDateTime = DateTime.Now;
+                string sqlFormattedDate = myDateTime.ToString("yyyy-MM-dd HH:mm:ss.fff");
+
+                string sql = "INSERT INTO exceptions (exception, date) values ($exception, $date)";
+                SQLiteCommand command = new SQLiteCommand(sql);
+                command.Parameters.AddWithValue("$exception", exception.Message);
+                command.Parameters.AddWithValue("$date", sqlFormattedDate);
+
+                ExceptionError = true;
+                try
+                {
+                    Execute(connect, command, false);
+                    ExceptionError = true;
+                }
+                catch (Exception e)
+                {
+                    LogException(connect, e);
+                }
+            }
         }
     }
 }

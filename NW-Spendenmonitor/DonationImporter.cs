@@ -119,7 +119,7 @@ namespace NW_Spendenmonitor
                 "(charname, account, time, item, itemcount, resource, resourcequantity, donorsguild, targetguild) VALUES (" +
                 "$charname," +
                 "$account," +
-                "$time" +
+                "$time," +
                 "$item," +
                 "$itemcount," +
                 "$resource," +
