@@ -4,7 +4,7 @@ namespace NW_Spendenmonitor
 {
     public static class ConfigClass
     {
-        public static string VERSION = "v0.61";
+        public static string VERSION = "v0.62";
         public static int ImportLanguage;
         public static Languages.UILanguage UILanguage;
 
