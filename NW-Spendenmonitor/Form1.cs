@@ -45,7 +45,8 @@ namespace NW_Spendenmonitor
             dTPFrom.ValueChanged += new EventHandler(EventRunStatement);
             dTPTo.ValueChanged += new EventHandler(EventRunStatement);
 
-            CheckForNewVersion();
+            //CheckForNewVersion();
+            VersionChecker v = new VersionChecker(new VersionChecker.VersionCheckHandler(ReactToChangedVersion));
             
             Statement.RunStatement(this, Int32.Parse(GetConfig("LastStatistic", "0")));
 
