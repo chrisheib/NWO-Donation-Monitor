@@ -12,19 +12,23 @@ namespace NW_Spendenmonitor
         SQLiteConnection dbConnection;
         DataTable dt;
         bool showSQLHistory = true;
+        bool DEBUG = false;
 
         public Form1()
         {
             InitializeComponent();
+            DebugMessageBox("Inititalized");
 
             ChangeHistoryCollapsed(this, null);
+            DebugMessageBox("History Collapsed");
 
             dbConnection = DB.OpenSQLConnection(out string status);
             SetStatus(status);
             dt = new DataTable();
             dataGridView1.DataSource = dt;
             FillPrevious();
-            
+            DebugMessageBox("DB opened, Previous filled");
+
             Languages.form_uilanguages = new System.Collections.Generic.List<string>
             {
                 "Deutsch",
@@ -32,23 +36,31 @@ namespace NW_Spendenmonitor
             };
 
             Languages.SetLanguage(this, (Languages.UILanguage)Int32.Parse(GetConfig("UILanguage", "0")), true);
+            DebugMessageBox("SetLanguage");
             SetComponentLanguage();
+            DebugMessageBox("SetComponentLanguage");
 
             cb_uilanguage.SelectedIndex = (int)ConfigClass.UILanguage;
+            DebugMessageBox("cb Language");
 
             dTPFrom.Text = "17.05.2018 18:00:00";
             dTPTo.Text = DateTime.Now.ToString("dd.MM.yyyy") + " 23:59:59";
-            
+            DebugMessageBox("Dates filled");
+
             cb_uilanguage.SelectionChangeCommitted += new EventHandler(Cb_uilanguage_SelectedIndexChanged);
             cb_statistic.SelectedIndexChanged += new EventHandler(EventRunStatement);
             cb_importlanguage.SelectionChangeCommitted += new EventHandler(Cb_importlanguage_SelectedIndexChanged);
             dTPFrom.ValueChanged += new EventHandler(EventRunStatement);
             dTPTo.ValueChanged += new EventHandler(EventRunStatement);
+            DebugMessageBox("Event Handlers Set");
+
 
             //CheckForNewVersion();
             VersionChecker v = new VersionChecker(new VersionChecker.VersionCheckHandler(ReactToChangedVersion));
-            
+            DebugMessageBox("Version checker initialised");
+
             Statement.RunStatement(this, Int32.Parse(GetConfig("LastStatistic", "0")));
+            DebugMessageBox("Last statement run");
 
             //ConfigClass.TestConfig(dbConnection);
         }

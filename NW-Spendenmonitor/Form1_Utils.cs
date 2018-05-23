@@ -99,6 +99,7 @@ namespace NW_Spendenmonitor
         {
             if ((e.Success) && (string.Compare(e.NewVersion, ConfigClass.VERSION) > 0))
             {
+                DebugMessageBox("Versionchecker finished successfully: New Version found.");
                 DialogResult dialogResult = MessageBox.Show("Neue Version: " + e.NewVersion + Environment.NewLine +
                     "Aktuelle Version: " + ConfigClass.VERSION + Environment.NewLine +
                     "Update herunterladen?", "Update verfügbar!", MessageBoxButtons.YesNo);
@@ -106,6 +107,22 @@ namespace NW_Spendenmonitor
                 {
                     System.Diagnostics.Process.Start("https://github.com/chrisheib/NWO-Donation-Monitor/releases");
                 }
+            }
+            else if (e.Success)
+            {
+                DebugMessageBox("Versionchecker finished successfully: No new Version found.");
+            }
+            else
+            {
+                DebugMessageBox("Versionchecker finished: Failed checking.");
+            }
+        }
+
+        public void DebugMessageBox(string message)
+        {
+            if (DEBUG)
+            {
+                MessageBox.Show(message);
             }
         }
     }

@@ -47,6 +47,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.button3 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -65,6 +66,7 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.button3);
             this.splitContainer1.Panel1.Controls.Add(this.cb_uilanguage);
             this.splitContainer1.Panel1.Controls.Add(this.lbl_uilanguage);
             this.splitContainer1.Panel1.Controls.Add(this.lbl_importlanguage);
@@ -151,7 +153,7 @@
             this.cb_statistic.FormattingEnabled = true;
             this.cb_statistic.Location = new System.Drawing.Point(378, 63);
             this.cb_statistic.Name = "cb_statistic";
-            this.cb_statistic.Size = new System.Drawing.Size(184, 21);
+            this.cb_statistic.Size = new System.Drawing.Size(232, 21);
             this.cb_statistic.TabIndex = 20;
             // 
             // chk_rename
@@ -275,6 +277,15 @@
             this.dataGridView1.Size = new System.Drawing.Size(723, 507);
             this.dataGridView1.TabIndex = 6;
             // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(618, 62);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(92, 23);
+            this.button3.TabIndex = 26;
+            this.button3.Text = "Import";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -314,6 +325,7 @@
         private System.Windows.Forms.ComboBox cb_importlanguage;
         private System.Windows.Forms.ComboBox cb_uilanguage;
         private System.Windows.Forms.Label lbl_uilanguage;
+        private System.Windows.Forms.Button button3;
     }
 }
 
