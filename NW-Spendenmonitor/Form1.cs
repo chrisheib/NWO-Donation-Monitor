@@ -43,8 +43,9 @@ namespace NW_Spendenmonitor
             cb_uilanguage.SelectedIndex = (int)ConfigClass.UILanguage;
             DebugMessageBox("cb Language");
 
-            dTPFrom.Text = "17.05.2018 18:00:00";
-            dTPTo.Text = DateTime.Now.ToString("dd.MM.yyyy") + " 23:59:59";
+            DateTime.TryParseExact("17.05.2018", "dd.MM.yyyy", null, System.Globalization.DateTimeStyles.None, out DateTime d);
+            dTPFrom.Value = d.AddHours(18);
+            dTPTo.Value = DateTime.Now.Date.AddDays(1).AddTicks(-1);
             DebugMessageBox("Dates filled");
 
             cb_uilanguage.SelectionChangeCommitted += new EventHandler(Cb_uilanguage_SelectedIndexChanged);
