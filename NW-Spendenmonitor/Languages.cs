@@ -10,6 +10,7 @@ namespace NW_Spendenmonitor
         public static string form_importlanguage;
         public static string form_renamefile;
         public static string form_import;
+        public static string form_export;
         public static string form_sqlhistory;
         public static List<string> form_commands;
         public static List<string> form_importlanguages;
@@ -48,6 +49,7 @@ namespace NW_Spendenmonitor
                         form_importlanguage = "Spielsprache:";
                         form_renamefile = "Datei umbenennen";
                         form_import = "Import";
+                        form_export = "Export";
                         form_sqlhistory = "SQL-Historie";
                         form_commands = new List<string>
                         {
@@ -86,6 +88,7 @@ namespace NW_Spendenmonitor
                         form_importlanguage = "Game language:";
                         form_renamefile = "Rename file";
                         form_import = "Import";
+                        form_export = "Export";
                         form_sqlhistory = "SQL history";
                         form_commands = new List<string>
                         {

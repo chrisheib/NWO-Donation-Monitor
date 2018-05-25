@@ -159,14 +159,14 @@ namespace NW_Spendenmonitor
             form.StatementToGrid(command, false);
         }
 
-        public static SQLiteCommand GetResourcePerDay(Resource r)
-        {
-            string statement = "select charname, account, sum(resourcequantity) Einfluss from input where (resource like $resource)" +
-        "and (time >= $dateFrom and time <= $dateTo) group by account order by Einfluss desc";
-
-        } 
-        string statement = "select date(time) Tag, sum(resourcequantity) 'Überschüssige Ausrüstung' from input where (resource like 'Surplus Equipment'" +
-            " or resource like 'Überschüssige Ausrüstung') and (time >= $dateFrom and time <= $dateTo) group by date(time) order by Tag desc";
+        //public static SQLiteCommand GetResourcePerDay(Resource r)
+        //{
+        //    string statement = "select charname, account, sum(resourcequantity) Einfluss from input where (resource like $resource)" +
+        //"and (time >= $dateFrom and time <= $dateTo) group by account order by Einfluss desc";
+        //
+        //} 
+        //string statement = "select date(time) Tag, sum(resourcequantity) 'Überschüssige Ausrüstung' from input where (resource like 'Surplus Equipment'" +
+        //    " or resource like 'Überschüssige Ausrüstung') and (time >= $dateFrom and time <= $dateTo) group by date(time) order by Tag desc";
 
     }
 }

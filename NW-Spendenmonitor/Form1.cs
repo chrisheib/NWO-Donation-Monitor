@@ -18,6 +18,9 @@ namespace NW_Spendenmonitor
         {
             InitializeComponent();
             DebugMessageBox("Inititalized");
+            
+            VersionChecker v = new VersionChecker(new VersionChecker.VersionCheckHandler(ReactToChangedVersion));
+            DebugMessageBox("Version checker initialised");
 
             ChangeHistoryCollapsed(this, null);
             DebugMessageBox("History Collapsed");
@@ -55,11 +58,6 @@ namespace NW_Spendenmonitor
             dTPTo.ValueChanged += new EventHandler(EventRunStatement);
             DebugMessageBox("Event Handlers Set");
 
-
-            //CheckForNewVersion();
-            VersionChecker v = new VersionChecker(new VersionChecker.VersionCheckHandler(ReactToChangedVersion));
-            DebugMessageBox("Version checker initialised");
-
             Statement.RunStatement(this, Int32.Parse(GetConfig("LastStatistic", "0")));
             DebugMessageBox("Last statement run");
 
@@ -96,7 +94,6 @@ namespace NW_Spendenmonitor
                 try
                 {
                     SetStatus(openFileDialog1.FileName + Languages.status_beingimported);
-
                     
                     string path = openFileDialog1.FileName;
                     SetConfig("ImportPath", Path.GetDirectoryName(path));

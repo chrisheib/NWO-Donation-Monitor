@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btn_export = new System.Windows.Forms.Button();
             this.cb_uilanguage = new System.Windows.Forms.ComboBox();
             this.lbl_uilanguage = new System.Windows.Forms.Label();
             this.lbl_importlanguage = new System.Windows.Forms.Label();
@@ -66,7 +66,7 @@
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.button3);
+            this.splitContainer1.Panel1.Controls.Add(this.btn_export);
             this.splitContainer1.Panel1.Controls.Add(this.cb_uilanguage);
             this.splitContainer1.Panel1.Controls.Add(this.lbl_uilanguage);
             this.splitContainer1.Panel1.Controls.Add(this.lbl_importlanguage);
@@ -93,15 +93,15 @@
             this.splitContainer1.SplitterDistance = 250;
             this.splitContainer1.TabIndex = 8;
             // 
-            // button3
+            // btn_export
             // 
-            this.button3.Location = new System.Drawing.Point(618, 62);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(92, 23);
-            this.button3.TabIndex = 26;
-            this.button3.Text = "Import";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Visible = false;
+            this.btn_export.Location = new System.Drawing.Point(618, 62);
+            this.btn_export.Name = "btn_export";
+            this.btn_export.Size = new System.Drawing.Size(92, 23);
+            this.btn_export.TabIndex = 26;
+            this.btn_export.Text = "Export";
+            this.btn_export.UseVisualStyleBackColor = true;
+            this.btn_export.Click += new System.EventHandler(this.Btn_export_Click);
             // 
             // cb_uilanguage
             // 
@@ -326,7 +326,7 @@
         private System.Windows.Forms.ComboBox cb_importlanguage;
         private System.Windows.Forms.ComboBox cb_uilanguage;
         private System.Windows.Forms.Label lbl_uilanguage;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btn_export;
     }
 }
 

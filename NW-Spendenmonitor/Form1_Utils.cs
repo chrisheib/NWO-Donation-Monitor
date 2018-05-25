@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using System.Data.SQLite;
 using System.Data;
 using System.Collections.Generic;
+using System.IO;
 
 namespace NW_Spendenmonitor
 {
@@ -60,6 +61,7 @@ namespace NW_Spendenmonitor
             lbl_importlanguage.Text = Languages.form_importlanguage;
             chk_rename.Text = Languages.form_renamefile;
             btn_import.Text = Languages.form_import;
+            btn_export.Text = Languages.form_export;
             btn_sqlhistory.Text = Languages.form_sqlhistory;
             FillComboboxFromList(cb_importlanguage, Languages.form_importlanguages);
             FillComboboxFromList(cb_statistic, Languages.form_commands);
@@ -124,6 +126,61 @@ namespace NW_Spendenmonitor
             {
                 MessageBox.Show(message);
             }
+        }
+
+        private void Btn_export_Click(object sender, EventArgs e)
+        {
+            //Ort auswählen
+            SaveFileDialog fileDialog1 = new SaveFileDialog()
+            {
+                InitialDirectory = GetConfig("ExportPath", "C:\\"),
+                RestoreDirectory = true,
+                Filter = "CSV-File (*.csv)|*.csv|All Files (*.*)|*.*",
+                FilterIndex = 0
+
+            };
+
+            if (fileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    string path = fileDialog1.FileName;
+                    SetConfig("ExportPath", Path.GetDirectoryName(path));
+                    SetStatus(fileDialog1.FileName + Languages.status_beingimported);
+
+                    //Statement öffnen
+                    if (DB.Select(dbConnection, "SELECT (''''||charname||''','''||account||''','''||time||''','''||item||''','''||itemcount||''','''||resource||''','''||resourcequantity||''','''||donorsguild||''','''||targetguild||'''') from input order by time", out SQLiteDataReader q))
+                    {
+                        //alles reinschreiben
+                        FileStream f = File.OpenWrite(path);
+                        
+                        Byte[] crlf = StringToByteArray(Environment.NewLine);
+
+                        Byte[] text = StringToByteArray("'Character Name','Account Handle','Time','Item','Item Count','Resource','Resource Quantity','Donors Guild','Recipient Guild'");
+                        f.Write(text, 0, text.Length);
+                        f.Write(crlf, 0, crlf.Length);
+
+                        while (q.Read())
+                        {
+                            text = StringToByteArray(q.GetString(0));
+                            f.Write(text, 0, text.Length);
+                            f.Write(crlf, 0, crlf.Length);
+                        }
+
+                        f.Close();
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: Could not write file to disk. Original error: " + ex.Message);
+                }
+            }
+        }
+
+        private byte[] StringToByteArray(string str)
+        {
+            return System.Text.Encoding.Default.GetBytes(str);   
         }
     }
 }
