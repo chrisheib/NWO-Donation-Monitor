@@ -178,6 +178,64 @@ namespace NW_Spendenmonitor
             }
         }
 
+        private void Btn_export2_Click(object sender, EventArgs e)
+        {
+
+            //Ort auswählen
+            SaveFileDialog fileDialog1 = new SaveFileDialog()
+            {
+                InitialDirectory = GetConfig("ExportPath", "C:\\"),
+                RestoreDirectory = true,
+                Filter = "CSV-File (*.csv)|*.csv|All Files (*.*)|*.*",
+                FilterIndex = 0
+
+            };
+
+            if (fileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    string path = fileDialog1.FileName;
+                    SetConfig("ExportPath", Path.GetDirectoryName(path));
+                    SetStatus(fileDialog1.FileName + Languages.status_beingimported);
+
+                    //Statement öffnen
+
+                    GetFromToDates(out string dateFrom, out string dateTo);
+                    string statement = "select (SUBSTR('@'|| account || '                   ' , 1, 19) || ':' || SUBSTR('      ' || sum(itemcount), -6, 6) ) " + 
+                        " from input where (item like '%voucher%')" +
+                        " and (time >= $dateFrom and time <= $dateTo) group by account order by sum(itemcount) desc";
+                    SQLiteCommand command = new SQLiteCommand(statement);
+                    command.Parameters.AddWithValue("$dateFrom", dateFrom);
+                    command.Parameters.AddWithValue("$dateTo", dateTo);
+
+                    if (DB.Select(dbConnection, command, out SQLiteDataReader q))
+                    {
+                        //alles reinschreiben
+                        FileStream f = File.OpenWrite(path);
+
+                        Byte[] crlf = StringToByteArray(Environment.NewLine);
+
+                        Byte[] text;
+
+                        while (q.Read())
+                        {
+                            text = StringToByteArray(q.GetString(0));
+                            f.Write(text, 0, text.Length);
+                            f.Write(crlf, 0, crlf.Length);
+                        }
+
+                        f.Close();
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: Could not write file to disk. Original error: " + ex.Message);
+                }
+            }
+        }
+
         private byte[] StringToByteArray(string str)
         {
             return System.Text.Encoding.Default.GetBytes(str);   

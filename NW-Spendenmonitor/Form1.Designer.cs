@@ -48,6 +48,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.btn_export2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -66,6 +67,7 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.btn_export2);
             this.splitContainer1.Panel1.Controls.Add(this.btn_export);
             this.splitContainer1.Panel1.Controls.Add(this.cb_uilanguage);
             this.splitContainer1.Panel1.Controls.Add(this.lbl_uilanguage);
@@ -97,7 +99,7 @@
             // 
             this.btn_export.Location = new System.Drawing.Point(618, 62);
             this.btn_export.Name = "btn_export";
-            this.btn_export.Size = new System.Drawing.Size(92, 23);
+            this.btn_export.Size = new System.Drawing.Size(45, 23);
             this.btn_export.TabIndex = 26;
             this.btn_export.Text = "Export";
             this.btn_export.UseVisualStyleBackColor = true;
@@ -287,6 +289,16 @@
             this.dataGridView1.Size = new System.Drawing.Size(723, 507);
             this.dataGridView1.TabIndex = 6;
             // 
+            // btn_export2
+            // 
+            this.btn_export2.Location = new System.Drawing.Point(665, 62);
+            this.btn_export2.Name = "btn_export2";
+            this.btn_export2.Size = new System.Drawing.Size(45, 23);
+            this.btn_export2.TabIndex = 27;
+            this.btn_export2.Text = "Ex. 2";
+            this.btn_export2.UseVisualStyleBackColor = true;
+            this.btn_export2.Click += new System.EventHandler(this.Btn_export2_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -327,6 +339,7 @@
         private System.Windows.Forms.ComboBox cb_uilanguage;
         private System.Windows.Forms.Label lbl_uilanguage;
         private System.Windows.Forms.Button btn_export;
+        private System.Windows.Forms.Button btn_export2;
     }
 }
 
