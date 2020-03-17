@@ -4,9 +4,10 @@ namespace NW_Spendenmonitor
 {
     public static class ConfigClass
     {
-        public static string VERSION = "v0.7";
+        public static string VERSION = "v0.7.1";
         public static int ImportLanguage;
         public static Languages.UILanguage UILanguage;
+        public static bool VersioncheckCompleted = false;
 
         public static string GetConfig(SQLiteConnection dbConnection, string field)
         {

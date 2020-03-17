@@ -12,13 +12,22 @@ namespace NW_Spendenmonitor
         DataTable dt;
         bool showSQLHistory = true;
         readonly bool DEBUG = false;
+        readonly Timer versionCheckTimer;
 
         public Main()
         {
             InitializeComponent();
             DebugMessageBox("Inititalized");
             
-            VersionChecker v = new VersionChecker(new VersionChecker.VersionCheckHandler(ReactToChangedVersion));
+            VersionChecker v = new VersionChecker();
+            versionCheckTimer = new Timer()
+            {
+                Enabled = false,
+                Interval = 1000
+            };
+            versionCheckTimer.Tick += VersionCheckTimer_Tick;
+            versionCheckTimer.Start();
+
             DebugMessageBox("Version checker initialised");
 
             ChangeHistoryCollapsed(this, null);
@@ -147,7 +156,7 @@ namespace NW_Spendenmonitor
         }
 
         private void EventRunStatement(object sender, EventArgs e)
-        {
+        {   
 
             Statement.RunStatement(this, cb_statistic.SelectedIndex);
         }
@@ -193,6 +202,15 @@ namespace NW_Spendenmonitor
         private void Cb_importlanguage_SelectedIndexChanged(object sender, EventArgs e)
         {
             SetConfig("ImportLanguage", cb_importlanguage.SelectedIndex.ToString());
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            // Specify that the link was visited.
+            this.linkLabel1.LinkVisited = true;
+
+            // Navigate to a URL.
+            System.Diagnostics.Process.Start("https://github.com/chrisheib/NWO-Donation-Monitor");
         }
     }
 }

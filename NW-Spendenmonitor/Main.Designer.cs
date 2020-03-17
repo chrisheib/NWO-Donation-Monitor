@@ -48,11 +48,15 @@
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.lbl_versioncheck = new System.Windows.Forms.Label();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -89,7 +93,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.dataGridView1);
-            this.splitContainer1.Size = new System.Drawing.Size(723, 761);
+            this.splitContainer1.Size = new System.Drawing.Size(723, 746);
             this.splitContainer1.SplitterDistance = 250;
             this.splitContainer1.TabIndex = 8;
             // 
@@ -284,8 +288,41 @@
             this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToDisplayedHeaders;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.ShowEditingIcon = false;
-            this.dataGridView1.Size = new System.Drawing.Size(723, 507);
+            this.dataGridView1.Size = new System.Drawing.Size(723, 492);
             this.dataGridView1.TabIndex = 6;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.lbl_versioncheck);
+            this.panel1.Controls.Add(this.linkLabel1);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel1.Location = new System.Drawing.Point(0, 746);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(723, 15);
+            this.panel1.TabIndex = 7;
+            // 
+            // lbl_versioncheck
+            // 
+            this.lbl_versioncheck.AutoSize = true;
+            this.lbl_versioncheck.Dock = System.Windows.Forms.DockStyle.Left;
+            this.lbl_versioncheck.Location = new System.Drawing.Point(0, 0);
+            this.lbl_versioncheck.Name = "lbl_versioncheck";
+            this.lbl_versioncheck.Size = new System.Drawing.Size(136, 13);
+            this.lbl_versioncheck.TabIndex = 1;
+            this.lbl_versioncheck.Text = "Checking for new version...";
+            // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.linkLabel1.Location = new System.Drawing.Point(419, 0);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Padding = new System.Windows.Forms.Padding(0, 1, 0, 0);
+            this.linkLabel1.Size = new System.Drawing.Size(304, 14);
+            this.linkLabel1.TabIndex = 0;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "Created by ChrisHeib (@stschiff)! Visit the project on Github! ❤️";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
             // Main
             // 
@@ -293,6 +330,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(723, 761);
             this.Controls.Add(this.splitContainer1);
+            this.Controls.Add(this.panel1);
             this.Name = "Main";
             this.Text = "Neverwinter Spendenmonitor";
             this.splitContainer1.Panel1.ResumeLayout(false);
@@ -301,6 +339,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -327,6 +367,9 @@
         private System.Windows.Forms.ComboBox cb_uilanguage;
         private System.Windows.Forms.Label lbl_uilanguage;
         private System.Windows.Forms.Button btn_export;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.Label lbl_versioncheck;
     }
 }
 

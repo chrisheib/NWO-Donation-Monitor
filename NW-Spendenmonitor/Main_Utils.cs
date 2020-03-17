@@ -3,7 +3,6 @@ using System.Windows.Forms;
 using System.Data.SQLite;
 using System.Data;
 using System.Collections.Generic;
-using System.IO;
 using System.Globalization;
 
 namespace NW_Spendenmonitor
@@ -98,26 +97,34 @@ namespace NW_Spendenmonitor
             return ConfigClass.GetConfig(dbConnection, key, defaultValue);
         }
 
-        public void ReactToChangedVersion(object sender, VersionCheckerEventArgs e)
+        private void VersionCheckTimer_Tick(object sender, EventArgs e)
         {
-            if ((e.Success) && (string.Compare(e.NewVersion, ConfigClass.VERSION) > 0))
+            if (VersionChecker.completed)
             {
-                DebugMessageBox("Versionchecker finished successfully: New Version found.");
-                DialogResult dialogResult = MessageBox.Show("Neue Version: " + e.NewVersion + Environment.NewLine +
-                    "Aktuelle Version: " + ConfigClass.VERSION + Environment.NewLine +
-                    "Update herunterladen?", "Update verfügbar!", MessageBoxButtons.YesNo);
-                if (dialogResult == DialogResult.Yes)
+                versionCheckTimer.Stop();
+
+                if (VersionChecker.success)
                 {
-                    System.Diagnostics.Process.Start("https://github.com/chrisheib/NWO-Donation-Monitor/releases");
+                    if (string.Compare(VersionChecker.newVersion, ConfigClass.VERSION) != 0)
+                    {
+                        lbl_versioncheck.Text = "New Version found!";
+                        DialogResult dialogResult = MessageBox.Show(this, "New Version: " + VersionChecker.newVersion + Environment.NewLine +
+                            "Current Version: " + ConfigClass.VERSION + Environment.NewLine +
+                            "Visist download page?", "Update available!", MessageBoxButtons.YesNo);
+                        if (dialogResult == DialogResult.Yes)
+                        {
+                            System.Diagnostics.Process.Start("https://github.com/chrisheib/NWO-Donation-Monitor/releases");
+                        }
+                    }
+                    else 
+                    {
+                        lbl_versioncheck.Text = "You are running the latest version!";
+                    }
                 }
-            }
-            else if (e.Success)
-            {
-                DebugMessageBox("Versionchecker finished successfully: No new Version found.");
-            }
-            else
-            {
-                DebugMessageBox("Versionchecker finished: Failed checking.");
+                else
+                {
+                    lbl_versioncheck.Text = "Could not check for new version!!!";
+                }
             }
         }
 
