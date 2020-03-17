@@ -1,12 +1,8 @@
-﻿using System;
-using System.Net;
+﻿using System.Net;
 using System.IO;
-
-// code taken from: https://stackoverflow.com/questions/6644247/simple-custom-event - themartinmcfly 
 
 namespace NW_Spendenmonitor
 {
-
     class VersionChecker
     {
         public static bool completed = false;
@@ -15,9 +11,7 @@ namespace NW_Spendenmonitor
 
         public VersionChecker()
         {
-            System.Threading.Thread newThread =
-                new System.Threading.Thread(CheckForNewVersion);
-            newThread.Start();
+            new System.Threading.Thread(CheckForNewVersion).Start();
         }
 
         private void CheckForNewVersion()

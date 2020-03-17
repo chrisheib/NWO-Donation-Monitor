@@ -74,7 +74,6 @@ namespace NW_Spendenmonitor
                 tw.WriteLine(s);
             }
             tw.Close();
-            
         }
     }
 }

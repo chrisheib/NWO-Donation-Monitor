@@ -65,7 +65,7 @@ namespace NW_Spendenmonitor
             }
             else
             {
-                dateFrom = Main.StringToDateTime(strDateFrom);
+                dateFrom = StringToDateTime(strDateFrom);
             }
 
             if (strDateTo == "")
@@ -74,7 +74,7 @@ namespace NW_Spendenmonitor
             }
             else
             {
-                dateTo = Main.StringToDateTime(strDateTo);
+                dateTo = StringToDateTime(strDateTo);
             }
 
             dTPFrom.Value = dateFrom;
@@ -88,10 +88,8 @@ namespace NW_Spendenmonitor
             dTPTo.ValueChanged += new EventHandler(EventRunStatement);
             DebugMessageBox("Event Handlers Set");
 
-            Statement.RunStatement(this, Int32.Parse(GetConfig("LastStatistic", "0")));
+            Statement.RunStatement(this, int.Parse(GetConfig("LastStatistic", "0")));
             DebugMessageBox("Last statement run");
-
-            //ConfigClass.TestConfig(dbConnection);
         }
 
         private void Button1_Click(object sender, EventArgs e)
@@ -110,7 +108,7 @@ namespace NW_Spendenmonitor
             textBox1.Text = listBox1.SelectedItem.ToString();
         }
 
-        private void Button3_Click(object sender, EventArgs e)
+        private void Btn_Import_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog1 = new OpenFileDialog()
             {
@@ -207,7 +205,7 @@ namespace NW_Spendenmonitor
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             // Specify that the link was visited.
-            this.linkLabel1.LinkVisited = true;
+            linkLabel1.LinkVisited = true;
 
             // Navigate to a URL.
             System.Diagnostics.Process.Start("https://github.com/chrisheib/NWO-Donation-Monitor");

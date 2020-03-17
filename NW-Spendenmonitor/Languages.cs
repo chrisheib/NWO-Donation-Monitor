@@ -56,14 +56,14 @@ namespace NW_Spendenmonitor
                         form_sqlhistory = "SQL-Historie";
                         form_commands = new List<string>
                         {
-                            "Alle Ressourcen von ... bis",
-                            "Einfluss pro Account von...bis",
-                            "Juwelen pro Account von ... bis",
-                            "Überfl. Ausr. pro Account von ... bis",
-                            "Einfluss pro Tag von...bis",
-                            "Juwelen pro Tag von ... bis",
-                            "Überfl. Ausr. pro Tag von ... bis",
-                            "Gutscheine pro Account von ... bis"
+                            "Alle Ressourcen",
+                            "Einfluss pro Account",
+                            "Juwelen pro Account",
+                            "Überschüssige Ausrüstung pro Account",
+                            "Einfluss pro Tag",
+                            "Juwelen pro Tag",
+                            "Überschüssige Ausrüstung pro Tag",
+                            "Belagerungsgutscheine pro Account"
                         };
 
                         form_importlanguages = new List<string>
@@ -99,14 +99,14 @@ namespace NW_Spendenmonitor
                         form_sqlhistory = "SQL history";
                         form_commands = new List<string>
                         {
-                            "All ressources from...to",
-                            "Influence per account from...to",
-                            "Gems per account from...to",
-                            "Surpl. Equip. per account from...to",
-                            "Influence per day from...to",
-                            "Gems per day from...to",
-                            "Surpl. Equip. per day from...to",
-                            "Vouchers per Account from...to"
+                            "All ressources",
+                            "Influence per account",
+                            "Gems per account",
+                            "Surplus equipment per account",
+                            "Influence per day",
+                            "Gems per day",
+                            "Surplus equipment per day",
+                            "Siege-vouchers per Account"
                         };
 
                         form_importlanguages = new List<string>

@@ -7,7 +7,6 @@ namespace NW_Spendenmonitor
         public static string VERSION = "v0.7.1";
         public static int ImportLanguage;
         public static Languages.UILanguage UILanguage;
-        public static bool VersioncheckCompleted = false;
 
         public static string GetConfig(SQLiteConnection dbConnection, string field)
         {
@@ -35,25 +34,5 @@ namespace NW_Spendenmonitor
 
             DB.Execute(dbConnection, command, false);
         }
-
-        //public static void TestConfig(SQLiteConnection dbConnection)
-        //{
-        //    string test;
-        //    SetConfig(dbConnection, "test1", "test1");
-        //    SetConfig(dbConnection, "test2", "test2");
-        //    SetConfig(dbConnection, "test3", "test3");
-
-        //    test = GetConfig(dbConnection, "test1");
-        //    test = GetConfig(dbConnection, "test2");
-        //    test = GetConfig(dbConnection, "test3");
-
-        //    SetConfig(dbConnection, "test1", "test4");
-        //    SetConfig(dbConnection, "test2", "test5");
-        //    SetConfig(dbConnection, "test3", "test6");
-
-        //    test = GetConfig(dbConnection, "test1");
-        //    test = GetConfig(dbConnection, "test2");
-        //    test = GetConfig(dbConnection, "test3");
-        //}
     }
 }
