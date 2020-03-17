@@ -22,6 +22,9 @@ namespace NW_Spendenmonitor
         public static string message_renamefailed;
         public static string db_newdbcreated = "Neue Datenbank erfolgreich angelegt!";
         public static string db_connectionsuccess = "Erfolgreich zu bestehender Datenbank verbunden!";
+        public static string export_success_clipboard;
+        public static string export_success_file;
+        public static string export_failed;
 
 
         public enum UILanguage { German, English};
@@ -80,6 +83,10 @@ namespace NW_Spendenmonitor
                         message_renamefailed = "Es exisitiert bereits eine Datei, die die selben Datensätze beinhaltet. " + Environment.NewLine +
                             "Soll diese ALTE Datei umbenannt werden?" + Environment.NewLine +
                             "Bei \"Nein\" wird die aktuelle Datei nicht umbenannt!";
+
+                        export_failed = "Export ist fehlgeschlagen! Ursprünglicher Fehler: ";
+                        export_success_clipboard = "Daten erfolgreich in Zwischenablage kopiert!";
+                        export_success_file = "Datei wurde erfolgreich gespeichert!";
                         break;
 
                     case UILanguage.English:
@@ -119,6 +126,10 @@ namespace NW_Spendenmonitor
                         message_renamefailed = "There already is a file ending on the same date. " + Environment.NewLine +
                             "Should this OLD file be renamed?" + Environment.NewLine +
                             "Selecting \"no\" will not rename the current file.";
+
+                        export_failed = "Export failed! Original error message: ";
+                        export_success_clipboard = "Data successfully exported to clipboard!";
+                        export_success_file = "File successfully created!";
                         break;
 
                     default:

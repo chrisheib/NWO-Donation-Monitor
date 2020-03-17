@@ -22,7 +22,19 @@ namespace NW_Spendenmonitor
             InitializeComponent();
         }
 
-        public void export1_Click(object sender, EventArgs e)
+        public void Btn_Export_Click(object sender, EventArgs e)
+        {
+            if (rb_export_curSel.Checked)
+            {
+                Export_Current_Selection();
+            }
+            else if (rb_export_vouchers.Checked)
+            {
+                Export_Siege_Vouchers();
+            }
+        }
+
+        public void Export_Current_Selection()
         {
             //Ort auswählen
             SaveFileDialog fileDialog1 = new SaveFileDialog()
@@ -61,17 +73,22 @@ namespace NW_Spendenmonitor
                         }
 
                         f.Close();
+
+                        MessageBox.Show(Languages.export_success_file);
+
+                        // Close form after successfull export
+                        Close();
                     }
 
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error: Could not write file to disk. Original error: " + ex.Message);
+                    MessageBox.Show(Languages.export_failed + ex.Message);
                 }
             }
         }
 
-        private void Btn_export2_Click(object sender, EventArgs e)
+        private void Export_Siege_Vouchers()
         {
             try
             {
@@ -120,6 +137,7 @@ namespace NW_Spendenmonitor
                             }
 
                             f.Close();
+                            MessageBox.Show(Languages.export_success_file);
                         }
                     }
                     else
@@ -130,13 +148,17 @@ namespace NW_Spendenmonitor
                             text = text + q.GetString(0) + Environment.NewLine;
                         }
                         Clipboard.SetDataObject(text);
+                        MessageBox.Show(Languages.export_success_clipboard);
                     }
+
+                    // Close form after successfull export
+                    Close();
                 }
 
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: Could not write file to disk. Original error: " + ex.Message);
+                MessageBox.Show(Languages.export_failed + ex.Message);
             }
             
         }
