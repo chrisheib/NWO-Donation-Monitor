@@ -6,7 +6,7 @@ using System.IO;
 
 namespace NW_Spendenmonitor
 {
-    public partial class Form1 : Form
+    public partial class Main : Form
     {
 
         SQLiteConnection dbConnection;
@@ -14,7 +14,7 @@ namespace NW_Spendenmonitor
         bool showSQLHistory = true;
         bool DEBUG = false;
 
-        public Form1()
+        public Main()
         {
             InitializeComponent();
             DebugMessageBox("Inititalized");
@@ -46,9 +46,31 @@ namespace NW_Spendenmonitor
             cb_uilanguage.SelectedIndex = (int)ConfigClass.UILanguage;
             DebugMessageBox("cb Language");
 
-            DateTime.TryParseExact("17.05.2018", "dd.MM.yyyy", null, System.Globalization.DateTimeStyles.None, out DateTime d);
-            dTPFrom.Value = d.AddHours(18);
-            dTPTo.Value = DateTime.Now.Date.AddDays(1).AddTicks(-1);
+            string strDateFrom = GetConfig("FromDate");
+            string strDateTo = GetConfig("ToDate");
+            DateTime dateFrom;
+            DateTime dateTo;
+
+            if (strDateFrom == "")
+            {
+                dateFrom = DateTime.Now;
+            }
+            else
+            {
+                dateFrom = Main.StringToDateTime(strDateFrom);
+            }
+
+            if (strDateTo == "")
+            {
+                dateTo = DateTime.Now.Date.AddDays(1).AddTicks(-1);
+            }
+            else
+            {
+                dateTo = Main.StringToDateTime(strDateTo);
+            }
+
+            dTPFrom.Value = dateFrom;
+            dTPTo.Value = dateTo;
             DebugMessageBox("Dates filled");
 
             cb_uilanguage.SelectionChangeCommitted += new EventHandler(Cb_uilanguage_SelectedIndexChanged);
@@ -127,6 +149,7 @@ namespace NW_Spendenmonitor
 
         private void EventRunStatement(object sender, EventArgs e)
         {
+
             Statement.RunStatement(this, cb_statistic.SelectedIndex);
         }
 

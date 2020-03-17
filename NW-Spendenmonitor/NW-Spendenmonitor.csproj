@@ -78,7 +78,7 @@
     <Compile Include="Languages.cs" />
     <Compile Include="ConfigClass.cs" />
     <Compile Include="ImportLanguageManager.cs" />
-    <Compile Include="Form1_Utils.cs">
+    <Compile Include="Main_Utils.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Statement.cs" />
@@ -86,16 +86,16 @@
     <Compile Include="CSVReader.cs" />
     <Compile Include="DBScheme.cs" />
     <Compile Include="DBHandler.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="Main.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Main.Designer.cs">
+      <DependentUpon>Main.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="Main.resx">
+      <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -141,17 +141,17 @@
     </PostBuildEvent>
   </PropertyGroup>
   <Target Name="AfterBuild">
-  <ItemGroup>
-    <MergeAssemblies Include="$(OutputPath)\NW-Spendenmonitor.exe" />
-    <MergeAssemblies Include="$(OutputPath)\LINQtoCSV.dll" />
-    <StuffToDelete Include="$(OutputPath)\LINQtoCSV.dll; $(OutputPath)\System.Data.SQLite.xml" />
-  </ItemGroup>
-  <PropertyGroup>
-    <OutputAssembly>$(OutputPath)NW-Spendenmonitor.exe</OutputAssembly>
-    <Merger Condition="('$(OS)' == 'Windows_NT')">&quot;$(SolutionDir)packages\ILRepack.2.0.15\tools\ILRepack.exe&quot;</Merger>
-  </PropertyGroup>
-  <Message Text="MERGING: @(MergeAssemblies->'%(Filename)') into $(OutputAssembly)" Importance="High" />
-  <Exec Command="$(Merger) /out:&quot;$(OutputAssembly)&quot; @(MergeAssemblies->'&quot;%(FullPath)&quot;', ' ')" />
-  <Delete Files="@(StuffToDelete)"/>
-</Target>
+    <ItemGroup>
+      <MergeAssemblies Include="$(OutputPath)\NW-Spendenmonitor.exe" />
+      <MergeAssemblies Include="$(OutputPath)\LINQtoCSV.dll" />
+      <StuffToDelete Include="$(OutputPath)\LINQtoCSV.dll; $(OutputPath)\System.Data.SQLite.xml" />
+    </ItemGroup>
+    <PropertyGroup>
+      <OutputAssembly>$(OutputPath)NW-Spendenmonitor.exe</OutputAssembly>
+      <Merger Condition="('$(OS)' == 'Windows_NT')">"$(SolutionDir)packages\ILRepack.2.0.15\tools\ILRepack.exe"</Merger>
+    </PropertyGroup>
+    <Message Text="MERGING: @(MergeAssemblies->'%(Filename)') into $(OutputAssembly)" Importance="High" />
+    <Exec Command="$(Merger) /out:&quot;$(OutputAssembly)&quot; @(MergeAssemblies->'&quot;%(FullPath)&quot;', ' ')" />
+    <Delete Files="@(StuffToDelete)" />
+  </Target>
 </Project>

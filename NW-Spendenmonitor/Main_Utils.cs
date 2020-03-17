@@ -4,10 +4,11 @@ using System.Data.SQLite;
 using System.Data;
 using System.Collections.Generic;
 using System.IO;
+using System.Globalization;
 
 namespace NW_Spendenmonitor
 {
-    partial class Form1
+    partial class Main
     {
 
         public void StatementToGrid(string statement)
@@ -239,6 +240,23 @@ namespace NW_Spendenmonitor
         private byte[] StringToByteArray(string str)
         {
             return System.Text.Encoding.Default.GetBytes(str);   
+        }
+
+        public static DateTime StringToDateTime(string datestring)
+        {
+            string formats = "yyyy-MM-dd HH:mm:ss";
+            CultureInfo culture = new CultureInfo("de-DE");
+            DateTime result;
+
+            try
+            {
+                result = DateTime.ParseExact(datestring, formats, culture);    
+            }
+            catch (FormatException)
+            {
+                result = new DateTime(0, 0, 0);
+            }
+            return result;
         }
     }
 }

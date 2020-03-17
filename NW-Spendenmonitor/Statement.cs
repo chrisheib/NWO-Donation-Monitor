@@ -12,7 +12,7 @@ namespace NW_Spendenmonitor
             TreasuresOfTyranny, Influence
         };
 
-        public static void RunStatement(Form1 form, int selection)
+        public static void RunStatement(Main form, int selection)
         {
             switch (selection)
             {
@@ -45,10 +45,14 @@ namespace NW_Spendenmonitor
             }
 
             form.SetConfig("LastStatistic", selection.ToString());
+
+            form.GetFromToDates(out string dateFrom, out string dateTo);
+            form.SetConfig("FromDate", dateFrom);
+            form.SetConfig("ToDate", dateTo);
         }
 
         //0
-        public static void CountAllResourceTypes(Form1 form)
+        public static void CountAllResourceTypes(Main form)
         {
             form.GetFromToDates(out string dateFrom, out string dateTo);
             string statement = "select resource, sum(resourcequantity) Ressourcenanzahl from input where " +
@@ -62,7 +66,7 @@ namespace NW_Spendenmonitor
         }
 
         //1
-        public static void CountInfluencePerAccount(Form1 form)
+        public static void CountInfluencePerAccount(Main form)
         {
             form.GetFromToDates(out string dateFrom, out string dateTo);
             string statement = "select charname, account, sum(resourcequantity) Einfluss from input where (resource like 'influence'" +
@@ -76,7 +80,7 @@ namespace NW_Spendenmonitor
         }
 
         //2
-        public static void CountGemsPerAccount(Form1 form)
+        public static void CountGemsPerAccount(Main form)
         {
             form.GetFromToDates(out string dateFrom, out string dateTo);
             string statement = "select charname, account, sum(resourcequantity) Juwelen from input where (resource like 'gems'" +
@@ -90,7 +94,7 @@ namespace NW_Spendenmonitor
         }
 
         //3
-        public static void CountSurplusPerAccount(Form1 form)
+        public static void CountSurplusPerAccount(Main form)
         {
             form.GetFromToDates(out string dateFrom, out string dateTo);
             string statement = "select charname, account, sum(resourcequantity) 'Überschüssige Ausrüstung' from input where (resource like 'Surplus Equipment'" +
@@ -104,7 +108,7 @@ namespace NW_Spendenmonitor
         }
 
         //4
-        public static void CountInfluencePerDay(Form1 form)
+        public static void CountInfluencePerDay(Main form)
         {
             form.GetFromToDates(out string dateFrom, out string dateTo);
             string statement = "select date(time) Tag, sum(resourcequantity) Einfluss from input where (resource like 'influence'" +
@@ -118,7 +122,7 @@ namespace NW_Spendenmonitor
         }
 
         //5
-        public static void CountGemsPerDay(Form1 form)
+        public static void CountGemsPerDay(Main form)
         {
             form.GetFromToDates(out string dateFrom, out string dateTo);
             string statement = "select date(time) Tag, sum(resourcequantity) Juwelen from input where (resource like 'gems'" +
@@ -132,7 +136,7 @@ namespace NW_Spendenmonitor
         }
 
         //6
-        public static void CountSurplusPerDay(Form1 form)
+        public static void CountSurplusPerDay(Main form)
         {
             form.GetFromToDates(out string dateFrom, out string dateTo);
             string statement = "select date(time) Tag, sum(resourcequantity) 'Überschüssige Ausrüstung' from input where (resource like 'Surplus Equipment'" +
@@ -146,7 +150,7 @@ namespace NW_Spendenmonitor
         }
 
         //7
-        public static void CountVouchersPerAccount(Form1 form)
+        public static void CountVouchersPerAccount(Main form)
         {
             form.GetFromToDates(out string dateFrom, out string dateTo);
             string statement = "select charname, account, sum(itemcount) Gutscheinanzahl from input where (item like '%voucher%')" +
