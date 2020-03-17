@@ -74,6 +74,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Export.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Export.Designer.cs">
+      <DependentUpon>Export.cs</DependentUpon>
+    </Compile>
     <Compile Include="VersionChecker.cs" />
     <Compile Include="Languages.cs" />
     <Compile Include="ConfigClass.cs" />
@@ -94,6 +100,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Export.resx">
+      <DependentUpon>Export.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>

@@ -8,11 +8,10 @@ namespace NW_Spendenmonitor
 {
     public partial class Main : Form
     {
-
-        SQLiteConnection dbConnection;
+        readonly public SQLiteConnection dbConnection;
         DataTable dt;
         bool showSQLHistory = true;
-        bool DEBUG = false;
+        readonly bool DEBUG = false;
 
         public Main()
         {
