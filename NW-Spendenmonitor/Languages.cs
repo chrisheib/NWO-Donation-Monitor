@@ -131,6 +131,8 @@ namespace NW_Spendenmonitor
                         export_success_clipboard = "Data successfully exported to clipboard!";
                         export_success_file = "File successfully created!";
                         break;
+                    default:
+                        throw new InvalidOperationException("Unexpected language = " + language);
                 }
             }
 

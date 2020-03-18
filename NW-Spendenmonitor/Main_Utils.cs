@@ -72,7 +72,7 @@ namespace NW_Spendenmonitor
             cb_uilanguage.SelectedIndex = (int)ConfigClass.UILanguage;
         }
 
-        private void FillComboboxFromList(ComboBox cb, List<string> list)
+        private static void FillComboboxFromList(ComboBox cb, List<string> list)
         {
             cb.Items.Clear();
             foreach (var s in list)
@@ -129,7 +129,7 @@ namespace NW_Spendenmonitor
 
         public static void DebugMessageBox(string message)
         {
-            if (DEBUG)
+            if (Main.DEBUG)
             {
                 MessageBox.Show(message);
             }

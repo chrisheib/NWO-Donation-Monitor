@@ -11,7 +11,7 @@ namespace NW_Spendenmonitor
         readonly public SQLiteConnection dbConnection;
         DataTable dt;
         bool showSQLHistory = true;
-        static readonly bool DEBUG;
+        public const bool DEBUG = false;
         readonly Timer versionCheckTimer;
 
         public Main()
@@ -105,7 +105,7 @@ namespace NW_Spendenmonitor
 
         private void ListBox1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            textBox1.Text = listBox1.SelectedItem.ToString();
+            this.textBox1.Text = listBox1.SelectedItem.ToString();
         }
 
         private void Btn_Import_Click(object sender, EventArgs e)
@@ -193,19 +193,19 @@ namespace NW_Spendenmonitor
 
         private void Cb_uilanguage_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Languages.SetLanguage(this,(Languages.UILanguage)cb_uilanguage.SelectedIndex);
+            Languages.SetLanguage(this,(Languages.UILanguage)this.cb_uilanguage.SelectedIndex);
             SetComponentLanguage();
         }
 
         private void Cb_importlanguage_SelectedIndexChanged(object sender, EventArgs e)
         {
-            SetConfig("ImportLanguage", cb_importlanguage.SelectedIndex.ToString());
+            SetConfig("ImportLanguage", this.cb_importlanguage.SelectedIndex.ToString());
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             // Specify that the link was visited.
-            linkLabel1.LinkVisited = true;
+            this.linkLabel1.LinkVisited = true;
 
             // Navigate to a URL.
             System.Diagnostics.Process.Start("https://github.com/chrisheib/NWO-Donation-Monitor");

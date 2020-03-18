@@ -108,8 +108,7 @@ namespace NW_Spendenmonitor
             }
             catch
             {
-                string dialogText = "Es ist ein Fehler aufgetreten, die Datei wurde nicht umbenannt.";
-                DialogResult dialogResult = MessageBox.Show(dialogText, "Spendenmonitor", MessageBoxButtons.OK);
+                MessageBox.Show("Es ist ein Fehler aufgetreten, die Datei wurde nicht umbenannt.");
             }
         }
 

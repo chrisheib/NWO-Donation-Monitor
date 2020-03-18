@@ -161,7 +161,6 @@ namespace NW_Spendenmonitor
         {
             if (!ExceptionError)
             {
-
                 DateTime myDateTime = DateTime.Now;
                 string sqlFormattedDate = myDateTime.ToString("yyyy-MM-dd HH:mm:ss.fff");
 

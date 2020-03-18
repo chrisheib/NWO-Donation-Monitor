@@ -97,18 +97,19 @@ namespace NW_Spendenmonitor
 
         }
 
-        private string ClearApostrophes(string input)
+        private static string ClearApostrophes(string input)
         {
             return input.Replace("'", "");
         }
 
-        private string FormatTime(string csvTime)
+        private static string FormatTime(string csvTime)
         {
-            string formattedDateTime = "";
-            string year = "";
-            string month = "";
-            string day = "";
-            string formattedTime = "";
+            string year;
+            string month;
+            string day;
+            string formattedTime;
+            string formattedDateTime;
+
             switch (ConfigClass.ImportLanguage)
             {
                 case 0:
@@ -138,8 +139,9 @@ namespace NW_Spendenmonitor
                     break;
 
                 default:
-                    break;
+                    throw new InvalidOperationException("Unexpected language = " + ConfigClass.ImportLanguage);
             }
+
             formattedDateTime = year + '-' + month + '-' + day + ' ' + formattedTime;
             return formattedDateTime;
         }

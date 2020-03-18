@@ -1,4 +1,5 @@
-﻿using System.Data.SQLite;
+﻿using System;
+using System.Data.SQLite;
 
 namespace NW_Spendenmonitor
 {
@@ -40,6 +41,8 @@ namespace NW_Spendenmonitor
                 case 7:
                     CountVouchersPerAccount(form);
                     break;
+                default:
+                    throw new InvalidOperationException("Unexpected value Selection = " + selection);
             }
 
             form.SetConfig("LastStatistic", selection.ToString());

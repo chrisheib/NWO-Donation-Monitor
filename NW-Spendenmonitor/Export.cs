@@ -102,7 +102,7 @@ namespace NW_Spendenmonitor
                     {
 
                         //Ort auswählen
-                        SaveFileDialog fileDialog1 = new SaveFileDialog()
+                        SaveFileDialog fileDialog1 = new SaveFileDialog
                         {
                             InitialDirectory = mainform.GetConfig("ExportPath", "C:\\"),
                             RestoreDirectory = true,
