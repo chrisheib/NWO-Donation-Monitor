@@ -5,7 +5,7 @@ This is a tool for guildmasters in the online game Neverwinter. It aims to help 
 ![Preview](https://raw.githubusercontent.com/chrisheib/NWO-Donation-Monitor/master/NW-Spendenmonitor/Grafik/preview.png)
 
 Instructions:
-1. In Neverwinter execute the command 'ExportGuildDonationLog E:\Neverwinterlogs\donation.csv'. As path chose one which neverwinter has permission to write to. If you've use the command correctly, a message should pop up in the system channel. Sometimes you need to execute the command twice.
+1. In Neverwinter execute the command '/ExportGuildDonationLog E:\Neverwinterlogs\donation.csv'. As path chose one which neverwinter has permission to write to. If you've use the command correctly, a message should pop up in the system channel. Sometimes you need to execute the command twice.
 2. Start the tool and click 'Import'. Now choose the file you exported in step one. If you let 'Datei umbenennen' ticked, the file will be renamed with the date of the last entry, so you wont overwrite it the next time you export the log. Awesome for binding the export command to a key. If an error pops up, click 'Cancel' and repeat step one.
 3. Enter a date and choose one of the reports from the dropdown menu. There currently are statistics for gems, surplus equipment, influence, vouchers, and an overview of all ressources. You should now see the magic in the field below :D
 
