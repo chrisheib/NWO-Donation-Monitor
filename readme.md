@@ -13,6 +13,6 @@ You can also make you own statements via SQL. Type them into the SQL box and hit
 
 Please remember neverwinter does only provide the last 500 entries in the log, so to have a complete coverage of all donations you must export the log every few days, depending on guild size and activity.
 
-Unfortunately I don't know how to certify my program to microsoft, so you will probably get a warning when you start it for the first time. As much as its worth, you can skip the warning. If any kind of antivirus program triggers tho, do NOT run the program and report back to me please.
+Unfortunately I don't own an expensive Code Signing Certificate, so you will probably get a warning when you start it for the first time. As much as its worth, you can skip the warning. If any kind of antivirus program triggers tho, do NOT run the program and report back to me please.
 
 Feel free to try it out and make suggestions.
