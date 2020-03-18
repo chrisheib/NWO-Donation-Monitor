@@ -156,8 +156,7 @@ namespace NW_Spendenmonitor
 
             CsvContext cc = new CsvContext();
 
-            List<DonationDataLine> dataLines = new List<DonationDataLine>();
-            dataLines = cc.Read<DonationDataLine>(path, inputFileDescription).ToList();
+            List<DonationDataLine> dataLines = cc.Read<DonationDataLine>(path, inputFileDescription).ToList();
 
             return dataLines;
         }

@@ -33,13 +33,13 @@ namespace NW_Spendenmonitor
 
         public void GetFromToDates(out string dateFrom, out string dateTo)
         {
-            dateFrom = dTPFrom.Value.ToString("yyyy-MM-dd HH:mm:ss");
-            dateTo = dTPTo.Value.ToString("yyyy-MM-dd HH:mm:ss");
+            dateFrom = this.dTPFrom.Value.ToString("yyyy-MM-dd HH:mm:ss");
+            dateTo = this.dTPTo.Value.ToString("yyyy-MM-dd HH:mm:ss");
         }
 
         public void SetStatus(string status)
         {
-            textBox2.Text = status;
+            this.textBox2.Text = status;
         }
 
         private void FillPrevious()
@@ -67,14 +67,13 @@ namespace NW_Spendenmonitor
             FillComboboxFromList(cb_statistic, Languages.form_commands);
             FillComboboxFromList(cb_uilanguage, Languages.form_uilanguages);
 
-            cb_statistic.SelectedIndex = Int32.Parse(GetConfig("LastStatistic", "0"));
-            cb_importlanguage.SelectedIndex = Int32.Parse(GetConfig("ImportLanguage","0"));
+            cb_statistic.SelectedIndex = int.Parse(GetConfig("LastStatistic", "0"));
+            cb_importlanguage.SelectedIndex = int.Parse(GetConfig("ImportLanguage","0"));
             cb_uilanguage.SelectedIndex = (int)ConfigClass.UILanguage;
         }
 
         private void FillComboboxFromList(ComboBox cb, List<string> list)
         {
-            int rememberIndex = cb.SelectedIndex;
             cb.Items.Clear();
             foreach (var s in list)
             {
@@ -85,16 +84,16 @@ namespace NW_Spendenmonitor
 
         public void SetConfig(string key, string value)
         {
-            ConfigClass.SetConfig(dbConnection, key, value);
+            ConfigClass.SetConfig(this.dbConnection, key, value);
         }
 
         public string GetConfig(string key)
         {
-            return ConfigClass.GetConfig(dbConnection, key);
+            return ConfigClass.GetConfig(this.dbConnection, key);
         }
         public string GetConfig(string key, string defaultValue)
         {
-            return ConfigClass.GetConfig(dbConnection, key, defaultValue);
+            return ConfigClass.GetConfig(this.dbConnection, key, defaultValue);
         }
 
         private void VersionCheckTimer_Tick(object sender, EventArgs e)
@@ -128,7 +127,7 @@ namespace NW_Spendenmonitor
             }
         }
 
-        public void DebugMessageBox(string message)
+        public static void DebugMessageBox(string message)
         {
             if (DEBUG)
             {

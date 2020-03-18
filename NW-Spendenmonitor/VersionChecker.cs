@@ -3,18 +3,18 @@ using System.IO;
 
 namespace NW_Spendenmonitor
 {
-    class VersionChecker
+    static class VersionChecker
     {
-        public static bool completed = false;
-        public static bool success = false;
+        public static bool completed;
+        public static bool success;
         public static string newVersion;
 
-        public VersionChecker()
+        public static void StartVersionCheckingTask()
         {
             new System.Threading.Thread(CheckForNewVersion).Start();
         }
 
-        private void CheckForNewVersion()
+        private static void CheckForNewVersion()
         {
             try
             {
@@ -33,7 +33,7 @@ namespace NW_Spendenmonitor
             completed = true;
         }
 
-        public string Get(string uri)
+        public static string Get(string uri)
         {
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls
                 | SecurityProtocolType.Tls11

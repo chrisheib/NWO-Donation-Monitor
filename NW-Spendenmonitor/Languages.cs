@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace NW_Spendenmonitor
 {
-    public static class Languages
+    static class Languages
     {
         public static string form_caption;
         public static string form_status;
@@ -130,9 +130,6 @@ namespace NW_Spendenmonitor
                         export_failed = "Export failed! Original error message: ";
                         export_success_clipboard = "Data successfully exported to clipboard!";
                         export_success_file = "File successfully created!";
-                        break;
-
-                    default:
                         break;
                 }
             }

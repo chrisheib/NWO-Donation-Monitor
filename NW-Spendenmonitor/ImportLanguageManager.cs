@@ -16,7 +16,9 @@ namespace NW_Spendenmonitor
             {
                 index = str.IndexOf(value, index);
                 if (index == -1)
+                {
                     return indexes;
+                }
                 indexes.Add(index);
             }
         }

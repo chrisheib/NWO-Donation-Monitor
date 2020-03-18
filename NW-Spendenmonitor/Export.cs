@@ -1,13 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Data.SQLite;
-using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace NW_Spendenmonitor
@@ -142,12 +136,12 @@ namespace NW_Spendenmonitor
                     }
                     else
                     {
-                        string text = "";
+                        StringBuilder sb = new StringBuilder();
                         while (q.Read())
                         {
-                            text = text + q.GetString(0) + Environment.NewLine;
+                            sb.AppendLine(q.GetString(0));
                         }
-                        Clipboard.SetDataObject(text);
+                        Clipboard.SetDataObject(sb.ToString());
                         MessageBox.Show(Languages.export_success_clipboard);
                     }
 

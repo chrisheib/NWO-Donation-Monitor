@@ -4,7 +4,7 @@ using System;
 
 namespace NW_Spendenmonitor
 {
-    class DB
+    static class DB
     {
         public static bool ExceptionError = false;
 

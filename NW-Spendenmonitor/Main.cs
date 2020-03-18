@@ -11,16 +11,16 @@ namespace NW_Spendenmonitor
         readonly public SQLiteConnection dbConnection;
         DataTable dt;
         bool showSQLHistory = true;
-        readonly bool DEBUG = false;
+        static readonly bool DEBUG;
         readonly Timer versionCheckTimer;
 
         public Main()
         {
             InitializeComponent();
             DebugMessageBox("Inititalized");
-            
-            VersionChecker v = new VersionChecker();
-            versionCheckTimer = new Timer()
+
+            VersionChecker.StartVersionCheckingTask();
+            versionCheckTimer = new Timer
             {
                 Enabled = false,
                 Interval = 1000
@@ -81,11 +81,11 @@ namespace NW_Spendenmonitor
             dTPTo.Value = dateTo;
             DebugMessageBox("Dates filled");
 
-            cb_uilanguage.SelectionChangeCommitted += new EventHandler(Cb_uilanguage_SelectedIndexChanged);
-            cb_statistic.SelectedIndexChanged += new EventHandler(EventRunStatement);
-            cb_importlanguage.SelectionChangeCommitted += new EventHandler(Cb_importlanguage_SelectedIndexChanged);
-            dTPFrom.ValueChanged += new EventHandler(EventRunStatement);
-            dTPTo.ValueChanged += new EventHandler(EventRunStatement);
+            cb_uilanguage.SelectionChangeCommitted += Cb_uilanguage_SelectedIndexChanged;
+            cb_statistic.SelectedIndexChanged += EventRunStatement;
+            cb_importlanguage.SelectionChangeCommitted += Cb_importlanguage_SelectedIndexChanged;
+            dTPFrom.ValueChanged += EventRunStatement;
+            dTPTo.ValueChanged += EventRunStatement;
             DebugMessageBox("Event Handlers Set");
 
             Statement.RunStatement(this, int.Parse(GetConfig("LastStatistic", "0")));
@@ -100,7 +100,7 @@ namespace NW_Spendenmonitor
 
         private void Button2_Click(object sender, EventArgs e)
         {
-            StatementToGrid(textBox1.Text);
+            this.StatementToGrid(textBox1.Text);
         }
 
         private void ListBox1_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -110,7 +110,7 @@ namespace NW_Spendenmonitor
 
         private void Btn_Import_Click(object sender, EventArgs e)
         {
-            OpenFileDialog openFileDialog1 = new OpenFileDialog()
+            OpenFileDialog openFileDialog1 = new OpenFileDialog
             {
                 InitialDirectory = GetConfig("ImportPath","C:\\"),
                 RestoreDirectory = true,
