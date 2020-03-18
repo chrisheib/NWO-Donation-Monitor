@@ -139,7 +139,7 @@ namespace NW_Spendenmonitor
                             ImportLanguageManager.PrepareFileGerman(ref path);
                             break;
                         default:
-                            break;
+                            throw new InvalidOperationException("Unexpected language = " + ConfigClass.ImportLanguage);
                     }
                     
                     string changedLines = Convert.ToString(DonationImporter.ImportCSVToInput(dbConnection, path, chk_rename.Checked, cb_importlanguage.SelectedIndex, oldpath));

@@ -6,7 +6,7 @@ namespace NW_Spendenmonitor
 {
     static class DB
     {
-        public static bool ExceptionError = false;
+        public static bool ExceptionError;
 
         public static SQLiteConnection OpenSQLConnection(out string result)
         {
