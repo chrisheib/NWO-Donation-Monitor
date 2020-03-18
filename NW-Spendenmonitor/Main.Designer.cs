@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.btn_export = new System.Windows.Forms.Button();
             this.cb_uilanguage = new System.Windows.Forms.ComboBox();
@@ -331,6 +332,7 @@
             this.ClientSize = new System.Drawing.Size(723, 761);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.panel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Main";
             this.Text = "Neverwinter Spendenmonitor";
             this.splitContainer1.Panel1.ResumeLayout(false);
