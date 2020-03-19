@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.btn_generate_cmd = new System.Windows.Forms.Button();
             this.btn_export = new System.Windows.Forms.Button();
             this.cb_uilanguage = new System.Windows.Forms.ComboBox();
             this.lbl_uilanguage = new System.Windows.Forms.Label();
@@ -71,6 +72,7 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.btn_generate_cmd);
             this.splitContainer1.Panel1.Controls.Add(this.btn_export);
             this.splitContainer1.Panel1.Controls.Add(this.cb_uilanguage);
             this.splitContainer1.Panel1.Controls.Add(this.lbl_uilanguage);
@@ -98,6 +100,16 @@
             this.splitContainer1.SplitterDistance = 250;
             this.splitContainer1.TabIndex = 8;
             // 
+            // btn_generate_cmd
+            // 
+            this.btn_generate_cmd.Location = new System.Drawing.Point(523, 35);
+            this.btn_generate_cmd.Name = "btn_generate_cmd";
+            this.btn_generate_cmd.Size = new System.Drawing.Size(92, 23);
+            this.btn_generate_cmd.TabIndex = 27;
+            this.btn_generate_cmd.Text = "Befehl erstellen";
+            this.btn_generate_cmd.UseVisualStyleBackColor = true;
+            this.btn_generate_cmd.Click += new System.EventHandler(this.Btn_generate_cmd_Click);
+            // 
             // btn_export
             // 
             this.btn_export.Location = new System.Drawing.Point(618, 62);
@@ -115,7 +127,7 @@
             this.cb_uilanguage.Items.AddRange(new object[] {
             "Englisch",
             "Deutsch"});
-            this.cb_uilanguage.Location = new System.Drawing.Point(94, 36);
+            this.cb_uilanguage.Location = new System.Drawing.Point(88, 36);
             this.cb_uilanguage.Name = "cb_uilanguage";
             this.cb_uilanguage.Size = new System.Drawing.Size(121, 21);
             this.cb_uilanguage.TabIndex = 25;
@@ -132,7 +144,7 @@
             // lbl_importlanguage
             // 
             this.lbl_importlanguage.AutoSize = true;
-            this.lbl_importlanguage.Location = new System.Drawing.Point(255, 40);
+            this.lbl_importlanguage.Location = new System.Drawing.Point(212, 40);
             this.lbl_importlanguage.Name = "lbl_importlanguage";
             this.lbl_importlanguage.Size = new System.Drawing.Size(71, 13);
             this.lbl_importlanguage.TabIndex = 23;
@@ -145,7 +157,7 @@
             this.cb_importlanguage.Items.AddRange(new object[] {
             "Englisch",
             "Deutsch"});
-            this.cb_importlanguage.Location = new System.Drawing.Point(345, 36);
+            this.cb_importlanguage.Location = new System.Drawing.Point(283, 36);
             this.cb_importlanguage.Name = "cb_importlanguage";
             this.cb_importlanguage.Size = new System.Drawing.Size(121, 21);
             this.cb_importlanguage.TabIndex = 22;
@@ -168,7 +180,7 @@
             this.cb_statistic.FormattingEnabled = true;
             this.cb_statistic.Location = new System.Drawing.Point(378, 63);
             this.cb_statistic.Name = "cb_statistic";
-            this.cb_statistic.Size = new System.Drawing.Size(232, 21);
+            this.cb_statistic.Size = new System.Drawing.Size(236, 21);
             this.cb_statistic.TabIndex = 20;
             // 
             // chk_rename
@@ -176,7 +188,7 @@
             this.chk_rename.AutoSize = true;
             this.chk_rename.Checked = true;
             this.chk_rename.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chk_rename.Location = new System.Drawing.Point(485, 39);
+            this.chk_rename.Location = new System.Drawing.Point(408, 39);
             this.chk_rename.Name = "chk_rename";
             this.chk_rename.Size = new System.Drawing.Size(116, 17);
             this.chk_rename.TabIndex = 19;
@@ -323,7 +335,7 @@
             this.linkLabel1.TabIndex = 0;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "Created by ChrisHeib (@stschiff)! Visit the project on Github! ❤️";
-            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel1_LinkClicked);
             // 
             // Main
             // 
@@ -372,6 +384,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.Label lbl_versioncheck;
+        private System.Windows.Forms.Button btn_generate_cmd;
     }
 }
 

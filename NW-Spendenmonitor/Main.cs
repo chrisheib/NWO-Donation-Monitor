@@ -4,6 +4,9 @@ using System.Data.SQLite;
 using System.Data;
 using System.IO;
 
+// TODO: Main und Main-Utils entkoppeln: Alle events in Main, aber funktionsaufrufe mit allen notwendigen Parametern nach utils weitergeben!
+// TODO: Language auf Object umbauen!
+
 namespace NW_Spendenmonitor
 {
     public partial class Main : Form
@@ -202,13 +205,35 @@ namespace NW_Spendenmonitor
             SetConfig("ImportLanguage", this.cb_importlanguage.SelectedIndex.ToString());
         }
 
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void LinkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             // Specify that the link was visited.
             this.linkLabel1.LinkVisited = true;
 
             // Navigate to a URL.
             System.Diagnostics.Process.Start("https://github.com/chrisheib/NWO-Donation-Monitor");
+        }
+
+        private void Btn_generate_cmd_Click(object sender, EventArgs e)
+        {
+            string path = GetConfig("IngameCommandPath", "~/Desktop");
+            string filename = GetConfig("IngameCommandFile", "donation.csv");
+
+            SaveFileDialog saveFileDialog = new SaveFileDialog
+            {
+                InitialDirectory = path,
+                FileName = filename,
+                Title = "Select where to put the exported guild log",
+                CheckFileExists = false,
+                Filter = "Export File|*.csv"
+            };
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                SetConfig("IngameCommandPath", Path.GetDirectoryName(saveFileDialog.FileName));
+                SetConfig("IngameCommandFile", Path.GetFileName(saveFileDialog.FileName));
+                string gameCommand = $"/ExportGuildDonationLog {saveFileDialog.FileName}";
+                Clipboard.SetDataObject(gameCommand);
+            }
         }
     }
 }

@@ -12,6 +12,7 @@ namespace NW_Spendenmonitor
         public static string form_import;
         public static string form_export;
         public static string form_sqlhistory;
+        public static string form_btn_generate_cmd;
         public static List<string> form_commands;
         public static List<string> form_importlanguages;
         public static List<string> form_uilanguages;
@@ -54,6 +55,7 @@ namespace NW_Spendenmonitor
                         form_import = "Import";
                         form_export = "Export";
                         form_sqlhistory = "SQL-Historie";
+                        form_btn_generate_cmd = "Befehl erstellen";
                         form_commands = new List<string>
                         {
                             "Alle Ressourcen",
@@ -97,6 +99,7 @@ namespace NW_Spendenmonitor
                         form_import = "Import";
                         form_export = "Export";
                         form_sqlhistory = "SQL history";
+                        form_btn_generate_cmd = "Generate command";
                         form_commands = new List<string>
                         {
                             "All ressources",

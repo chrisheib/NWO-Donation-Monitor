@@ -63,6 +63,7 @@ namespace NW_Spendenmonitor
             btn_import.Text = Languages.form_import;
             btn_export.Text = Languages.form_export;
             btn_sqlhistory.Text = Languages.form_sqlhistory;
+            btn_generate_cmd.Text = Languages.form_btn_generate_cmd;
             FillComboboxFromList(cb_importlanguage, Languages.form_importlanguages);
             FillComboboxFromList(cb_statistic, Languages.form_commands);
             FillComboboxFromList(cb_uilanguage, Languages.form_uilanguages);
