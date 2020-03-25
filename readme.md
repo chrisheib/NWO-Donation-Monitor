@@ -2,7 +2,7 @@
 
 This is a tool for guildmasters in the online game Neverwinter. It aims to help them get an overview over donated material.
 
-![Preview](https://raw.githubusercontent.com/chrisheib/NWO-Donation-Monitor/master/NW-Spendenmonitor/Grafik/preview.png)
+![Preview](https://raw.githubusercontent.com/chrisheib/NWO-Donation-Monitor/master/Grafik/preview.png)
 
 ## Features
 *   Keep a database of all donations

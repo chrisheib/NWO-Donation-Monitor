@@ -2,7 +2,8 @@
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
   <Product Id="*" Name="NW_DM_Setup" Language="1033" Version="1.0.0.0" Manufacturer="chrisheib" UpgradeCode="06788d6c-5241-4d6b-8898-8bcc50c3b553">
 		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
-    <!--TODO: https://stackoverflow.com/questions/12191502/include-majorversion-etc-in-filename-outputname-when-building-msi-file-wix-pr -->
+    <!-- TODO: https://stackoverflow.com/questions/12191502/include-majorversion-etc-in-filename-outputname-when-building-msi-file-wix-pr -->
+    <!-- https://helgeklein.com/blog/2014/09/real-world-example-wix-msi-application-installer/ -->
 
     <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
 		<MediaTemplate EmbedCab="yes" />
@@ -23,10 +24,10 @@
 	<Fragment>
 		<ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
       <Component Id="exe">
-        <File Source="..\NW-Spendenmonitor\bin\Release\NW-Spendenmonitor.exe" />
+        <File Source="..\out\Release\NW-Spendenmonitor.exe" />
       </Component>
       <Component Id="sqliteDLL">
-        <File Source="..\NW-Spendenmonitor\bin\Release\System.Data.SQLite.dll" />
+        <File Source="..\out\Release\System.Data.SQLite.dll" />
       </Component>
 		</ComponentGroup>
 	</Fragment>
