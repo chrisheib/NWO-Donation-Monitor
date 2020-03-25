@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Product Id="*" Name="NW_DM_Setup" Language="1033" Version="1.0.0.0" Manufacturer="chrisheib" UpgradeCode="06788d6c-5241-4d6b-8898-8bcc50c3b553">
+		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+
+		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+		<MediaTemplate EmbedCab="yes" />
+
+		<Feature Id="ProductFeature" Title="NW_DM_Setup" Level="1">
+			<ComponentGroupRef Id="ProductComponents" />
+		</Feature>
+	</Product>
+
+	<Fragment>
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="ProgramFilesFolder">
+				<Directory Id="INSTALLFOLDER" Name="Donation-Monitor" />
+			</Directory>
+		</Directory>
+	</Fragment>
+
+	<Fragment>
+		<ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+      <Component Id="exe">
+        <File Source="..\NW-Spendenmonitor\bin\Release\NW-Spendenmonitor.exe" />
+      </Component>
+      <Component Id="sqliteDLL">
+        <File Source="..\NW-Spendenmonitor\bin\Release\System.Data.SQLite.dll" />
+      </Component>
+		</ComponentGroup>
+	</Fragment>
+</Wix>
