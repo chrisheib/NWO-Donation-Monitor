@@ -71,7 +71,8 @@ namespace NW_Spendenmonitor
                         form_importlanguages = new List<string>
                         {
                             "Englisch",
-                            "Deutsch"
+                            "Deutsch",
+                            "Italienisch"
                         };
 
                         status_beingimported = " wird importiert, bitte warten!";
@@ -115,7 +116,8 @@ namespace NW_Spendenmonitor
                         form_importlanguages = new List<string>
                         {
                             "English",
-                            "German"
+                            "German",
+                            "Italian"
                         };
 
                         status_beingimported = " is being imported, please wait!";

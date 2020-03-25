@@ -52,7 +52,6 @@ namespace NW_Spendenmonitor
                 }
                 else
                 {
-
                     indexes = fileLine.AllIndexesOf(",");
                     from = indexes[1];
                     to = indexes[3];

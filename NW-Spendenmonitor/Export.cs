@@ -53,9 +53,9 @@ namespace NW_Spendenmonitor
                         //alles reinschreiben
                         FileStream f = File.OpenWrite(path);
 
-                        Byte[] crlf = mainform.StringToByteArray(Environment.NewLine);
+                        byte[] crlf = mainform.StringToByteArray(Environment.NewLine);
 
-                        Byte[] text = mainform.StringToByteArray("'Character Name','Account Handle','Time','Item','Item Count','Resource','Resource Quantity','Donors Guild','Recipient Guild'");
+                        byte[] text = mainform.StringToByteArray("'Character Name','Account Handle','Time','Item','Item Count','Resource','Resource Quantity','Donors Guild','Recipient Guild'");
                         f.Write(text, 0, text.Length);
                         f.Write(crlf, 0, crlf.Length);
 
@@ -120,8 +120,8 @@ namespace NW_Spendenmonitor
                             //alles reinschreiben
                             FileStream f = File.OpenWrite(path);
 
-                            Byte[] crlf = mainform.StringToByteArray(Environment.NewLine);
-                            Byte[] text;
+                            byte[] crlf = mainform.StringToByteArray(Environment.NewLine);
+                            byte[] text;
 
                             while (q.Read())
                             {

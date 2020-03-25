@@ -138,6 +138,19 @@ namespace NW_Spendenmonitor
                     formattedTime = DateTime.Parse(fullTime).ToLongTimeString();
                     break;
 
+                case 2:
+                    //25/3/2020 14:22:36
+                    fullDateTime = csvTime.Split(' ');
+                    fullDate = fullDateTime[0].Split('/');
+                    fullTime = fullDateTime[1];
+
+                    day = fullDate[0].PadLeft(2, '0');
+                    month = fullDate[1].PadLeft(2, '0');
+                    year = fullDate[2];
+
+                    formattedTime = DateTime.Parse(fullTime).ToLongTimeString();
+                    break;
+
                 default:
                     throw new InvalidOperationException("Unexpected language = " + ConfigClass.ImportLanguage);
             }

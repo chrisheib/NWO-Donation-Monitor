@@ -141,6 +141,8 @@ namespace NW_Spendenmonitor
                             oldpath = path;
                             ImportLanguageManager.PrepareFileGerman(ref path);
                             break;
+                        case 2:
+                            break;
                         default:
                             throw new InvalidOperationException("Unexpected language = " + ConfigClass.ImportLanguage);
                     }

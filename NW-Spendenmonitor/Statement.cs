@@ -71,7 +71,7 @@ namespace NW_Spendenmonitor
         {
             form.GetFromToDates(out string dateFrom, out string dateTo);
             string statement = "select charname, account, sum(resourcequantity) Einfluss from input where (resource like 'influence'" +
-                " or resource like 'Einfluss') and (time >= $dateFrom and time <= $dateTo) group by account order by Einfluss desc";
+                " or resource like 'Einfluss' or resource like 'Influenza') and (time >= $dateFrom and time <= $dateTo) group by account order by Einfluss desc";
 
             SQLiteCommand command = new SQLiteCommand(statement);
             command.Parameters.AddWithValue("$dateFrom", dateFrom);
@@ -85,7 +85,7 @@ namespace NW_Spendenmonitor
         {
             form.GetFromToDates(out string dateFrom, out string dateTo);
             string statement = "select charname, account, sum(resourcequantity) Juwelen from input where (resource like 'gems'" +
-                " or resource like 'Juwelen') and (time >= $dateFrom and time <= $dateTo) group by account order by Juwelen desc";
+                " or resource like 'Juwelen' or resource like 'Gemme') and (time >= $dateFrom and time <= $dateTo) group by account order by Juwelen desc";
 
             SQLiteCommand command = new SQLiteCommand(statement);
             command.Parameters.AddWithValue("$dateFrom", dateFrom);
@@ -99,7 +99,7 @@ namespace NW_Spendenmonitor
         {
             form.GetFromToDates(out string dateFrom, out string dateTo);
             string statement = "select charname, account, sum(resourcequantity) 'Überschüssige Ausrüstung' from input where (resource like 'Surplus Equipment'" +
-                " or resource like 'Überschüssige Ausrüstung') and (time >= $dateFrom and time <= $dateTo) group by account order by sum(resourcequantity) desc";
+                " or resource like 'Überschüssige Ausrüstung' or resource like 'Equipaggiamento extra') and (time >= $dateFrom and time <= $dateTo) group by account order by sum(resourcequantity) desc";
 
             SQLiteCommand command = new SQLiteCommand(statement);
             command.Parameters.AddWithValue("$dateFrom", dateFrom);
@@ -113,7 +113,7 @@ namespace NW_Spendenmonitor
         {
             form.GetFromToDates(out string dateFrom, out string dateTo);
             string statement = "select date(time) Tag, sum(resourcequantity) Einfluss from input where (resource like 'influence'" +
-                " or resource like 'Einfluss') and (time >= $dateFrom and time <= $dateTo) group by date(time) order by Tag desc";
+                " or resource like 'Einfluss' or resource like 'Influenza') and (time >= $dateFrom and time <= $dateTo) group by date(time) order by Tag desc";
 
             SQLiteCommand command = new SQLiteCommand(statement);
             command.Parameters.AddWithValue("$dateFrom", dateFrom);
@@ -127,7 +127,7 @@ namespace NW_Spendenmonitor
         {
             form.GetFromToDates(out string dateFrom, out string dateTo);
             string statement = "select date(time) Tag, sum(resourcequantity) Juwelen from input where (resource like 'gems'" +
-                " or resource like 'Juwelen') and (time >= $dateFrom and time <= $dateTo) group by date(time) order by Tag desc";
+                " or resource like 'Juwelen' or resource like 'Gemme') and (time >= $dateFrom and time <= $dateTo) group by date(time) order by Tag desc";
 
             SQLiteCommand command = new SQLiteCommand(statement);
             command.Parameters.AddWithValue("$dateFrom", dateFrom);
@@ -141,7 +141,7 @@ namespace NW_Spendenmonitor
         {
             form.GetFromToDates(out string dateFrom, out string dateTo);
             string statement = "select date(time) Tag, sum(resourcequantity) 'Überschüssige Ausrüstung' from input where (resource like 'Surplus Equipment'" +
-                " or resource like 'Überschüssige Ausrüstung') and (time >= $dateFrom and time <= $dateTo) group by date(time) order by Tag desc";
+                " or resource like 'Überschüssige Ausrüstung' or resource like 'Equipaggiamento extra') and (time >= $dateFrom and time <= $dateTo) group by date(time) order by Tag desc";
 
             SQLiteCommand command = new SQLiteCommand(statement);
             command.Parameters.AddWithValue("$dateFrom", dateFrom);
@@ -154,7 +154,7 @@ namespace NW_Spendenmonitor
         public static void CountVouchersPerAccount(Main form)
         {
             form.GetFromToDates(out string dateFrom, out string dateTo);
-            string statement = "select charname, account, sum(itemcount) Gutscheinanzahl from input where (item like '%voucher%')" +
+            string statement = "select charname, account, sum(itemcount) Gutscheinanzahl from input where ((item like '%voucher%') or (item like '%buono%') or (item like '%gutschein%'))" +
                 " and (time >= $dateFrom and time <= $dateTo) group by account order by Gutscheinanzahl desc";
 
             SQLiteCommand command = new SQLiteCommand(statement);

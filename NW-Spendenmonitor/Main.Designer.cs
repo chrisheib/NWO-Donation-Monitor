@@ -72,12 +72,12 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.cb_importlanguage);
             this.splitContainer1.Panel1.Controls.Add(this.btn_generate_cmd);
             this.splitContainer1.Panel1.Controls.Add(this.btn_export);
             this.splitContainer1.Panel1.Controls.Add(this.cb_uilanguage);
             this.splitContainer1.Panel1.Controls.Add(this.lbl_uilanguage);
             this.splitContainer1.Panel1.Controls.Add(this.lbl_importlanguage);
-            this.splitContainer1.Panel1.Controls.Add(this.cb_importlanguage);
             this.splitContainer1.Panel1.Controls.Add(this.btn_sqlhistory);
             this.splitContainer1.Panel1.Controls.Add(this.cb_statistic);
             this.splitContainer1.Panel1.Controls.Add(this.chk_rename);
@@ -102,9 +102,9 @@
             // 
             // btn_generate_cmd
             // 
-            this.btn_generate_cmd.Location = new System.Drawing.Point(523, 35);
+            this.btn_generate_cmd.Location = new System.Drawing.Point(512, 35);
             this.btn_generate_cmd.Name = "btn_generate_cmd";
-            this.btn_generate_cmd.Size = new System.Drawing.Size(92, 23);
+            this.btn_generate_cmd.Size = new System.Drawing.Size(112, 23);
             this.btn_generate_cmd.TabIndex = 27;
             this.btn_generate_cmd.Text = "Befehl erstellen";
             this.btn_generate_cmd.UseVisualStyleBackColor = true;
@@ -112,9 +112,9 @@
             // 
             // btn_export
             // 
-            this.btn_export.Location = new System.Drawing.Point(618, 62);
+            this.btn_export.Location = new System.Drawing.Point(626, 60);
             this.btn_export.Name = "btn_export";
-            this.btn_export.Size = new System.Drawing.Size(92, 23);
+            this.btn_export.Size = new System.Drawing.Size(86, 23);
             this.btn_export.TabIndex = 26;
             this.btn_export.Text = "Export";
             this.btn_export.UseVisualStyleBackColor = true;
@@ -127,7 +127,7 @@
             this.cb_uilanguage.Items.AddRange(new object[] {
             "Englisch",
             "Deutsch"});
-            this.cb_uilanguage.Location = new System.Drawing.Point(88, 36);
+            this.cb_uilanguage.Location = new System.Drawing.Point(81, 36);
             this.cb_uilanguage.Name = "cb_uilanguage";
             this.cb_uilanguage.Size = new System.Drawing.Size(121, 21);
             this.cb_uilanguage.TabIndex = 25;
@@ -135,7 +135,7 @@
             // lbl_uilanguage
             // 
             this.lbl_uilanguage.AutoSize = true;
-            this.lbl_uilanguage.Location = new System.Drawing.Point(9, 41);
+            this.lbl_uilanguage.Location = new System.Drawing.Point(11, 41);
             this.lbl_uilanguage.Name = "lbl_uilanguage";
             this.lbl_uilanguage.Size = new System.Drawing.Size(72, 13);
             this.lbl_uilanguage.TabIndex = 24;
@@ -144,7 +144,7 @@
             // lbl_importlanguage
             // 
             this.lbl_importlanguage.AutoSize = true;
-            this.lbl_importlanguage.Location = new System.Drawing.Point(212, 40);
+            this.lbl_importlanguage.Location = new System.Drawing.Point(204, 40);
             this.lbl_importlanguage.Name = "lbl_importlanguage";
             this.lbl_importlanguage.Size = new System.Drawing.Size(71, 13);
             this.lbl_importlanguage.TabIndex = 23;
@@ -157,16 +157,16 @@
             this.cb_importlanguage.Items.AddRange(new object[] {
             "Englisch",
             "Deutsch"});
-            this.cb_importlanguage.Location = new System.Drawing.Point(283, 36);
+            this.cb_importlanguage.Location = new System.Drawing.Point(288, 36);
             this.cb_importlanguage.Name = "cb_importlanguage";
-            this.cb_importlanguage.Size = new System.Drawing.Size(121, 21);
+            this.cb_importlanguage.Size = new System.Drawing.Size(108, 21);
             this.cb_importlanguage.TabIndex = 22;
             // 
             // btn_sqlhistory
             // 
             this.btn_sqlhistory.Appearance = System.Windows.Forms.Appearance.Button;
             this.btn_sqlhistory.AutoSize = true;
-            this.btn_sqlhistory.Location = new System.Drawing.Point(12, 62);
+            this.btn_sqlhistory.Location = new System.Drawing.Point(12, 60);
             this.btn_sqlhistory.Name = "btn_sqlhistory";
             this.btn_sqlhistory.Size = new System.Drawing.Size(76, 23);
             this.btn_sqlhistory.TabIndex = 21;
@@ -178,9 +178,9 @@
             // 
             this.cb_statistic.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cb_statistic.FormattingEnabled = true;
-            this.cb_statistic.Location = new System.Drawing.Point(378, 63);
+            this.cb_statistic.Location = new System.Drawing.Point(378, 61);
             this.cb_statistic.Name = "cb_statistic";
-            this.cb_statistic.Size = new System.Drawing.Size(236, 21);
+            this.cb_statistic.Size = new System.Drawing.Size(245, 21);
             this.cb_statistic.TabIndex = 20;
             // 
             // chk_rename
@@ -188,7 +188,7 @@
             this.chk_rename.AutoSize = true;
             this.chk_rename.Checked = true;
             this.chk_rename.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chk_rename.Location = new System.Drawing.Point(408, 39);
+            this.chk_rename.Location = new System.Drawing.Point(400, 39);
             this.chk_rename.Name = "chk_rename";
             this.chk_rename.Size = new System.Drawing.Size(116, 17);
             this.chk_rename.TabIndex = 19;
@@ -198,7 +198,7 @@
             // lbl_status
             // 
             this.lbl_status.AutoSize = true;
-            this.lbl_status.Location = new System.Drawing.Point(9, 16);
+            this.lbl_status.Location = new System.Drawing.Point(11, 16);
             this.lbl_status.Name = "lbl_status";
             this.lbl_status.Size = new System.Drawing.Size(40, 13);
             this.lbl_status.TabIndex = 18;
@@ -208,7 +208,7 @@
             // 
             this.dTPTo.CustomFormat = "dd.MM.yyyy HH:mm:ss";
             this.dTPTo.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dTPTo.Location = new System.Drawing.Point(236, 63);
+            this.dTPTo.Location = new System.Drawing.Point(236, 61);
             this.dTPTo.Name = "dTPTo";
             this.dTPTo.Size = new System.Drawing.Size(136, 20);
             this.dTPTo.TabIndex = 16;
@@ -218,7 +218,7 @@
             // 
             this.dTPFrom.CustomFormat = "dd.MM.yyyy HH:mm:ss";
             this.dTPFrom.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dTPFrom.Location = new System.Drawing.Point(94, 63);
+            this.dTPFrom.Location = new System.Drawing.Point(94, 61);
             this.dTPFrom.Name = "dTPFrom";
             this.dTPFrom.Size = new System.Drawing.Size(136, 20);
             this.dTPFrom.TabIndex = 15;
@@ -226,9 +226,9 @@
             // 
             // btn_import
             // 
-            this.btn_import.Location = new System.Drawing.Point(618, 35);
+            this.btn_import.Location = new System.Drawing.Point(626, 35);
             this.btn_import.Name = "btn_import";
-            this.btn_import.Size = new System.Drawing.Size(92, 23);
+            this.btn_import.Size = new System.Drawing.Size(86, 23);
             this.btn_import.TabIndex = 14;
             this.btn_import.Text = "Import";
             this.btn_import.UseVisualStyleBackColor = true;
@@ -238,7 +238,7 @@
             // 
             this.textBox2.Location = new System.Drawing.Point(55, 13);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(655, 20);
+            this.textBox2.Size = new System.Drawing.Size(656, 20);
             this.textBox2.TabIndex = 13;
             // 
             // button2
