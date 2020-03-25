@@ -30,13 +30,23 @@ namespace NW_Spendenmonitor
             };
             versionCheckTimer.Tick += VersionCheckTimer_Tick;
             versionCheckTimer.Start();
-
             DebugMessageBox("Version checker initialised");
 
             ChangeHistoryCollapsed(this, null);
             DebugMessageBox("History Collapsed");
 
-            dbConnection = DB.OpenSQLConnection(out string status);
+            // Write Data to Appdata.
+            string oldPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "nwmonitor.sqlite");
+            string newPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Neverwinter Donation Monitor", "nwmonitor.sqlite");
+
+            if (File.Exists(oldPath))
+            {
+                Directory.CreateDirectory(Path.GetDirectoryName(newPath));
+                File.Move(oldPath, newPath);
+                MessageBox.Show($"Old database file was moved to {newPath}!");
+            }
+
+            dbConnection = DB.OpenSQLConnection(out string status, newPath);
             SetStatus(status);
             dt = new DataTable();
             dataGridView1.DataSource = dt;
@@ -49,7 +59,7 @@ namespace NW_Spendenmonitor
                 "English"
             };
 
-            Languages.SetLanguage(this, (Languages.UILanguage)Int32.Parse(GetConfig("UILanguage", "0")), true);
+            Languages.SetLanguage(this, (Languages.UILanguage)int.Parse(GetConfig("UILanguage", "0")), true);
             DebugMessageBox("SetLanguage");
             SetComponentLanguage();
             DebugMessageBox("SetComponentLanguage");

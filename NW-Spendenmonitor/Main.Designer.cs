@@ -30,12 +30,12 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.cb_importlanguage = new System.Windows.Forms.ComboBox();
             this.btn_generate_cmd = new System.Windows.Forms.Button();
             this.btn_export = new System.Windows.Forms.Button();
             this.cb_uilanguage = new System.Windows.Forms.ComboBox();
             this.lbl_uilanguage = new System.Windows.Forms.Label();
             this.lbl_importlanguage = new System.Windows.Forms.Label();
-            this.cb_importlanguage = new System.Windows.Forms.ComboBox();
             this.btn_sqlhistory = new System.Windows.Forms.CheckBox();
             this.cb_statistic = new System.Windows.Forms.ComboBox();
             this.chk_rename = new System.Windows.Forms.CheckBox();
@@ -100,6 +100,18 @@
             this.splitContainer1.SplitterDistance = 250;
             this.splitContainer1.TabIndex = 8;
             // 
+            // cb_importlanguage
+            // 
+            this.cb_importlanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cb_importlanguage.FormattingEnabled = true;
+            this.cb_importlanguage.Items.AddRange(new object[] {
+            "Englisch",
+            "Deutsch"});
+            this.cb_importlanguage.Location = new System.Drawing.Point(288, 36);
+            this.cb_importlanguage.Name = "cb_importlanguage";
+            this.cb_importlanguage.Size = new System.Drawing.Size(108, 21);
+            this.cb_importlanguage.TabIndex = 22;
+            // 
             // btn_generate_cmd
             // 
             this.btn_generate_cmd.Location = new System.Drawing.Point(512, 35);
@@ -149,18 +161,6 @@
             this.lbl_importlanguage.Size = new System.Drawing.Size(71, 13);
             this.lbl_importlanguage.TabIndex = 23;
             this.lbl_importlanguage.Text = "Spielsprache:";
-            // 
-            // cb_importlanguage
-            // 
-            this.cb_importlanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cb_importlanguage.FormattingEnabled = true;
-            this.cb_importlanguage.Items.AddRange(new object[] {
-            "Englisch",
-            "Deutsch"});
-            this.cb_importlanguage.Location = new System.Drawing.Point(288, 36);
-            this.cb_importlanguage.Name = "cb_importlanguage";
-            this.cb_importlanguage.Size = new System.Drawing.Size(108, 21);
-            this.cb_importlanguage.TabIndex = 22;
             // 
             // btn_sqlhistory
             // 
